@@ -6,11 +6,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
+import { MainBanner } from "@/types/types";
 
-const HeaderSlider = () => {
+interface Props {
+  data: MainBanner[]
+}
+
+const HeaderSlider = ({ data }: Props) => {
   const swiperRef = useRef<SwiperType>();
   return (
-    <header className="relative bg-dark-purple">
+    <header className="relative bg-dark-purple 2xl:h-[980px] bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover">
       <Swiper
         modules={[Navigation, Pagination]}
         onBeforeInit={(swiper) => {
@@ -23,232 +28,121 @@ const HeaderSlider = () => {
             pagination: true,
           },
         }}
-        className="2xl:h-[980px] h-auto relative bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover"
+        className="relative h-full"
       >
-        <SwiperSlide className="h-full">
-          <div className="h-auto md:pt-24 pt-14 pb-32 2xl:pb-0 mx-auto xl:w-80% w-90% flex flex-col md:flex-row gap-5 justify-between items-start md:items-center">
-            <div className="w-full md:w-1/2">
-              <h1 className="2xl:text-[80px] md:text-[40px] text-[36px] font-bold max-w-xl text-dark-purple 2xl:leading-[98px] md:leading-normal leading-tight">
-                Last van pijn en klachten
-              </h1>
-              <h3 className="2xl:text-[24px] md:text-[18px] text-[15px] font-normal md:font-medium max-w-[534px] text-[#4E4F84] mt-4 2xl:leading-10 leading-normal">
-                Wij helpen u of uw kind graag bij lichamelijke klachten en
-                algemene vragen!
-              </h3>
-              <Link href="#" className="mt-12 text-white btn btn-primary">
-                Maak een afspraak
-              </Link>
-            </div>
-            <div className="relative w-full md:w-1/2 md:mt-0 mt-11">
-              <svg
-                className="absolute z-0 min-w-[105%] left-[-2.5%]"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 815 714"
-              >
-                <defs>
-                  <path
-                    d="M814.891 361.302c-5.414 263.823-234.748 367.749-460.748 350.178C181.935 698.092 0 690.738 0 476.261 0 261.785 265.009 0 487.866 0 710.723 0 818.93 164.514 814.891 361.302Z"
-                    fill="#2C2E80"
-                    id="reuse-0"
-                  />
-                </defs>
-                <mask
-                  id="a"
-                  style={{ maskType: "alpha" }}
-                  maskUnits="userSpaceOnUse"
-                  x="0"
-                  y="0"
-                  width="815"
-                  height="714"
+        {data.map((item) =>
+          <SwiperSlide className="h-full" key={item.title}>
+            <div className="h-auto md:pt-24 pt-14 pb-32 2xl:pb-0 mx-auto xl:w-80% w-90% flex flex-col md:flex-row gap-5 justify-between items-start md:items-center">
+              <div className="w-full md:w-1/2">
+                <h1 className="2xl:text-[80px] md:text-[40px] text-[36px] font-bold max-w-xl text-dark-purple 2xl:leading-[98px] md:leading-normal leading-tight">
+                  {item.title}
+                </h1>
+                <h3 className="2xl:text-[24px] md:text-[18px] text-[15px] font-normal md:font-medium max-w-[534px] text-[#4E4F84] mt-4 2xl:leading-10 leading-normal">
+                  {item.description}
+                </h3>
+                <Link href={item.link} className="mt-12 text-white btn btn-primary">
+                  {item.buttonText}
+                </Link>
+              </div>
+              <div className="relative w-full md:w-1/2 md:mt-0 mt-11">
+                <svg
+                  className="absolute z-0 min-w-[105%] left-[-2.5%]"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 815 714"
                 >
-                  <use xlinkHref="#reuse-0" />
-                </mask>
-                <g mask="url(#a)">
-                  <use xlinkHref="#reuse-0" />
-                  <path
-                    d="M-220.962 930.448S9.604 849.056 27.472 724.25c10.946-76.457-64.23-113.355-54.95-190.032 7.77-64.209 60.334-85.322 72.666-148.811C70.636 254.402-79.293 67.053-79.293 67.053"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-249.687 934.873S-9.042 891.566 28.637 771.25C51.72 697.543-16.553 649.051 4.92 574.859c17.981-62.127 73.253-74.525 95.621-135.209 46.157-125.218-71.738-334.213-71.738-334.213"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-253.893 912.993S-9.39 914.757 49.809 803.441c36.265-68.193-21.907-128.432 12.866-197.399 29.118-57.751 85.728-59.756 118.893-115.28 68.433-114.573-8.945-341.709-8.945-341.709"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-144.866 701.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-70.866 720.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M285.904 860.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C251.375 125.493 35 23.053 35 23.053"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M402.904 800.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C368.375 65.493 152-36.947 152-36.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M519.904 740.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C485.375 5.493 269-96.947 269-96.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M636.549 681.053S808.018 506.745 769.31 386.756c-23.712-73.507-107.454-73.677-132.761-146.65-21.192-61.107 16.776-103.144 0-165.605C601.931-54.385 385-156.947 385-156.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M488.699 525.585s239.3-48.682 274.484-169.72c21.555-74.148-47.561-121.052-27.623-195.649 16.696-62.466 71.61-76.096 92.713-137.22 43.546-126.125-78.324-332.244-78.324-332.244"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M535.329 613.202s266.86-30.061 295.823-155.302c17.742-76.723-64.832-132.721-48.962-210.066 13.29-64.768 74.306-74.275 92.713-137.22C912.885-19.27 756.148-248.947 756.148-248.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                </g>
-              </svg>
-              <Image
-                width="0"
-                height="0"
-                quality="80"
-                src="/test_img.png"
-                sizes="100vw"
-                blurDataURL="/test_img.png"
-                className="relative z-10 w-full mask1"
-                alt="test"
-              />
+                  <defs>
+                    <path
+                      d="M814.891 361.302c-5.414 263.823-234.748 367.749-460.748 350.178C181.935 698.092 0 690.738 0 476.261 0 261.785 265.009 0 487.866 0 710.723 0 818.93 164.514 814.891 361.302Z"
+                      fill="#2C2E80"
+                      id="reuse-0"
+                    />
+                  </defs>
+                  <mask
+                    id="a"
+                    style={{ maskType: "alpha" }}
+                    maskUnits="userSpaceOnUse"
+                    x="0"
+                    y="0"
+                    width="815"
+                    height="714"
+                  >
+                    <use xlinkHref="#reuse-0" />
+                  </mask>
+                  <g mask="url(#a)">
+                    <use xlinkHref="#reuse-0" />
+                    <path
+                      d="M-220.962 930.448S9.604 849.056 27.472 724.25c10.946-76.457-64.23-113.355-54.95-190.032 7.77-64.209 60.334-85.322 72.666-148.811C70.636 254.402-79.293 67.053-79.293 67.053"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M-249.687 934.873S-9.042 891.566 28.637 771.25C51.72 697.543-16.553 649.051 4.92 574.859c17.981-62.127 73.253-74.525 95.621-135.209 46.157-125.218-71.738-334.213-71.738-334.213"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M-253.893 912.993S-9.39 914.757 49.809 803.441c36.265-68.193-21.907-128.432 12.866-197.399 29.118-57.751 85.728-59.756 118.893-115.28 68.433-114.573-8.945-341.709-8.945-341.709"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M-144.866 701.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M-70.866 720.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M285.904 860.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C251.375 125.493 35 23.053 35 23.053"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M402.904 800.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C368.375 65.493 152-36.947 152-36.947"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M519.904 740.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C485.375 5.493 269-96.947 269-96.947"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M636.549 681.053S808.018 506.745 769.31 386.756c-23.712-73.507-107.454-73.677-132.761-146.65-21.192-61.107 16.776-103.144 0-165.605C601.931-54.385 385-156.947 385-156.947"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M488.699 525.585s239.3-48.682 274.484-169.72c21.555-74.148-47.561-121.052-27.623-195.649 16.696-62.466 71.61-76.096 92.713-137.22 43.546-126.125-78.324-332.244-78.324-332.244"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M535.329 613.202s266.86-30.061 295.823-155.302c17.742-76.723-64.832-132.721-48.962-210.066 13.29-64.768 74.306-74.275 92.713-137.22C912.885-19.27 756.148-248.947 756.148-248.947"
+                      stroke="#fff"
+                      strokeWidth="2"
+                    />
+                  </g>
+                </svg>
+                <Image
+                  width="0"
+                  height="0"
+                  quality="80"
+                  src={item.img.data.attributes.url}
+                  sizes="100vw"
+                  blurDataURL={item.img.data.attributes.url}
+                  className="relative z-10 object-cover w-full mask1 aspect-square"
+                  alt="test"
+                />
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="h-full">
-          <div className="h-auto md:pt-24 pt-14 pb-32 2xl:pb-0 mx-auto xl:w-80% w-90% flex flex-col md:flex-row gap-5 justify-between items-start md:items-center">
-            <div className="w-full md:w-1/2">
-              <h1 className="2xl:text-[80px] md:text-[40px] text-[36px] font-bold max-w-xl text-dark-purple 2xl:leading-[98px] md:leading-normal leading-tight">
-                Last van pijn en klachten
-              </h1>
-              <h3 className="2xl:text-[24px] md:text-[18px] text-[15px] font-normal md:font-medium max-w-[534px] text-[#4E4F84] mt-4 2xl:leading-10 leading-normal">
-                Wij helpen u of uw kind graag bij lichamelijke klachten en
-                algemene vragen!
-              </h3>
-              <Link href="#" className="mt-12 text-white btn btn-primary">
-                Maak een afspraak
-              </Link>
-            </div>
-            <div className="relative w-full md:w-1/2 md:mt-0 mt-11">
-              <svg
-                className="absolute z-0 min-w-[105%] left-[-2.5%]"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 815 714"
-              >
-                <defs>
-                  <path
-                    d="M814.891 361.302c-5.414 263.823-234.748 367.749-460.748 350.178C181.935 698.092 0 690.738 0 476.261 0 261.785 265.009 0 487.866 0 710.723 0 818.93 164.514 814.891 361.302Z"
-                    fill="#2C2E80"
-                    id="reuse-0"
-                  />
-                </defs>
-                <mask
-                  id="a"
-                  style={{ maskType: "alpha" }}
-                  maskUnits="userSpaceOnUse"
-                  x="0"
-                  y="0"
-                  width="815"
-                  height="714"
-                >
-                  <use xlinkHref="#reuse-0" />
-                </mask>
-                <g mask="url(#a)">
-                  <use xlinkHref="#reuse-0" />
-                  <path
-                    d="M-220.962 930.448S9.604 849.056 27.472 724.25c10.946-76.457-64.23-113.355-54.95-190.032 7.77-64.209 60.334-85.322 72.666-148.811C70.636 254.402-79.293 67.053-79.293 67.053"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-249.687 934.873S-9.042 891.566 28.637 771.25C51.72 697.543-16.553 649.051 4.92 574.859c17.981-62.127 73.253-74.525 95.621-135.209 46.157-125.218-71.738-334.213-71.738-334.213"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-253.893 912.993S-9.39 914.757 49.809 803.441c36.265-68.193-21.907-128.432 12.866-197.399 29.118-57.751 85.728-59.756 118.893-115.28 68.433-114.573-8.945-341.709-8.945-341.709"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-144.866 701.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M-70.866 720.504s243.79 18.752 310.581-88.181c40.917-65.507-12.928-129.644 26.554-196.027 33.062-55.588 89.674-53.653 126.617-106.739 76.23-109.539 14.825-341.504 14.825-341.504"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M285.904 860.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C251.375 125.493 35 23.053 35 23.053"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M402.904 800.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C368.375 65.493 152-36.947 152-36.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M519.904 740.053s171.029-174.1 132.421-293.946c-23.652-73.419-107.179-73.589-132.421-146.475-21.138-61.034 16.733-103.02 0-165.407C485.375 5.493 269-96.947 269-96.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M636.549 681.053S808.018 506.745 769.31 386.756c-23.712-73.507-107.454-73.677-132.761-146.65-21.192-61.107 16.776-103.144 0-165.605C601.931-54.385 385-156.947 385-156.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M488.699 525.585s239.3-48.682 274.484-169.72c21.555-74.148-47.561-121.052-27.623-195.649 16.696-62.466 71.61-76.096 92.713-137.22 43.546-126.125-78.324-332.244-78.324-332.244"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M535.329 613.202s266.86-30.061 295.823-155.302c17.742-76.723-64.832-132.721-48.962-210.066 13.29-64.768 74.306-74.275 92.713-137.22C912.885-19.27 756.148-248.947 756.148-248.947"
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                </g>
-              </svg>
-              <Image
-                width="0"
-                height="0"
-                quality="80"
-                src="/test_img.png"
-                sizes="100vw"
-                blurDataURL="/test_img.png"
-                className="relative z-10 w-full mask1"
-                alt="test"
-              />
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        )}
       </Swiper>
       <button
         className="btn-nav absolute top-[50%] left-11"

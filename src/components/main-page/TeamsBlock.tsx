@@ -7,8 +7,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { Team } from "@/types/types";
 
-const TeamsBlock = () => {
+interface Props {
+  data: Team[]
+}
+
+const TeamsBlock = ({ data }: Props) => {
   const swiperSecondRef = useRef<SwiperType>();
   return (
     <section className="xl:bg-[url('/team_bgr.svg')] bg-[url('/team_bgr_mob.svg')] bg-no-repeat bg-top md:bg-cover bg-contain relative md:pt-[185px] pt-[65px] md:mt-[117px] mt-16 pb-10">
@@ -21,8 +26,6 @@ const TeamsBlock = () => {
           onBeforeInit={(swiper) => {
             swiperSecondRef.current = swiper;
           }}
-          // slidesPerView={3}
-          // spaceBetween={173}
           pagination={{
             type: "progressbar",
           }}
@@ -46,151 +49,37 @@ const TeamsBlock = () => {
           }}
           className="xl:w-80% w-90% max-w-1560 h-auto teams_swiper "
         >
-          <SwiperSlide>
-            <div className="lg:pb-[60px] pb-[45px]">
-              <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                <Image
-                  width="0"
-                  height="0"
-                  src="/test_person.png"
-                  alt="test"
-                  sizes="404px"
-                  className="w-full rounded-full "
-                  blurDataURL="/test_person.png"
-                />
-              </div>
-              <a
-                href="mail:info@debundeling.nl"
-                className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-              >
-                Onno Otten
-                <span className="block p-3 bg-white rounded-full">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="#2C2E80"
-                    width="20"
-                    height="20"
+          {data.map((item) =>
+            <SwiperSlide key={item.name}>
+              <div className="lg:pb-[60px] pb-[45px]">
+                <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
+                  <Image
+                    width="0"
+                    height="0"
+                    src={item.img.data.attributes.url}
+                    alt="test"
+                    sizes="404px"
+                    className="w-full rounded-full "
+                    blurDataURL={item.img.data.attributes.url}
                   />
-                </span>
-              </a>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="lg:pb-[60px] pb-[45px]">
-              <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                <Image
-                  width="0"
-                  height="0"
-                  src="/test_person.png"
-                  alt="test"
-                  sizes="404px"
-                  className="w-full rounded-full "
-                  blurDataURL="/test_person.png"
-                />
+                </div>
+                <a
+                  href={`mail:${item.email}`}
+                  className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
+                >
+                  {item.name}
+                  <span className="block p-3 bg-white rounded-full">
+                    <Icon
+                      icon="material-symbols:mail-rounded"
+                      color="#2C2E80"
+                      width="20"
+                      height="20"
+                    />
+                  </span>
+                </a>
               </div>
-              <a
-                href="mail:info@debundeling.nl"
-                className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-              >
-                Onno Otten
-                <span className="block p-3 bg-white rounded-full">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="#2C2E80"
-                    width="20"
-                    height="20"
-                  />
-                </span>
-              </a>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="lg:pb-[60px] pb-[45px]">
-              <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                <Image
-                  width="0"
-                  height="0"
-                  src="/test_person.png"
-                  alt="test"
-                  sizes="404px"
-                  className="w-full rounded-full "
-                  blurDataURL="/test_person.png"
-                />
-              </div>
-              <a
-                href="mail:info@debundeling.nl"
-                className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-              >
-                Onno Otten
-                <span className="block p-3 bg-white rounded-full">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="#2C2E80"
-                    width="20"
-                    height="20"
-                  />
-                </span>
-              </a>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="lg:pb-[60px] pb-[45px]">
-              <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                <Image
-                  width="0"
-                  height="0"
-                  src="/test_person.png"
-                  alt="test"
-                  sizes="404px"
-                  className="w-full rounded-full "
-                  blurDataURL="/test_person.png"
-                />
-              </div>
-              <a
-                href="mail:info@debundeling.nl"
-                className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-              >
-                Onno Otten
-                <span className="block p-3 bg-white rounded-full">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="#2C2E80"
-                    width="20"
-                    height="20"
-                  />
-                </span>
-              </a>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="lg:pb-[60px] pb-[45px]">
-              <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                <Image
-                  width="0"
-                  height="0"
-                  src="/test_person.png"
-                  alt="test"
-                  sizes="404px"
-                  className="w-full rounded-full "
-                  blurDataURL="/test_person.png"
-                />
-              </div>
-              <a
-                href="mail:info@debundeling.nl"
-                className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-              >
-                Onno Otten
-                <span className="block p-3 bg-white rounded-full">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="#2C2E80"
-                    width="20"
-                    height="20"
-                  />
-                </span>
-              </a>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          )}
         </Swiper>
         <button
           className="btn-nav btn-nav-teams absolute xl:top-[30%] xl:bottom-auto bottom-[-45px] xl:left-11 md:left-[40%] left-[32%]"

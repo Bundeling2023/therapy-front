@@ -1,26 +1,25 @@
 import React from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import L from "leaflet";
 import { Icon } from "@iconify/react";
 import "node_modules/leaflet/dist/leaflet.css";
+import { AddressMap, ContactInfo } from "@/types/types";
+import dynamic from "next/dynamic";
 
-const MapBlock = () => {
-  const defaultPosition = {
-    lat: 51.505,
-    lng: -0.09,
-  };
+interface Props {
+  data: AddressMap[],
+  info: ContactInfo
+}
 
-  const myIcon = new L.Icon({
-    iconUrl: "/map_marker.svg",
-    iconRetinaUrl: "/map_marker.svg",
-    iconSize: [75, 50],
+const MapSection = ({ data, info }:Props) => {
+  const MapBlock = dynamic(() => import("@/components/Map"), {
+    ssr: false,
   });
 
   return (
     <section className="relative pt-20 pb-24 w-full mx-auto bg-[#EBF3FF]">
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
         <div className="w-full max-w-[1022px] lg:h-auto h-[395px]">
-          <MapContainer
+          <MapBlock data={data} />
+          {/* <MapContainer
             center={[50.9508, 5.9774]}
             zoom={13}
             attributionControl={true}
@@ -35,11 +34,6 @@ const MapBlock = () => {
             <Marker
               position={[50.9508, 5.9774]}
               icon={myIcon}
-              // eventHandlers={{
-              //   click: () => {
-              //     console.log("marker clicked");
-              //   },
-              // }}
             >
               <Popup>
                 <p className="text-xl font-semibold">Information goes here:</p>
@@ -52,11 +46,6 @@ const MapBlock = () => {
             <Marker
               position={[50.9608, 5.9774]}
               icon={myIcon}
-              // eventHandlers={{
-              //   click: () => {
-              //     console.log("marker clicked");
-              //   },
-              // }}
             >
               <Popup>
                 <p className="text-xl font-semibold">Information goes here:</p>
@@ -83,7 +72,7 @@ const MapBlock = () => {
                 </p>
               </Popup>
             </Marker>
-          </MapContainer>
+          </MapContainer> */}
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
           <h3 className="lg:text-[48px] text-3xl text-dark-purple font-semibold mb-6 leading-normal">
@@ -98,7 +87,7 @@ const MapBlock = () => {
                 height="24"
               />
             </span>
-            <a href="mailto:info@debundeling.nl">info@debundeling.nl</a>
+            <a href={`mailto:${info.email}`}>{info.email}</a>
           </div>
           <div className="flex mt-4 items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
             <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
@@ -109,10 +98,10 @@ const MapBlock = () => {
                 height="24"
               />
             </span>
-            <a href="tel:045 525 0116">045 525 0116</a>
+            <a href={`tel:${info.phone}`}>{info.phone}</a>
           </div>
           <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 max-w-[350px] leading-normal">
-            Sint Gregoriuslaan 1a 6442 AE Brunssum
+            {info.mainAddress}
           </p>
           <p className="mt-8 text-base font-semibold text-dark-purple lg:mt-10 lg:text-2xl">
             Openingstijden
@@ -153,4 +142,4 @@ const MapBlock = () => {
   );
 };
 
-export default MapBlock;
+export default MapSection;

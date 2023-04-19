@@ -6,66 +6,38 @@ import S2 from "../../img/s2.svg";
 import S3 from "../../img/s3.svg";
 import S4 from "../../img/s4.svg";
 import ImageTest from "@/img/test_img2.png";
+import { Services } from "@/types/types";
 
-const ServicesBlock = () => {
+interface Props {
+  data: Services[]
+}
+
+const ServicesBlock = ({ data }: Props) => {
   return (
     <section className="bg-[url('/services-bgr.svg')] bg-no-repeat bg-bottom bg-cover relative md:pt-[152px] pt-20 pb-48">
       <h3 className="mb-8 text-2xl font-semibold text-center text-white md:text-5xl md:mb-16">
         Wat we doen
       </h3>
       <div className="flex justify-between 2xl:gap-[176px] md:gap-16 gap-[unset] gap-y-10 items-start mx-auto w-90% max-w-1560 xl:flex-nowrap flex-wrap">
-        <Link
-          href="#"
-          className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
-        >
-          <Image
-            className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-            src={S1}
-            alt="test"
-          />
-          <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
-            Fysiotherapie
-          </p>
-        </Link>
-        <Link
-          href="#"
-          className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
-        >
-          <Image
-            className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-            src={S2}
-            alt="test"
-          />
-          <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
-            Kinderfysiotherapie
-          </p>
-        </Link>
-        <Link
-          href="#"
-          className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
-        >
-          <Image
-            className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-            src={S3}
-            alt="test"
-          />
-          <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
-            Geriatrie
-          </p>
-        </Link>
-        <Link
-          href="#"
-          className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
-        >
-          <Image
-            className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-            src={S4}
-            alt="test"
-          />
-          <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
-            Manuele therapie
-          </p>
-        </Link>
+        {data.map((item) =>
+          <Link
+            href={item.link}
+            key={item.title}
+            className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
+          >
+            <Image
+              className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
+              src={item.img.data.attributes.url}
+              alt="test"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
+              {item.title}
+            </p>
+          </Link>
+        )}
       </div>
       <div className="mt-20 flex w-90% max-w-1560 mx-auto lg:items-center items-start lg:flex-row flex-col justify-between [&>*]:text-white">
         <div className="lg:w-[47%] w-full ld:max-w-[721px]">
@@ -102,6 +74,9 @@ const ServicesBlock = () => {
           <Image
             className="relative w-full mask2"
             quality="80"
+            // width={0}
+            // height={0}
+            // sizes="100vw"
             src={ImageTest}
             alt="test"
           />
