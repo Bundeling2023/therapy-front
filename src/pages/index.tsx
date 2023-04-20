@@ -10,28 +10,42 @@ import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetServerSideProps } from "next";
-import dynamic from "next/dynamic";
+import Head from 'next/head'
 
 export default function Home(props: HomePage) {
   const { header, footer } = props
-  const { addressesMap, mainBanner, services, team, contactsInfo } = props.home.data.attributes
+  const {
+    addressesMap,
+    mainBanner,
+    services,
+    team,
+    contactsInfo,
+    seo,
+    modalVideo
+  } = props.home.data.attributes;
+
+  console.log(modalVideo)
 
   return (
     <>
+      <Head>
+        <title>{seo.metaTitle}</title>
+        <meta name='description' content={seo.metaDescription} />
+        <link rel="canonical" href={seo.canonicalURL} />
+      </Head>
       <NavSection data={header} info={contactsInfo} />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
       <TeamsBlock data={team}/>
-      <ModalVideo />
+      <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
       <MapSection data={addressesMap} info={contactsInfo} />
-      <Footer />
+      <Footer data={footer} info={contactsInfo} />
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  console.log(process.env.NEXT_PUBLIC_API_URL)
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),

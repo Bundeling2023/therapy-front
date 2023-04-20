@@ -59,6 +59,7 @@ const TeamsBlock = ({ data }: Props) => {
                     src={item.img.data.attributes.url}
                     alt="test"
                     sizes="404px"
+                    priority
                     className="w-full rounded-full "
                     blurDataURL={item.img.data.attributes.url}
                   />

@@ -97,7 +97,7 @@ module.exports = {
       },
       screens: {
         '2xl': '1850px',
-        // => @media (min-width: 992px) { ... }
+        '3xl': '1950px',
       },
       colors: {
         'dark-purple': '#2C2E80',

@@ -60,9 +60,9 @@ const NavSection = ({ data, info }: Props) => {
             </div>
           </div>
         </div>
-        <nav className="mx-auto hidden xl:flex w-90% max-w-1560 items-start gap-52px justify-end">
+        <nav className="mx-auto 3xl:relative hidden xl:flex w-90% max-w-1560 items-start gap-52px justify-end">
           <Link
-            className="absolute left-0 z-10 max-w-sm mt-4 2xl:max-w-none"
+            className="absolute 3xl:left-[-180px] left-0 z-10 max-w-sm mt-4 2xl:max-w-none"
             href="/"
           >
             <Image

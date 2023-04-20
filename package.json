@@ -18,6 +18,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "graphql": "^16.6.0",
+    "html-react-parser": "^3.0.15",
     "leaflet": "^1.9.3",
     "next": "13.3.0",
     "next-apollo": "^5.0.8",

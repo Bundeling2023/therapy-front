@@ -1,6 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import { AddressMap } from "@/types/types";
+import HTMLReactParser from "html-react-parser";
 
 interface Props {
   data: AddressMap[],
@@ -8,29 +9,30 @@ interface Props {
 
 const Map = ({ data }: Props) => {
 
-  const coordinates = data.map((item) =>{
-    item.coordinates.split(',');
-  })
+  const coordinates = data.map((item) =>
+    item.coordinates.split(',')
+  )
 
-  console.log(coordinates);
+  function calcMapCenter(array:string[][]){
+    const Lang = array.map(item => +item[0]).reduce((a, b) => a + b, 0) / array.length;
+    const Ing = array.map(item => +item[1]).reduce((a, b) => a + b, 0) / array.length;
 
-  // const bounds:any = [];
+    return [Lang, Ing];
+  }
 
-  // data.map((item) => {
-  //   bounds.push(item.coordinates.split(','))
-  // })
-
+  const center = calcMapCenter(coordinates);
+  // const parse = require('html-react-parser');
 
   const myIcon = new L.Icon({
     iconUrl: "/map_marker.svg",
     iconRetinaUrl: "/map_marker.svg",
     iconSize: [75, 50],
   });
+
   return (
     <MapContainer
-      zoom={7}
-      center={[50.9508, 5.9774]}
-      // bounds={text as unknown as LatLngBounds}
+      zoom={13}
+      center={center as unknown as LatLngExpression}
       attributionControl={true}
       doubleClickZoom={true}
       scrollWheelZoom={true}
@@ -47,7 +49,7 @@ const Map = ({ data }: Props) => {
           icon={myIcon}
         >
           <Popup>
-            {item.description}
+            {HTMLReactParser(item.description)}
           </Popup>
         </Marker>
       )}
@@ -56,7 +58,4 @@ const Map = ({ data }: Props) => {
 }
 
 export default Map;
-function useLeafletContext() {
-  throw new Error("Function not implemented.");
-}
 

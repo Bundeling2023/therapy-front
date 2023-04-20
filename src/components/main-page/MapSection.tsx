@@ -19,60 +19,6 @@ const MapSection = ({ data, info }:Props) => {
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
         <div className="w-full max-w-[1022px] lg:h-auto h-[395px]">
           <MapBlock data={data} />
-          {/* <MapContainer
-            center={[50.9508, 5.9774]}
-            zoom={13}
-            attributionControl={true}
-            doubleClickZoom={true}
-            scrollWheelZoom={true}
-            className="w-full h-full"
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker
-              position={[50.9508, 5.9774]}
-              icon={myIcon}
-            >
-              <Popup>
-                <p className="text-xl font-semibold">Information goes here:</p>
-                <p className="mt-0 text-xl font-medium">Tel: 124-456-789</p>
-                <p className="mt-2 text-xl font-medium">
-                  Address: City, Street, 123
-                </p>
-              </Popup>
-            </Marker>
-            <Marker
-              position={[50.9608, 5.9774]}
-              icon={myIcon}
-            >
-              <Popup>
-                <p className="text-xl font-semibold">Information goes here:</p>
-                <p className="mt-0 text-xl font-medium">Tel: 124-456-789</p>
-                <p className="mt-2 text-xl font-medium">
-                  Address: City, Street, 123
-                </p>
-              </Popup>
-            </Marker>
-            <Marker
-              position={[50.9608, 5.9974]}
-              icon={myIcon}
-              // eventHandlers={{
-              //   click: () => {
-              //     console.log("marker clicked");
-              //   },
-              // }}
-            >
-              <Popup>
-                <p className="text-xl font-semibold">Information goes here:</p>
-                <p className="mt-0 text-xl font-medium">Tel: 124-456-789</p>
-                <p className="mt-2 text-xl font-medium">
-                  Address: City, Street, 123
-                </p>
-              </Popup>
-            </Marker>
-          </MapContainer> */}
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
           <h3 className="lg:text-[48px] text-3xl text-dark-purple font-semibold mb-6 leading-normal">

@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ModalVideoBlock from "react-modal-video";
 import 'node_modules/react-modal-video/scss/modal-video.scss';
 
-const ModalVideo = () => {
+interface Props {
+  data: {
+    providerUid: string
+  }
+}
+
+const ModalVideo = ({ data }:Props) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <section className="relative pt-10 pb-10 w-90% max-w-1560 mx-auto">
@@ -144,12 +150,14 @@ const ModalVideo = () => {
           <p className="text-sm font-semibold lg:text-5xl">Bekijk video</p>
         </button>
       </div>
-      <ModalVideoBlock
-        channel="youtube"
-        isOpen={isOpen}
-        videoId="vM-Bja2Gy04"
-        onClose={() => setOpen(false)}
-      />
+      {data && (
+        <ModalVideoBlock
+          channel="youtube"
+          isOpen={isOpen}
+          videoId={data.providerUid}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </section>
   );
 };

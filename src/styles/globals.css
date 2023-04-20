@@ -86,6 +86,16 @@ body .modal-video-body {
   max-width: 1560px;
 }
 
+body .leaflet-popup-content p
+{
+  margin: 0 0;
+}
+
+body .leaflet-popup-content p + p
+{
+  margin-top: 10px;
+}
+
 @media (max-width: 1024px) {
   .teams_swiper.swiper .swiper-pagination-progressbar {
     display: none;

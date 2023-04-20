@@ -29,6 +29,12 @@ export const GET_HOMEPAGE_DATA = gql`
             }
           }
         }
+        modalVideo
+        seo {
+          metaTitle
+          metaDescription
+          canonicalURL
+        }
         team {
           name
           email

@@ -2,8 +2,14 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoFooter from "../img/logo_footer.svg";
+import { ContactInfo, Menu } from "@/types/types";
 
-const Footer = () => {
+interface Props {
+  data: Menu[],
+  info: ContactInfo
+}
+
+const Footer = ({ data, info }:Props) => {
   return (
     <>
       <footer className="md:bg-[url('/footer_bgr.svg')] bg-[url('/footer_bgr_mob.svg')] bg-no-repeat bg-top bg-cover bg pt-16 pb-8 md:mt-[130px] mt-10">
@@ -26,7 +32,7 @@ const Footer = () => {
           <div className="flex flex-col items-start justify-between gap-10 xl:flex-row xl:gap-3">
             <div className="flex flex-col items-start justify-start gap-6">
               <a
-                href="tel:045 525 0116"
+                href={`tel:${info.phone}`}
                 className="bg-white rounded-lg font-medium items-center p-3 pl-6 hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
               >
                 045 525 0116
@@ -40,10 +46,10 @@ const Footer = () => {
                 </span>
               </a>
               <a
-                href="mailto:info@debundeling.nl"
+                href={`mailto:${info.email}`}
                 className="bg-white rounded-lg font-medium items-center p-3 pl-6 normal-case hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
               >
-                info@debundeling.nl
+                {info.email}
                 <span className="block p-3 rounded-lg bg-dark-purple">
                   <Icon
                     icon="material-symbols:mail-rounded"
@@ -55,33 +61,14 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
-              <div className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">Specialisaties</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Kinderfysiotherapie</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Algemene fysiotherapie</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Manuele fysiotherapie</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Fysiotherapie voor ouderen</Link>
-              </div>
-              <div className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Locaties</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Brunssum</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Heerlen</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Nuth</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Zuyderland Heerlen</Link>
-              </div>
-              <div className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Over ons</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Team</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Werkwijze</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Samenwerkingspartners</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Patiëntervaring</Link>
-              </div>
-              <div className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Contact</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Openingstijden</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Neem contact op</Link>
-                <Link href="#" className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">Huisreglement</Link>
-              </div>
+              {data.map((item: Menu) =>
+                <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
+                  <Link href={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link>
+                  {item.items.length > 0 && item.items.map((i) =>
+                    <Link key={i.title} href={i.path} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
+                  )}
+                </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col-reverse items-start justify-between mt-12 md:mt-20 gap-y-8 md:flex-row">

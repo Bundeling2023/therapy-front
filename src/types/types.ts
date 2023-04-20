@@ -7,18 +7,15 @@ export interface HomePage {
         team: Team[]
         addressesMap: AddressMap[]
         contactsInfo: ContactInfo
+        seo: Seo
+        modalVideo: {
+          providerUid: string
+        }
       }
     }
   }
   header: Menu[]
-  footer: {
-    title :string
-    path :string
-    items: [{
-      title: string
-      path: string
-    }]
-  }
+  footer: Menu[]
 }
 
 export interface Menu {
@@ -34,6 +31,12 @@ export interface ContactInfo {
   email: string
   phone: string
   mainAddress: string
+}
+
+export interface Seo {
+  metaTitle: string
+  metaDescription: string
+  canonicalURL: string
 }
 
 export interface MainBanner {
