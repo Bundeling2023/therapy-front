@@ -10,7 +10,7 @@ interface Props {
 const Map = ({ data }: Props) => {
 
   const coordinates = data.map((item) =>
-    item.coordinates.split(',')
+    item.attributes.coordinates.split(',')
   )
 
   function calcMapCenter(array:string[][]){
@@ -44,12 +44,12 @@ const Map = ({ data }: Props) => {
       />
       {data.map((item) =>
         <Marker
-          key={item.coordinates}
-          position={item.coordinates.split(',') as unknown as LatLngExpression}
+          key={item.attributes.coordinates}
+          position={item.attributes.coordinates.split(',') as unknown as LatLngExpression}
           icon={myIcon}
         >
           <Popup>
-            {HTMLReactParser(item.description)}
+            {HTMLReactParser(item.attributes.description)}
           </Popup>
         </Marker>
       )}

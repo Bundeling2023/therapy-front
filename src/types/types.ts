@@ -4,8 +4,9 @@ export interface HomePage {
       attributes: {
         mainBanner: MainBanner[]
         services: Services[]
-        team: Team[]
-        addressesMap: AddressMap[]
+        teams: {
+          data: Team[]
+        }
         contactsInfo: ContactInfo
         seo: Seo
         modalVideo: {
@@ -13,6 +14,9 @@ export interface HomePage {
         }
       }
     }
+  }
+  addresses: {
+    data: AddressMap[]
   }
   header: Menu[]
   footer: Menu[]
@@ -66,18 +70,22 @@ export interface Services {
 }
 
 export interface Team {
-  name: string
-  email: string
-  img: {
-    data: {
-      attributes: {
-        url: string
+  attributes: {
+    name: string
+    email: string
+    img: {
+      data: {
+        attributes: {
+          url: string
+        }
       }
     }
   }
 }
 
 export interface AddressMap {
-  coordinates: string
-  description: string
+  attributes: {
+    coordinates: string
+    description: string
+  }
 }

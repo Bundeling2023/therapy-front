@@ -13,12 +13,11 @@ import { GetServerSideProps } from "next";
 import Head from 'next/head'
 
 export default function Home(props: HomePage) {
-  const { header, footer } = props
+  const { header, footer, addresses } = props
   const {
-    addressesMap,
     mainBanner,
     services,
-    team,
+    teams,
     contactsInfo,
     seo,
     modalVideo
@@ -34,10 +33,10 @@ export default function Home(props: HomePage) {
       <NavSection data={header} info={contactsInfo} />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
-      <TeamsBlock data={team}/>
+      <TeamsBlock data={teams.data}/>
       <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
-      <MapSection data={addressesMap} info={contactsInfo} />
+      <MapSection data={addresses.data} info={contactsInfo} />
       <Footer data={footer} info={contactsInfo} />
     </>
   );

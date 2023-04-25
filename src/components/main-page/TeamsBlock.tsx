@@ -50,25 +50,25 @@ const TeamsBlock = ({ data }: Props) => {
           className="xl:w-80% w-90% max-w-1560 h-auto teams_swiper "
         >
           {data.map((item) =>
-            <SwiperSlide key={item.name}>
+            <SwiperSlide key={item.attributes.name}>
               <div className="lg:pb-[60px] pb-[45px]">
                 <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
                   <Image
                     width="0"
                     height="0"
-                    src={item.img.data.attributes.url}
+                    src={item.attributes.img.data.attributes.url}
                     alt="test"
                     sizes="404px"
                     priority
                     className="w-full rounded-full "
-                    blurDataURL={item.img.data.attributes.url}
+                    blurDataURL={item.attributes.img.data.attributes.url}
                   />
                 </div>
                 <a
-                  href={`mail:${item.email}`}
+                  href={`mail:${item.attributes.email}`}
                   className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
                 >
-                  {item.name}
+                  {item.attributes.name}
                   <span className="block p-3 bg-white rounded-full">
                     <Icon
                       icon="material-symbols:mail-rounded"

@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_HOMEPAGE_DATA = gql`
-  query GET_HOMEPAGE_DATA {
+# Write your query or mutation here
+query GET_HOMEPAGE_DATA {
   	home {
      data {
       attributes {
@@ -35,26 +36,35 @@ export const GET_HOMEPAGE_DATA = gql`
           metaDescription
           canonicalURL
         }
-        team {
-          name
-          email
-          img {
-            data {
-              attributes {
-                url
+        teams {
+          data {
+            attributes {
+              name
+              email
+              img {
+                data {
+                  attributes {
+                    url
+                  }
+                }
               }
             }
+
           }
-        }
-        addressesMap {
-          coordinates
-          description
         }
         contactsInfo {
           email
           phone
           mainAddress
         }
+      }
+    }
+  }
+  addresses {
+    data {
+      attributes {
+        coordinates
+        description
       }
     }
   }
