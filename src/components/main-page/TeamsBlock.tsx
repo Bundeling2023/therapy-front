@@ -52,7 +52,7 @@ const TeamsBlock = ({ data }: Props) => {
           {data.map((item) =>
             <SwiperSlide key={item.attributes.name}>
               <div className="lg:pb-[60px] pb-[45px]">
-                <div className="member-wrapper flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
+                <div className="member-wrapper aspect-square flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
                   <Image
                     width="0"
                     height="0"

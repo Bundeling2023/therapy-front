@@ -62,7 +62,7 @@ const NavSection = ({ data, info }: Props) => {
         </div>
         <nav className="mx-auto 3xl:relative hidden xl:flex w-90% max-w-1560 items-start gap-52px justify-end">
           <Link
-            className="absolute 3xl:left-[-180px] left-0 z-10 max-w-sm mt-4 2xl:max-w-none"
+            className="absolute 3xl:left-[-180px] left-0 z-10 max-w-lg mt-4 2xl:max-w-none"
             href="/"
           >
             <Image
@@ -117,8 +117,8 @@ const NavSection = ({ data, info }: Props) => {
             Afspraak maken
           </Link>
         </nav>
-        <nav className="flex justify-end w-full mx-auto xl:hidden">
-          <Link className="absolute left-0 z-10 max-w-250px top-2" href="/">
+        <nav className="flex justify-end w-full p-0 mx-auto sm:py-3 xl:hidden">
+          <Link className="absolute left-0 z-10 max-w-250px sm:max-w-[500px] top-2" href="/">
             <Image src={LogoDesktop} className="w-full" alt="test" />
           </Link>
           <div className="max-w-[70px]">
@@ -149,7 +149,7 @@ const NavSection = ({ data, info }: Props) => {
                   fill="#2E3080"
                 />
               </svg>
-              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[64px] absolute bg-dark-purple z-10 shadow-lg">
+              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[64px] sm:top-[84px] absolute bg-dark-purple z-10 shadow-lg">
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
