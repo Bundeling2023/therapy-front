@@ -96,7 +96,7 @@ body .leaflet-popup-content p + p
   margin-top: 10px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .teams_swiper.swiper .swiper-pagination-progressbar {
     display: none;
   }

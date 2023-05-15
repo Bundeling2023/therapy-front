@@ -118,7 +118,7 @@ const NavSection = ({ data, info }: Props) => {
           </Link>
         </nav>
         <nav className="flex justify-end w-full p-0 mx-auto sm:py-3 xl:hidden">
-          <Link className="absolute left-0 z-10 max-w-250px sm:max-w-[500px] top-2" href="/">
+          <Link className="absolute left-0 z-10 max-w-[300px] sm:max-w-[500px] top-2" href="/">
             <Image src={LogoDesktop} className="w-full" alt="test" />
           </Link>
           <div className="max-w-[70px]">
@@ -149,7 +149,7 @@ const NavSection = ({ data, info }: Props) => {
                   fill="#2E3080"
                 />
               </svg>
-              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[64px] sm:top-[84px] absolute bg-dark-purple z-10 shadow-lg">
+              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[64px] sm:top-[135px] absolute bg-dark-purple z-10 shadow-lg">
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
@@ -201,7 +201,7 @@ const NavSection = ({ data, info }: Props) => {
                 <hr className="relative w-[110%] mt-9 mb-9 left-[-20px] opacity-20" />
                 <a
                   href="tel:045 525 0116"
-                  className="bg-white rounded-lg font-medium items-center p-3 pl-6 hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
+                  className="bg-white sm:mr-5 rounded-lg font-medium items-center p-3 pl-6 hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
                 >
                   045 525 0116
                   <span className="block p-3 rounded-lg bg-dark-purple">

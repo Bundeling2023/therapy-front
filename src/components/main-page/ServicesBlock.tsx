@@ -1,10 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import S1 from "../../img/s1.svg";
-import S2 from "../../img/s2.svg";
-import S3 from "../../img/s3.svg";
-import S4 from "../../img/s4.svg";
 import ImageTest from "@/img/test_img2.png";
 import { Services } from "@/types/types";
 
@@ -15,15 +11,15 @@ interface Props {
 const ServicesBlock = ({ data }: Props) => {
   return (
     <section className="bg-[url('/services-bgr.svg')] bg-no-repeat bg-bottom bg-cover relative md:pt-[152px] pt-20 pb-48">
-      <h3 className="mb-8 text-2xl font-semibold text-center text-white md:text-5xl md:mb-16">
+      <h3 className="mb-8 text-3xl font-semibold text-center text-white md:text-5xl md:mb-16">
         Wat we doen
       </h3>
-      <div className="flex justify-between 2xl:gap-[176px] md:gap-16 gap-[unset] gap-y-10 items-start mx-auto w-90% max-w-1560 xl:flex-nowrap flex-wrap">
+      <div className="flex justify-between 2xl:gap-x-[176px] md:gap-x-0 gap-[unset] gap-y-10 items-start mx-auto w-90% max-w-1560 xl:flex-nowrap flex-wrap">
         {data.map((item) =>
           <Link
             href={item.link}
             key={item.title}
-            className="md:max-w-[310px] max-w-[160px] xl:w-auto w-1/2 text-center group"
+            className="xl:max-w-[310px] xl:w-auto md:w-1/2 w-[45%] text-center group"
           >
             <Image
               className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
@@ -74,9 +70,6 @@ const ServicesBlock = ({ data }: Props) => {
           <Image
             className="relative w-full mask2"
             quality="80"
-            // width={0}
-            // height={0}
-            // sizes="100vw"
             src={ImageTest}
             alt="test"
           />
