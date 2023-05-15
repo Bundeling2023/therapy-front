@@ -93,7 +93,7 @@ const ModalVideo = () => {
             />
           </svg>
           <p className="2xl:text-5xl text-3xl text-dark-purple font-semibold mt-2 2xl:leading-[62px] leading-10">
-            Wij vinden het leveren van goede zorg enn=een goede
+            Wij vinden het leveren van goede zorg en een goede
             patient/therepeut relatie erg belangrijk.
           </p>
           <Link

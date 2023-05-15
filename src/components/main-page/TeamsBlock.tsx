@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType, Navigation, Pagination } from "swiper";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { Team } from "@/types/types";
+import TeamMember from "../team/TeamMember";
 
 interface Props {
   data: Team[]
@@ -51,34 +50,7 @@ const TeamsBlock = ({ data }: Props) => {
         >
           {data.map((item) =>
             <SwiperSlide key={item.attributes.name}>
-              <div className="lg:pb-[60px] pb-[45px]">
-                <div className="member-wrapper aspect-square flex items-center justify-center p-2 w-full max-h-[405px] h-full relative max-w-[405px] overflow-hidden">
-                  <Image
-                    width="0"
-                    height="0"
-                    src={item.attributes.img.data.attributes.url}
-                    alt="test"
-                    sizes="404px"
-                    priority
-                    className="object-cover w-full h-full rounded-full "
-                    blurDataURL={item.attributes.img.data.attributes.url}
-                  />
-                </div>
-                <a
-                  href={`mail:${item.attributes.email}`}
-                  className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case hover:bg-light-purple focus:bg-light-purple h-auto inline-flex gap-8 2xl:text-[30px] text-lg text-white"
-                >
-                  {item.attributes.name}
-                  <span className="block p-3 bg-white rounded-full">
-                    <Icon
-                      icon="material-symbols:mail-rounded"
-                      color="#2C2E80"
-                      width="20"
-                      height="20"
-                    />
-                  </span>
-                </a>
-              </div>
+              <TeamMember data={item.attributes} />
             </SwiperSlide>
           )}
         </Swiper>

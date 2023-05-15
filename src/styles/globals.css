@@ -64,19 +64,19 @@ header .swiper .swiper-pagination {
   border-radius: 3.5px;
 }
 
-.teams_swiper.swiper .swiper-slide:nth-child(3n + 1) .member-wrapper {
+.team-member:nth-child(3n + 1) .member-wrapper {
   background: url("/team_1.svg") no-repeat;
   background-size: 89%;
   background-position: 33% 2%;
 }
 
-.teams_swiper.swiper .swiper-slide:nth-child(3n - 1) .member-wrapper {
+.team-member:nth-child(3n - 1) .member-wrapper {
   background: url("/team_2.svg") no-repeat;
   background-size: 96%;
   background-position: 95% 79%;
 }
 
-.teams_swiper.swiper .swiper-slide:nth-child(3n) .member-wrapper {
+.team-member:nth-child(3n) .member-wrapper {
   background: url("/team_3.svg") no-repeat;
   background-size: 96%;
   background-position: 95% 23%;
