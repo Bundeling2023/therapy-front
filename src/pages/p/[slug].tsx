@@ -26,7 +26,7 @@ export default function Page(props: ContentPage) {
             <h1 className="text-3xl mt-10 mb-3">{page.attributes.title}</h1>
             <div className="flex items-center space-x-2">
             </div>
-            <ReactMarkdown className=" mb-2">{page.attributes.content}</ReactMarkdown>
+            <div className="mb-2" dangerouslySetInnerHTML={{__html: page.attributes.content}} />
             <div className="mt-10"></div>
           </article>
       <Footer data={footer} info={contactsInfo} />
