@@ -22,6 +22,41 @@ export interface HomePage {
   footer: Menu[]
 }
 
+export type TeamPage = SharedPage
+
+export interface SharedPage {
+  home: {
+     data: {
+      attributes: {
+        teams: {
+          data: Team[]
+        }
+        contactsInfo: ContactInfo
+        seo: Seo
+      }
+    }
+  }
+  header: Menu[]
+  footer: Menu[]
+}
+
+export type ContentPage = SharedPage & ContentPageProps
+
+interface ContentPageProps {
+  page: Page;
+  params: {
+    slug: string;
+  };
+}  
+
+export interface Page {
+  attributes: { 
+    title:string
+    slug:string
+    content:string
+  }
+}
+
 export interface Menu {
   title :string
   path :string
