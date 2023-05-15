@@ -9,7 +9,7 @@ import MapSection from "@/components/main-page/MapSection";
 import { GET_HOMEPAGE_DATA } from "@/graphql/homepage"
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from 'next/head'
 
 export default function Home(props: HomePage) {
@@ -42,7 +42,7 @@ export default function Home(props: HomePage) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),

@@ -4,7 +4,7 @@ import TeamsGrid from "@/components/team/TeamsGrid";
 import { GET_SHARED_DATA } from "@/graphql/shared";
 import { TeamPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from 'next/head'
 
 export default function Team(props: TeamPage) {
@@ -28,7 +28,7 @@ export default function Team(props: TeamPage) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),
