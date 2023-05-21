@@ -21,7 +21,6 @@ const Map = ({ data }: Props) => {
   }
 
   const center = calcMapCenter(coordinates);
-  // const parse = require('html-react-parser');
 
   const myIcon = new L.Icon({
     iconUrl: "/map_marker.svg",

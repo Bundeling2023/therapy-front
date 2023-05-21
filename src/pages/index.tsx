@@ -6,11 +6,11 @@ import ReviewsBlock from "@/components/main-page/ReviewsBlock";
 import ServicesBlock from "@/components/main-page/ServicesBlock";
 import TeamsBlock from "@/components/main-page/TeamsBlock";
 import MapSection from "@/components/main-page/MapSection";
-import { GET_HOMEPAGE_DATA } from "@/graphql/homepage"
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next";
 import Head from 'next/head'
+import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 
 export default function Home(props: HomePage) {
   const { header, footer, addresses } = props

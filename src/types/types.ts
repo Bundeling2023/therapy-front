@@ -47,22 +47,44 @@ interface ContentPageProps {
   params: {
     slug: string;
   };
-}  
+}
 
 export interface Page {
-  attributes: { 
-    title:string
-    slug:string
-    content:string
+  attributes: {
+    title: string
+    slug: string
+    content: string
   }
 }
 
 export interface Menu {
-  title :string
-  path :string
+  title: string
+  path: string
+  related: {
+    attributes: {
+      slug: string
+      title: string
+    }
+  }
   items: [{
     title: string
     path: string
+    related: {
+      attributes: {
+        slug: string
+        title: string
+      }
+    }
+    items: [{
+      title: string
+      path: string
+      related: {
+        attributes: {
+          slug: string
+        title: string
+        }
+      }
+    }]
   }]
 }
 

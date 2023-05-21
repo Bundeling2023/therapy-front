@@ -99,13 +99,42 @@ const NavSection = ({ data, info }: Props) => {
                 {item?.items.length > 0 && (
                     <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
                     {item?.items.map((i) =>
-                      <li key={i.title + index}>
-                        <a
+                      <li className="relative group/item" key={i.title + index}>
+                        <Link
                           className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
                           href={i.path}
                         >
                           {i.title}
-                        </a>
+                          {i.items?.length > 0 && (
+                            <svg
+                              className="rotate-[270deg]"
+                              width="10"
+                              height="6"
+                              viewBox="0 0 10 6"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
+                                fill="#2C2E80"
+                              />
+                            </svg>
+                          )}
+                        </Link>
+                        {i.items?.length > 0 && (
+                          <ul className="absolute top-0 right-0 z-10 hidden w-auto max-w-[270px] p-2 text-2xl shadow-md group-hover/item:block min-w-max menu menu-compact bg-base-100 rounded-box">
+                            {i?.items?.map((itm, index) =>
+                              <li key={itm.title ? itm.title + index : itm.related.attributes.title + index}>
+                                <Link
+                                    className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                                    href={itm.related && itm.related.attributes.slug}
+                                  >
+                                 {itm.title ? itm.title : itm.related.attributes.title}
+                                </Link>
+                              </li>
+                            )}
+                          </ul>
+                        )}
                       </li>
                     )}
                   </ul>
@@ -153,7 +182,7 @@ const NavSection = ({ data, info }: Props) => {
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
-                      <Link className="text-[22px]" href={item.path}>
+                      <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.path}>
                         {item.title}
                       </Link>
                       {item.items.length > 0 && (
@@ -176,12 +205,42 @@ const NavSection = ({ data, info }: Props) => {
                         </button>
                       )}
                       {item.items.length > 0 && (
-                        <ul className="hidden w-full pl-4">
+                        <ul className="hidden w-full pl-4 ">
                           {item.items.map((i) =>
-                            <li key={i.title + index} className="p-4">
-                              <Link className="text-[20px]" href={i.path}>
+                            <li key={i.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
+                              <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.path}>
                                 {i.title}
                               </Link>
+                              {i.items?.length > 0 && (
+                                <button
+                                  onClick={(e) => openSubMenu(e)}
+                                  className="p-6 bg-arrow-down"
+                                >
+                                  <svg
+                                    width="12"
+                                    height="8"
+                                    viewBox="0 0 12 8"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M11.4211 0.712158H0.578825C0.0657523 0.712158 -0.195624 1.33172 0.172239 1.69958L5.59338 7.12073C5.81604 7.34338 6.1839 7.34338 6.40665 7.12073L11.8278 1.69958C12.1956 1.33172 11.9342 0.712158 11.4211 0.712158Z"
+                                      fill="white"
+                                    />
+                                  </svg>
+                                </button>
+                              )}
+                              {i.items?.length > 0 && (
+                                <ul className="hidden w-full pl-4">
+                                  {i.items.map((itm) =>
+                                    <li key={itm.title ? itm.title + index : itm.related.attributes.title + index} className="flex justify-between p-4 last:pb-0">
+                                      <Link className="text-[20px]" href={itm.related.attributes.slug}>
+                                        {itm.title ? itm.title : itm.related.attributes.title}
+                                      </Link>
+                                    </li>
+                                  )}
+                                </ul>
+                              )}
                             </li>
                           )}
                         </ul>
