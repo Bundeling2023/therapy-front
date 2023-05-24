@@ -22,39 +22,28 @@ export interface HomePage {
   footer: Menu[]
 }
 
-export type TeamPage = SharedPage
-
-export interface SharedPage {
-  home: {
+export interface TeamPage {
+  teampage: {
      data: {
       attributes: {
-        teams: {
-          data: Team[]
-        }
-        contactsInfo: ContactInfo
+        title: string
+        desc: string
         seo: Seo
       }
     }
   }
+  generalinfo: {
+    data: {
+      attributes: {
+        contactsInfo: ContactInfo
+      }
+    }
+  }
+  teams: {
+    data: Team[]
+  }
   header: Menu[]
   footer: Menu[]
-}
-
-export type ContentPage = SharedPage & ContentPageProps
-
-interface ContentPageProps {
-  page: Page;
-  params: {
-    slug: string;
-  };
-}
-
-export interface Page {
-  attributes: {
-    title: string
-    slug: string
-    content: string
-  }
 }
 
 export interface Menu {
@@ -62,7 +51,7 @@ export interface Menu {
   path: string
   related: {
     attributes: {
-      slug: string
+      url: string
       title: string
     }
   }
@@ -71,7 +60,7 @@ export interface Menu {
     path: string
     related: {
       attributes: {
-        slug: string
+        url: string
         title: string
       }
     }
@@ -80,8 +69,8 @@ export interface Menu {
       path: string
       related: {
         attributes: {
-          slug: string
-        title: string
+          url: string
+          title: string
         }
       }
     }]
@@ -130,6 +119,9 @@ export interface Team {
   attributes: {
     name: string
     email: string
+    phone: string
+    desc: string
+    url: string
     img: {
       data: {
         attributes: {

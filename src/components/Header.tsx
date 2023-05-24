@@ -6,7 +6,7 @@ import { ContactInfo, Menu } from "@/types/types";
 
 interface Props {
   data: Menu[],
-  info: ContactInfo
+  info: ContactInfo,
 }
 
 const NavSection = ({ data, info }: Props) => {
@@ -77,7 +77,7 @@ const NavSection = ({ data, info }: Props) => {
               <li className="relative flex group" key={item.title + index} tabIndex={0}>
                 <Link
                   className="flex items-center gap-2 text-base font-medium text-dark-purple 2xl:text-2xl pb-11 hover:text-light-purple"
-                  href="#"
+                  href={item.related.attributes.url}
                 >
                   {item.title}
                   {item?.items.length > 0 && (
@@ -102,7 +102,7 @@ const NavSection = ({ data, info }: Props) => {
                       <li className="relative group/item" key={i.title + index}>
                         <Link
                           className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                          href={i.path}
+                          href={i.related.attributes.url}
                         >
                           {i.title}
                           {i.items?.length > 0 && (
@@ -127,7 +127,7 @@ const NavSection = ({ data, info }: Props) => {
                               <li key={itm.title ? itm.title + index : itm.related.attributes.title + index}>
                                 <Link
                                     className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                                    href={itm.related && itm.related.attributes.slug}
+                                    href={itm.related && itm.related.attributes.url}
                                   >
                                  {itm.title ? itm.title : itm.related.attributes.title}
                                 </Link>
@@ -182,7 +182,7 @@ const NavSection = ({ data, info }: Props) => {
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
-                      <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.path}>
+                      <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.related.attributes.url}>
                         {item.title}
                       </Link>
                       {item.items.length > 0 && (
@@ -208,7 +208,7 @@ const NavSection = ({ data, info }: Props) => {
                         <ul className="hidden w-full pl-4 ">
                           {item.items.map((i) =>
                             <li key={i.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
-                              <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.path}>
+                              <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.related.attributes.url}>
                                 {i.title}
                               </Link>
                               {i.items?.length > 0 && (
@@ -234,7 +234,7 @@ const NavSection = ({ data, info }: Props) => {
                                 <ul className="hidden w-full pl-4">
                                   {i.items.map((itm) =>
                                     <li key={itm.title ? itm.title + index : itm.related.attributes.title + index} className="flex justify-between p-4 last:pb-0">
-                                      <Link className="text-[20px]" href={itm.related.attributes.slug}>
+                                      <Link className="text-[20px]" href={itm.related.attributes.url}>
                                         {itm.title ? itm.title : itm.related.attributes.title}
                                       </Link>
                                     </li>

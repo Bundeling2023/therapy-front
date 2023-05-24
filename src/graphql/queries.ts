@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_HOMEPAGE_DATA = gql`
   query GET_HOMEPAGE_DATA {
-      home {
+    home {
       data {
         attributes {
           mainBanner {
@@ -40,6 +40,8 @@ export const GET_HOMEPAGE_DATA = gql`
               attributes {
                 name
                 email
+                phone
+                url
                 img {
                   data {
                     attributes {
@@ -73,11 +75,16 @@ export const GET_HOMEPAGE_DATA = gql`
     ) {
       title
       path
-    	related {
+      related {
         attributes {
           ... on Page {
-            slug
             title
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
           }
         }
       }
@@ -86,9 +93,14 @@ export const GET_HOMEPAGE_DATA = gql`
         path
         related {
         attributes {
-        	... on Page {
-              slug
+          ... on Page {
               title
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
             }
           }
         }
@@ -98,7 +110,114 @@ export const GET_HOMEPAGE_DATA = gql`
           related {
           attributes {
             ... on Page {
-                slug
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    footer: renderNavigation(
+      navigationIdOrSlug: "footer"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      items {
+        title
+        path
+      }
+    }
+  }
+`
+
+export const GET_TEAMPAGE_DATA = gql`
+  query GET_TEAMPAGE_DATA {
+    teampage {
+      data {
+        attributes {
+          title
+          desc
+          seo {
+            metaTitle
+            metaDescription
+            canonicalURL
+          }
+        }
+      }
+    }
+    generalinfo {
+      data {
+        attributes {
+          contactsInfo {
+            email
+            phone
+            mainAddress
+          }
+        }
+      }
+    }
+    teams {
+      data {
+        attributes {
+          name
+          email
+          phone
+          desc
+          url
+          img {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    header: renderNavigation(
+      navigationIdOrSlug: "header"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      related {
+        attributes {
+          ... on Page {
+            title
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+        }
+      }
+      items {
+        title
+        path
+        related {
+        attributes {
+          ... on Page {
+              title
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          }
+        }
+        items {
+          title
+          path
+          related {
+          attributes {
+            ... on Page {
                 title
               }
             }

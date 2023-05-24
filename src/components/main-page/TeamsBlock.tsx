@@ -9,7 +9,7 @@ import { Team } from "@/types/types";
 import TeamMember from "../team/TeamMember";
 
 interface Props {
-  data: Team[]
+  data: Team[],
 }
 
 const TeamsBlock = ({ data }: Props) => {
@@ -50,7 +50,7 @@ const TeamsBlock = ({ data }: Props) => {
         >
           {data.map((item) =>
             <SwiperSlide key={item.attributes.name}>
-              <TeamMember data={item.attributes} />
+              <TeamMember isMain data={item} />
             </SwiperSlide>
           )}
         </Swiper>

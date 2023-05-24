@@ -91,9 +91,50 @@ body .leaflet-popup-content p
   margin: 0 0;
 }
 
-body .leaflet-popup-content p + p
-{
+body .leaflet-popup-content p + p {
   margin-top: 10px;
+}
+
+.team-desc ul {
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.team-desc ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.team-desc ul li + li {
+  margin-top: 10px;
+}
+
+.team-desc ul li::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #2c2e80;
+}
+
+.team-desc p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.team-desc p + p {
+  margin-top: 10px;
+}
+
+.team-desc p a {
+  color: #3c3eb3;
 }
 
 @media (max-width: 1279px) {
