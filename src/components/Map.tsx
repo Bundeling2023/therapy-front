@@ -1,13 +1,13 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, MarkerProps, TileLayer } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import { AddressMap } from "@/types/types";
-import HTMLReactParser from "html-react-parser";
 
 interface Props {
   data: AddressMap[],
+  handleCLick: (index: number) =>  void,
 }
 
-const Map = ({ data }: Props) => {
+const Map = ({ data, handleCLick }: Props) => {
 
   const coordinates = data.map((item) =>
     item.attributes.coordinates.split(',')
@@ -41,15 +41,18 @@ const Map = ({ data }: Props) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {data.map((item) =>
+      {data.map((item, index) =>
         <Marker
+          attribution={`${index}`}
           key={item.attributes.coordinates}
           position={item.attributes.coordinates.split(',') as unknown as LatLngExpression}
           icon={myIcon}
+          eventHandlers={{
+            click: (e) => {
+              handleCLick(e.target.options.attribution)
+            },
+          }}
         >
-          <Popup>
-            {HTMLReactParser(item.attributes.description)}
-          </Popup>
         </Marker>
       )}
     </MapContainer>

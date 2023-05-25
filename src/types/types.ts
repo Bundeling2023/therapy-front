@@ -135,6 +135,18 @@ export interface Team {
 export interface AddressMap {
   attributes: {
     coordinates: string
-    description: string
+    url: string
+    phone: string
+    email: string
+    address: string
+    workingHours: {
+      monday: string
+      tuesday: string
+      wednesday: string
+      thursday: string
+      friday: string
+      saturday: string
+      sunday: string
+    }
   }
 }

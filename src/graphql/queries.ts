@@ -64,7 +64,19 @@ export const GET_HOMEPAGE_DATA = gql`
       data {
         attributes {
           coordinates
-          description
+          url
+          phone
+          email
+          address
+          workingHours {
+           	monday
+            tuesday
+            wednesday
+            thursday
+            friday
+            saturday
+            sunday
+          }
         }
       }
     }

@@ -36,7 +36,7 @@ export default function Home(props: HomePage) {
       <TeamsBlock data={teams.data}/>
       <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
-      <MapSection data={addresses.data} info={contactsInfo} />
+      <MapSection data={addresses.data} />
       <Footer data={footer} info={contactsInfo} />
     </>
   );
