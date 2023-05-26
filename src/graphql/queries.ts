@@ -60,7 +60,7 @@ export const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-    addresses {
+    locations {
       data {
         attributes {
           coordinates
@@ -98,6 +98,12 @@ export const GET_HOMEPAGE_DATA = gql`
           ... on Teampage {
             url
           }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
         }
       }
       items {
@@ -112,6 +118,12 @@ export const GET_HOMEPAGE_DATA = gql`
               url
             }
           ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
               url
             }
           }
@@ -150,7 +162,6 @@ export const GET_TEAMPAGE_DATA = gql`
       data {
         attributes {
           title
-          desc
           seo {
             metaTitle
             metaDescription
@@ -206,6 +217,12 @@ export const GET_TEAMPAGE_DATA = gql`
           ... on Teampage {
             url
           }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
         }
       }
       items {
@@ -220,6 +237,133 @@ export const GET_TEAMPAGE_DATA = gql`
               url
             }
           ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
+        items {
+          title
+          path
+          related {
+          attributes {
+            ... on Page {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    footer: renderNavigation(
+      navigationIdOrSlug: "footer"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      items {
+        title
+        path
+      }
+    }
+  }
+`
+
+export const GET_LOCATIES_DATA = gql`
+  query GET_LOCATIES_DATA {
+    locatie {
+      data {
+        attributes {
+          title
+          seo {
+            metaTitle
+            metaDescription
+            canonicalURL
+          }
+        }
+      }
+    }
+    generalinfo {
+      data {
+        attributes {
+          contactsInfo {
+            email
+            phone
+            mainAddress
+          }
+        }
+      }
+    }
+    locations {
+      data {
+        attributes {
+          coordinates
+          url
+          phone
+          email
+          address
+          workingHours {
+           	monday
+            tuesday
+            wednesday
+            thursday
+            friday
+            saturday
+            sunday
+          }
+        }
+      }
+    }
+    header: renderNavigation(
+      navigationIdOrSlug: "header"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      related {
+        attributes {
+          ... on Page {
+            title
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
+      items {
+        title
+        path
+        related {
+        attributes {
+          ... on Page {
+              title
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
               url
             }
           }

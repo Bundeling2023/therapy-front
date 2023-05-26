@@ -15,7 +15,7 @@ export interface HomePage {
       }
     }
   }
-  addresses: {
+  locations: {
     data: AddressMap[]
   }
   header: Menu[]
@@ -41,6 +41,30 @@ export interface TeamPage {
   }
   teams: {
     data: Team[]
+  }
+  header: Menu[]
+  footer: Menu[]
+}
+
+export interface LocatiesPage {
+  locatie: {
+     data: {
+      attributes: {
+        title: string
+        desc: string
+        seo: Seo
+      }
+    }
+  }
+  generalinfo: {
+    data: {
+      attributes: {
+        contactsInfo: ContactInfo
+      }
+    }
+  }
+  locations: {
+    data: AddressMap[]
   }
   header: Menu[]
   footer: Menu[]

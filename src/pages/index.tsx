@@ -13,7 +13,7 @@ import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 
 export default function Home(props: HomePage) {
-  const { header, footer, addresses } = props
+  const { header, footer, locations } = props
   const {
     mainBanner,
     services,
@@ -36,7 +36,7 @@ export default function Home(props: HomePage) {
       <TeamsBlock data={teams.data}/>
       <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
-      <MapSection data={addresses.data} />
+      <MapSection data={locations.data} />
       <Footer data={footer} info={contactsInfo} />
     </>
   );
