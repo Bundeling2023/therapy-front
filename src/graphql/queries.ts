@@ -209,7 +209,7 @@ export const GET_TEAMPAGE_DATA = gql`
       related {
         attributes {
           ... on Page {
-            title
+            url
           }
           ... on Team {
             url
@@ -231,7 +231,7 @@ export const GET_TEAMPAGE_DATA = gql`
         related {
         attributes {
           ... on Page {
-              title
+              url
             }
           ... on Team {
               url
@@ -253,7 +253,7 @@ export const GET_TEAMPAGE_DATA = gql`
           related {
           attributes {
             ... on Page {
-                title
+                url
               }
             }
           }
@@ -330,7 +330,7 @@ export const GET_LOCATIES_DATA = gql`
       related {
         attributes {
           ... on Page {
-            title
+            url
           }
           ... on Team {
             url
@@ -352,7 +352,7 @@ export const GET_LOCATIES_DATA = gql`
         related {
         attributes {
           ... on Page {
-              title
+              url
             }
           ... on Team {
               url
@@ -374,7 +374,7 @@ export const GET_LOCATIES_DATA = gql`
           related {
           attributes {
             ... on Page {
-                title
+                url
               }
             }
           }
