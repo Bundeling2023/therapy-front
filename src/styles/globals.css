@@ -18,6 +18,11 @@
   }
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 .swiper .swiper-pagination .swiper-pagination-bullet {
   background-color: #ccd7ff;
   opacity: 1;

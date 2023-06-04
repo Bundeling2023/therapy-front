@@ -90,7 +90,7 @@ export const GET_HOMEPAGE_DATA = gql`
       related {
         attributes {
           ... on Page {
-            title
+            url
           }
           ... on Team {
             url
@@ -112,7 +112,7 @@ export const GET_HOMEPAGE_DATA = gql`
         related {
         attributes {
           ... on Page {
-              title
+              url
             }
           ... on Team {
               url
@@ -134,7 +134,7 @@ export const GET_HOMEPAGE_DATA = gql`
           related {
           attributes {
             ... on Page {
-                title
+                url
               }
             }
           }

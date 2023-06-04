@@ -27,7 +27,7 @@ const MapSection = ({ data }:Props) => {
   return (
     <section className="relative pt-20 pb-24 w-full mx-auto bg-[#EBF3FF]">
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
-        <div className="w-full max-w-[1022px] lg:h-auto h-[395px]">
+        <div className="w-full z-[1] max-w-[1022px] lg:h-auto h-[395px]">
           <MapBlock handleCLick={changeTab} data={data} />
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">

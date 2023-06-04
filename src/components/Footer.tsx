@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoFooter from "../img/logo_footer.svg";
 import { ContactInfo, Menu } from "@/types/types";
+import { hasCookie, setCookie } from 'cookies-next';
+import { useEffect, useState } from "react";
 
 interface Props {
   data: Menu[],
@@ -10,6 +12,19 @@ interface Props {
 }
 
 const Footer = ({ data, info }:Props) => {
+  const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
+
+  useEffect(() => {
+    if(!hasCookie("notFirstVisit")){
+      seIsCookieBanner(true)
+    }
+  }, [])
+
+  const closeCookieBanner = () => {
+    seIsCookieBanner(false);
+    setCookie('notFirstVisit', true, { path: '/', maxAge: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()});
+  }
+
   return (
     <>
       <footer className="md:bg-[url('/footer_bgr.svg')] bg-[url('/footer_bgr_mob.svg')] bg-no-repeat bg-top bg-cover bg pt-16 pb-8 md:mt-[130px] mt-10">
@@ -141,6 +156,20 @@ const Footer = ({ data, info }:Props) => {
           </div>
         </div>
       </footer>
+      {isCookieBanner && (
+        <div className="fixed bottom-5 w-90% max-w-1560 z-50 left-[50%] -translate-x-1/2 alert shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-6 h-6 stroke-info shrink-0"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>This site is using cookies. Read our <Link href="/privacy-notice" className="text-blue-600">Privacy notice</Link></span>
+          <Icon
+            onClick={closeCookieBanner}
+            className="absolute hidden cursor-pointer right-4 top-4 sm:top-auto sm:block"
+            width="30"
+            height="30"
+            icon="iconamoon:close-bold"
+          />
+          <button  onClick={closeCookieBanner} className="block btn btn-sm btn-primary sm:hidden">Accept</button>
+        </div>
+      )}
     </>
   );
 };
