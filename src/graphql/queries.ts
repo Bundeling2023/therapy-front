@@ -395,3 +395,136 @@ export const GET_LOCATIES_DATA = gql`
     }
   }
 `
+
+export const GET_PAGE_DATA = gql`
+  query GET_PAGE_DATA ($slugUrl: String!) {
+    pages: pages(filters: { url: { eq: $slugUrl }})  {
+      data {
+        id
+        attributes {
+          url
+          mainTitle
+          pageWithBlocks {
+            blocks {
+              title
+              description
+              link {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              img {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+          simplePage {
+            description
+            img {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+          seo {
+            metaTitle
+            metaDescription
+            canonicalURL
+          }
+        }
+      }
+    }
+    generalinfo {
+      data {
+        attributes {
+          contactsInfo {
+            email
+            phone
+            mainAddress
+          }
+        }
+      }
+    }
+    header: renderNavigation(
+      navigationIdOrSlug: "header"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
+      items {
+        title
+        path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
+        items {
+          title
+          path
+          related {
+          attributes {
+            ... on Page {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    footer: renderNavigation(
+      navigationIdOrSlug: "footer"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      items {
+        title
+        path
+      }
+    }
+  }
+`

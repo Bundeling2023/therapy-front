@@ -4,7 +4,7 @@ import TeamMember from "@/components/team/TeamMember";
 import { GET_TEAMPAGE_DATA } from "@/graphql/queries";
 import { TeamPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next/types";
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect } from "react";
@@ -48,7 +48,7 @@ export default function Team(props: TeamPage) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),

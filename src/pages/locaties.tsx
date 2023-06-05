@@ -4,7 +4,7 @@ import { GET_LOCATIES_DATA, } from "@/graphql/queries";
 import { LocatiesPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { Icon } from "@iconify/react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next/types";
 import Head from 'next/head'
 
 
@@ -28,7 +28,7 @@ export default function Team(props: LocatiesPage) {
       <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="flex flex-wrap justify-between gap-y-10">
-          {props.locations.data.map((item, index) =>
+          {props.locations.data.map((item) =>
             <div
               id={item.attributes.url.slice(item.attributes.url.indexOf('#') + 1)}
               className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.attributes.url}
@@ -101,7 +101,7 @@ export default function Team(props: LocatiesPage) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),
