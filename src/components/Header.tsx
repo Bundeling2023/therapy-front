@@ -122,7 +122,7 @@ const NavSection = ({ data, info }: Props) => {
                           )}
                         </Link>
                         {i.items?.length > 0 && (
-                          <ul className="absolute top-0 right-0 z-10 hidden w-auto max-w-[270px] p-2 text-2xl shadow-md group-hover/item:block min-w-max menu menu-compact bg-base-100 rounded-box">
+                          <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[270px] p-2 text-2xl shadow-md group-hover/item:block min-w-max menu menu-compact bg-base-100 rounded-box">
                             {i?.items?.map((itm, index) =>
                               <li key={itm.title ? itm.title + index : itm.related.attributes.title + index}>
                                 <Link

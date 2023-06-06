@@ -403,7 +403,7 @@ export const GET_PAGE_DATA = gql`
         id
         attributes {
           url
-          mainTitle
+          title
           pageWithBlocks {
             blocks {
               title
@@ -429,6 +429,14 @@ export const GET_PAGE_DATA = gql`
             img {
               data {
                 attributes {
+                  url
+                }
+              }
+            }
+            parrentPage {
+              data {
+                attributes {
+                  title
                   url
                 }
               }
@@ -527,4 +535,61 @@ export const GET_PAGE_DATA = gql`
       }
     }
   }
+`
+
+export const GET_SIDEMENU_PAGES = gql`
+  query GET_SIDEMENU_PAGES ($slugUrl: String!) {
+  pages: pages(filters: {  simplePage: { parrentPage: { url: { eq: $slugUrl }}}})  {
+    data {
+      id
+      attributes {
+        url
+        title
+        pageWithBlocks {
+          blocks {
+            title
+            description
+            link {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            img {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+        }
+        simplePage {
+          description
+          img {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          parrentPage {
+            data {
+              attributes {
+                title
+                url
+              }
+            }
+          }
+        }
+        seo {
+          metaTitle
+          metaDescription
+          canonicalURL
+        }
+      }
+    }
+  }
+}
 `
