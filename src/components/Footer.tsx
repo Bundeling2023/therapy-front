@@ -78,9 +78,9 @@ const Footer = ({ data, info }:Props) => {
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
               {data.map((item: Menu) =>
                 <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                  <Link href={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link>
+                  <Link href={item.related.attributes.url} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link>
                   {item.items.length > 0 && item.items.map((i) =>
-                    <Link key={i.title} href={i.path} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
+                    <Link key={i.title} href={item.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
                   )}
                 </div>
               )}
@@ -114,16 +114,10 @@ const Footer = ({ data, info }:Props) => {
                 href="#"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 26 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width='35' viewBox="-35.2 -41.333 305.067 248">
                   <path
-                    d="M26 13C26 16.4478 24.6304 19.7544 22.1924 22.1924C19.7544 24.6304 16.4478 26 13 26C9.55219 26 6.24558 24.6304 3.80761 22.1924C1.36964 19.7544 0 16.4478 0 13C0 9.55219 1.36964 6.24558 3.80761 3.80761C6.24558 1.36964 9.55219 0 13 0C16.4478 0 19.7544 1.36964 22.1924 3.80761C24.6304 6.24558 26 9.55219 26 13ZM10.621 19.851C11.7945 19.8596 12.9581 19.6349 14.044 19.1898C15.1299 18.7447 16.1164 18.0881 16.9463 17.2583C17.7761 16.4284 18.4327 15.4419 18.8778 14.356C19.3229 13.2701 19.5476 12.1065 19.539 10.933V10.543C20.137 10.088 20.67 9.542 21.099 8.905C20.54 9.165 19.929 9.321 19.292 9.399C19.942 9.009 20.436 8.398 20.67 7.67C20.072 8.021 19.396 8.281 18.681 8.424C18.2084 7.92332 17.5841 7.59224 16.9045 7.48195C16.2249 7.37166 15.5279 7.48829 14.9213 7.81381C14.3146 8.13934 13.8321 8.65563 13.5482 9.28288C13.2644 9.91013 13.1951 10.6134 13.351 11.284C10.751 11.154 8.437 9.906 6.89 8.008C6.4913 8.69928 6.3702 9.51624 6.55123 10.2935C6.73225 11.0707 7.20188 11.75 7.865 12.194C7.345 12.181 6.864 12.038 6.448 11.804V11.843C6.448 13.364 7.527 14.625 8.957 14.911C8.49492 15.0369 8.01006 15.0547 7.54 14.963C7.73648 15.5881 8.12475 16.1354 8.64976 16.5274C9.17477 16.9194 9.80987 17.1362 10.465 17.147C9.1512 18.1778 7.48211 18.6454 5.824 18.447C7.25214 19.3722 8.91939 19.8602 10.621 19.851Z"
-                    fill="white"
+                    d="M93.333 117.559V47.775l61.334 34.893zm136.43-91.742c-2.699-10.162-10.651-18.165-20.747-20.881C190.716 0 117.333 0 117.333 0S43.951 0 25.651 4.936C15.555 7.652 7.603 15.655 4.904 25.817 0 44.236 0 82.667 0 82.667s0 38.429 4.904 56.849c2.699 10.163 10.65 18.165 20.747 20.883 18.3 4.934 91.682 4.934 91.682 4.934s73.383 0 91.683-4.934c10.096-2.718 18.048-10.72 20.747-20.883 4.904-18.42 4.904-56.85 4.904-56.85s0-38.43-4.904-56.849"
+                    fill="#fff"
                   />
                 </svg>
               </a>

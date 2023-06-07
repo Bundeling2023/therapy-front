@@ -136,6 +136,18 @@ export const GET_HOMEPAGE_DATA = gql`
             ... on Page {
                 url
               }
+            ... on Team {
+                url
+              }
+            ... on Teampage {
+                url
+              }
+            ... on Location {
+                url
+              }
+            ... on Locatie {
+                url
+              }
             }
           }
         }
@@ -148,9 +160,47 @@ export const GET_HOMEPAGE_DATA = gql`
     ) {
       title
       path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
       items {
         title
         path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
       }
     }
   }
@@ -267,9 +317,47 @@ export const GET_TEAMPAGE_DATA = gql`
     ) {
       title
       path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
       items {
         title
         path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
       }
     }
   }
@@ -388,9 +476,47 @@ export const GET_LOCATIES_DATA = gql`
     ) {
       title
       path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
       items {
         title
         path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
       }
     }
   }
@@ -529,9 +655,47 @@ export const GET_PAGE_DATA = gql`
     ) {
       title
       path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
       items {
         title
         path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
       }
     }
   }
@@ -539,23 +703,34 @@ export const GET_PAGE_DATA = gql`
 
 export const GET_SIDEMENU_PAGES = gql`
   query GET_SIDEMENU_PAGES ($slugUrl: String!) {
-  pages: pages(filters: {  simplePage: { parrentPage: { url: { eq: $slugUrl }}}})  {
-    data {
-      id
-      attributes {
-        url
-        title
-        pageWithBlocks {
-          blocks {
-            title
-            description
-            link {
-              data {
-                attributes {
-                  url
+    pages: pages(filters: {  simplePage: { parrentPage: { url: { eq: $slugUrl }}}})  {
+      data {
+        id
+        attributes {
+          url
+          title
+          pageWithBlocks {
+            blocks {
+              title
+              description
+              link {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              img {
+                data {
+                  attributes {
+                    url
+                  }
                 }
               }
             }
+          }
+          simplePage {
+            description
             img {
               data {
                 attributes {
@@ -563,33 +738,22 @@ export const GET_SIDEMENU_PAGES = gql`
                 }
               }
             }
-          }
-        }
-        simplePage {
-          description
-          img {
-            data {
-              attributes {
-                url
+            parrentPage {
+              data {
+                attributes {
+                  title
+                  url
+                }
               }
             }
           }
-          parrentPage {
-            data {
-              attributes {
-                title
-                url
-              }
-            }
+          seo {
+            metaTitle
+            metaDescription
+            canonicalURL
           }
-        }
-        seo {
-          metaTitle
-          metaDescription
-          canonicalURL
         }
       }
     }
   }
-}
 `
