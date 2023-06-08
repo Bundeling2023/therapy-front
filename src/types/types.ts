@@ -70,6 +70,30 @@ export interface LocatiesPage {
   footer: Menu[]
 }
 
+export interface ContactsUsPage {
+  contactus: {
+      data: {
+      attributes: {
+        title: string
+        seo: Seo
+      }
+    }
+  }
+  generalinfo: {
+    data: {
+      attributes: {
+        contactsInfo: ContactInfo
+      }
+    }
+  }
+  locations: {
+    data: AddressMap[]
+  }
+  header: Menu[]
+  footer: Menu[]
+}
+
+
 export interface Menu {
   title: string
   path: string

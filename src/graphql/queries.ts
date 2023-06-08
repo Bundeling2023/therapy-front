@@ -757,3 +757,149 @@ export const GET_SIDEMENU_PAGES = gql`
     }
   }
 `
+
+export const GET_CONTACTUS_PAGE = gql`
+  query GET_CONTACTUS_PAGE {
+    contactus {
+      data {
+        attributes {
+          title
+          seo {
+            metaTitle
+            metaDescription
+            canonicalURL
+          }
+        }
+      }
+    }
+    locations {
+      data {
+        attributes {
+          address
+        }
+      }
+    }
+    generalinfo {
+      data {
+        attributes {
+          contactsInfo {
+            email
+            phone
+            mainAddress
+          }
+        }
+      }
+    }
+    header: renderNavigation(
+      navigationIdOrSlug: "header"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
+      items {
+        title
+        path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
+        items {
+          title
+          path
+          related {
+          attributes {
+            ... on Page {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    footer: renderNavigation(
+      navigationIdOrSlug: "footer"
+      type: TREE
+      menuOnly: false
+    ) {
+      title
+      path
+      related {
+        attributes {
+          ... on Page {
+            url
+          }
+          ... on Team {
+            url
+          }
+          ... on Teampage {
+            url
+          }
+          ... on Location {
+            url
+          }
+          ... on Locatie {
+            url
+          }
+        }
+      }
+      items {
+        title
+        path
+        related {
+        attributes {
+          ... on Page {
+              url
+            }
+          ... on Team {
+              url
+            }
+          ... on Teampage {
+              url
+            }
+          ... on Location {
+              url
+            }
+          ... on Locatie {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`

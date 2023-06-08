@@ -53,7 +53,7 @@ export default function PostPage( props: any ) {
                       {item.attributes.title}
                   </Link>
                 )}
-                <Link href="#" className="text-white btn btn-primary mt-7">
+                <Link href="/contact-us" className="text-white btn btn-primary mt-7">
                   Afspraak maken
                 </Link>
               </aside>

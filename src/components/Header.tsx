@@ -142,7 +142,7 @@ const NavSection = ({ data, info }: Props) => {
             </li>
             )}
           </ul>
-          <Link href="#" className="text-white btn btn-primary mt-7">
+          <Link href="/contact-us" className="text-white btn btn-primary mt-7">
             Afspraak maken
           </Link>
         </nav>
