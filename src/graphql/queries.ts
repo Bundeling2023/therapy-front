@@ -52,14 +52,10 @@ export const GET_HOMEPAGE_DATA = gql`
               }
             }
           }
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
         }
       }
     }
+
     locations {
       data {
         attributes {
@@ -76,6 +72,31 @@ export const GET_HOMEPAGE_DATA = gql`
             friday
             saturday
             sunday
+          }
+        }
+      }
+    }
+    generalinfo {
+      data {
+        attributes {
+          contactsInfo {
+            email
+            phone
+            mainAddress
+          }
+          privacyPolicyPage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          algemenePage {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
@@ -227,6 +248,20 @@ export const GET_TEAMPAGE_DATA = gql`
             email
             phone
             mainAddress
+          }
+          privacyPolicyPage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          algemenePage {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
@@ -384,6 +419,20 @@ export const GET_LOCATIES_DATA = gql`
             email
             phone
             mainAddress
+          }
+          privacyPolicyPage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          algemenePage {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
@@ -583,6 +632,20 @@ export const GET_PAGE_DATA = gql`
             email
             phone
             mainAddress
+          }
+          privacyPolicyPage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          algemenePage {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
@@ -786,6 +849,20 @@ export const GET_CONTACTUS_PAGE = gql`
             email
             phone
             mainAddress
+          }
+          privacyPolicyPage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          algemenePage {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }

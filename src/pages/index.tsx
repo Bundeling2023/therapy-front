@@ -23,6 +23,8 @@ export default function Home(props: HomePage) {
     modalVideo
   } = props.home.data.attributes;
 
+  console.log(props);
+
   return (
     <>
       <Head>
@@ -30,14 +32,19 @@ export default function Home(props: HomePage) {
         <meta name='description' content={seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
-      <NavSection data={header} info={contactsInfo} />
+      <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
       <TeamsBlock data={teams.data}/>
       <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
       <MapSection data={locations.data} />
-      <Footer data={footer} info={contactsInfo} />
+      <Footer
+        data={footer}
+        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
+        aalgemeneLink={props.generalinfo.data.attributes.algemenePage.data.attributes.url}
+        info={props.generalinfo.data.attributes.contactsInfo}
+      />
     </>
   );
 }

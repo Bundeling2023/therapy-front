@@ -96,7 +96,12 @@ export default function Team(props: LocatiesPage) {
           </div>
         </div>
       </section>
-      <Footer data={footer} info={props.generalinfo.data.attributes.contactsInfo} />
+      <Footer
+        data={footer}
+        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
+        aalgemeneLink={props.generalinfo.data.attributes.algemenePage.data.attributes.url}
+        info={props.generalinfo.data.attributes.contactsInfo}
+      />
     </>
   );
 }

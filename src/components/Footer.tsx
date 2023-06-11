@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 
 interface Props {
   data: Menu[],
-  info: ContactInfo
+  info: ContactInfo,
+  privacyLink: string,
+  aalgemeneLink: string,
 }
 
-const Footer = ({ data, info }:Props) => {
+const Footer = ({ data, info, privacyLink = '#', aalgemeneLink = '#' }:Props) => {
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -88,9 +90,9 @@ const Footer = ({ data, info }:Props) => {
           </div>
           <div className="flex flex-col-reverse items-start justify-between mt-12 md:mt-20 gap-y-8 md:flex-row">
             <div className="[&>*]: text-white md:text-lg text-sm flex md:gap-[34px] gap-[16px]">
-              <Link className="hover:underline" href="#">Algemene voorwaarden</Link>
+              <Link className="hover:underline" href={aalgemeneLink}>Algemene voorwaarden</Link>
               <span>|</span>
-              <Link className="hover:underline" href="#">Privacy Policy</Link>
+              <Link className="hover:underline" href={privacyLink}>Privacy Policy</Link>
             </div>
             <div className="flex gap-4">
               <a
@@ -153,7 +155,7 @@ const Footer = ({ data, info }:Props) => {
       {isCookieBanner && (
         <div className="fixed bottom-5 w-90% max-w-1560 z-50 left-[50%] -translate-x-1/2 alert shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-6 h-6 stroke-info shrink-0"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <span>This site is using cookies. Read our <Link href="/privacy-notice" className="text-blue-600">Privacy notice</Link></span>
+          <span>This site is using cookies. Read our <Link href={privacyLink} className="text-blue-600">Privacy notice</Link></span>
           <Icon
             onClick={closeCookieBanner}
             className="absolute hidden cursor-pointer right-4 top-4 sm:top-auto sm:block"

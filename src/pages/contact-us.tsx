@@ -32,13 +32,11 @@ export default function Team(props: ContactsUsPage) {
       setIsLoading(true);
       try {
         await axios.post('/api/nodemailer', {
-          body: JSON.stringify({
-            email: e.target.email.value,
-            telefoon: e.target.telefoon.value,
-            voornaam: e.target.voornaam.value,
-            achternaam: e.target.achternaam.value,
-            locatie: e.target.achternaam.value,
-          })
+          email: e.target.email.value,
+          telefoon: e.target.telefoon.value,
+          voornaam: e.target.voornaam.value,
+          achternaam: e.target.achternaam.value,
+          locatie: e.target.achternaam.value,
         })
         toast.success("Thank you! Your message was send", {
           position: toast.POSITION.TOP_CENTER
@@ -47,7 +45,9 @@ export default function Team(props: ContactsUsPage) {
         e.target.reset();
       } catch (e) {
         setIsLoading(true);
-        toast.error("Error!")
+        toast.error("Error!", {
+          position: toast.POSITION.TOP_CENTER
+        })
       }
     }
   }
@@ -111,7 +111,12 @@ export default function Team(props: ContactsUsPage) {
         <p className="w-90% mx-auto max-w-1560 mt-12 text-sm">Wij gebruiken de opgegeven gegevens alleen om contact met je op te nemen voor de afspraak.</p>
         <ToastContainer hideProgressBar />
       </section>
-      <Footer data={footer} info={props.generalinfo.data.attributes.contactsInfo} />
+      <Footer
+        data={footer}
+        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
+        aalgemeneLink={props.generalinfo.data.attributes.algemenePage.data.attributes.url}
+        info={props.generalinfo.data.attributes.contactsInfo}
+      />
     </>
   );
 }

@@ -7,10 +7,30 @@ export interface HomePage {
         teams: {
           data: Team[]
         }
-        contactsInfo: ContactInfo
         seo: Seo
         modalVideo: {
           providerUid: string
+        }
+      }
+    }
+  }
+  generalinfo: {
+    data: {
+      attributes: {
+        contactsInfo: ContactInfo
+        privacyPolicyPage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
+        algemenePage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
         }
       }
     }
@@ -36,6 +56,20 @@ export interface TeamPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
+        privacyPolicyPage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
+        algemenePage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
       }
     }
   }
@@ -60,6 +94,20 @@ export interface LocatiesPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
+        privacyPolicyPage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
+        algemenePage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
       }
     }
   }
@@ -83,6 +131,20 @@ export interface ContactsUsPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
+        privacyPolicyPage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
+        algemenePage: {
+          data: {
+            attributes: {
+              url: string
+            }
+          }
+        }
       }
     }
   }
