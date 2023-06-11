@@ -18,7 +18,6 @@ export default function Home(props: HomePage) {
     mainBanner,
     services,
     teams,
-    contactsInfo,
     seo,
     modalVideo
   } = props.home.data.attributes;
