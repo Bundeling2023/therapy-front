@@ -13,8 +13,6 @@ export default function PostPage( props: any ) {
   const { header, footer } = props
   const { seo } = props.pages.data[0].attributes;
 
-  console.log(props);
-
   return (
     <>
       <Head>
