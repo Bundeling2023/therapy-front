@@ -258,5 +258,12 @@ export interface AddressMap {
       saturday: string
       sunday: string
     }
+    img: {
+      data: {
+        attributes: {
+          url: string
+        }
+      }
+    }
   }
 }

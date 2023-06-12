@@ -1,4 +1,4 @@
-import { MapContainer, Marker, MarkerProps, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import { AddressMap } from "@/types/types";
 

@@ -22,8 +22,6 @@ export default function Home(props: HomePage) {
     modalVideo
   } = props.home.data.attributes;
 
-  console.log(props);
-
   return (
     <>
       <Head>

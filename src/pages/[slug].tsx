@@ -13,6 +13,8 @@ export default function PostPage( props: any ) {
   const { header, footer } = props
   const { seo } = props.pages.data[0].attributes;
 
+  console.log(props);
+
   return (
     <>
       <Head>
@@ -64,7 +66,7 @@ export default function PostPage( props: any ) {
             {props.pages.data[0].attributes.pageWithBlocks.blocks.map((item: any) =>
               <>
                 {item.link.data ? (
-                  <Link href='#' key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
+                  <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
                     <Image
                       className="w-full rounded-xl"
                       src={item.img.data.attributes.url}

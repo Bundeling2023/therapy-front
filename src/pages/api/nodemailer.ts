@@ -8,7 +8,7 @@ export default function handler( req: NextApiRequest, res: NextApiResponse ) {
     from: req.body.email,
     to: `${process.env.NEXT_PUBLIC_EMAIL_TO}`,
     subject: 'Message from Bundeling website',
-    html: `<h2>Message from Bundeling website</h2>:
+    html: `<h2>Message from Bundeling website:</h2>
     <p><strong>Voornaam:</strong> ${req.body.voornaam}</p>
     <p><strong>achternaam:</strong> ${req.body.achternaam}</p>
     <p><strong>Telefoon:</strong> ${req.body.telefoon}</p>

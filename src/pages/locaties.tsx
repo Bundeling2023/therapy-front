@@ -5,6 +5,7 @@ import { LocatiesPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { Icon } from "@iconify/react";
 import { GetServerSideProps } from "next/types";
+import Image from "next/image";
 import Head from 'next/head'
 
 
@@ -20,7 +21,7 @@ export default function Team(props: LocatiesPage) {
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
       <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
-      <div className="py-20 mb-11">
+      <div className="py-20 sm:mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.locatie.data.attributes.title}
         </h1>
@@ -33,38 +34,56 @@ export default function Team(props: LocatiesPage) {
               id={item.attributes.url.slice(item.attributes.url.indexOf('#') + 1)}
               className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.attributes.url}
             >
-              <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
-                <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
-                  <Icon
-                    icon="material-symbols:mail-rounded"
-                    color="white"
-                    width="24"
-                    height="24"
-                  />
-                </span>
-                <a href={`mailto:${item.attributes.email}`}>{item.attributes.email}</a>
+              <div className="flex flex-col-reverse justify-between gap-6 sm:flex-row">
+                <div>
+                  <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
+                    <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
+                      <Icon
+                        icon="material-symbols:mail-rounded"
+                        color="white"
+                        width="24"
+                        height="24"
+                      />
+                    </span>
+                    <a href={`mailto:${item.attributes.email}`}>{item.attributes.email}</a>
+                  </div>
+                  <div className="flex mt-4 items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
+                    <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
+                      <Icon
+                        icon="ic:baseline-local-phone"
+                        color="white"
+                        width="24"
+                        height="24"
+                      />
+                    </span>
+                    <a href={`tel:${item.attributes.phone}`}>{item.attributes.phone}</a>
+                  </div>
+                  <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 leading-normal">
+                    {item.attributes.address}
+                  </p>
+                </div>
+                {item.attributes.img.data && (
+                  <div className="max-h-full sm:max-w-[50%]">
+                    <Image
+                      width="0"
+                      height="0"
+                      quality="80"
+                      alt={item.attributes.address}
+                      src={item.attributes.img.data && item.attributes.img.data.attributes.url}
+                      sizes="100vw"
+                      blurDataURL={item.attributes.img.data && item.attributes.img.data.attributes.url}
+                      className="relative z-10 aspect-video object-cover w-full h-full rounded-[42px]"
+                    />
+                  </div>
+                )}
               </div>
-              <div className="flex mt-4 items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
-                <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
-                  <Icon
-                    icon="ic:baseline-local-phone"
-                    color="white"
-                    width="24"
-                    height="24"
-                  />
-                </span>
-                <a href={`tel:${item.attributes.phone}`}>{item.attributes.phone}</a>
-              </div>
-              <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 leading-normal">
-                {item.attributes.address}
-              </p>
               <p className="mt-8 text-base font-semibold text-dark-purple lg:mt-10 lg:text-2xl">
                 Openingstijden
               </p>
               <div className="[&>*]:text-[#696AA5] [&>*]:lg:text-[26px] [&>*]:text-sm lg:pb-0 pb-2">
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>maandag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px] ">{item.attributes.workingHours.monday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.monday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>dinsdag</p>

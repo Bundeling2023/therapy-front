@@ -454,6 +454,13 @@ export const GET_LOCATIES_DATA = gql`
             saturday
             sunday
           }
+          img {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
