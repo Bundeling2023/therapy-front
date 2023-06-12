@@ -91,7 +91,7 @@ export const GET_HOMEPAGE_DATA = gql`
               }
             }
           }
-          algemenePage {
+          termsAndConditionsPage {
             data {
               attributes {
                 url
@@ -256,7 +256,7 @@ export const GET_TEAMPAGE_DATA = gql`
               }
             }
           }
-          algemenePage {
+          termsAndConditionsPage {
             data {
               attributes {
                 url
@@ -427,7 +427,7 @@ export const GET_LOCATIES_DATA = gql`
               }
             }
           }
-          algemenePage {
+          termsAndConditionsPage {
             data {
               attributes {
                 url
@@ -647,7 +647,7 @@ export const GET_PAGE_DATA = gql`
               }
             }
           }
-          algemenePage {
+          termsAndConditionsPage {
             data {
               attributes {
                 url
@@ -864,7 +864,7 @@ export const GET_CONTACTUS_PAGE = gql`
               }
             }
           }
-          algemenePage {
+          termsAndConditionsPage {
             data {
               attributes {
                 url

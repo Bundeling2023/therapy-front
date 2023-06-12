@@ -25,7 +25,7 @@ export interface HomePage {
             }
           }
         }
-        algemenePage: {
+        termsAndConditionsPage: {
           data: {
             attributes: {
               url: string
@@ -63,7 +63,7 @@ export interface TeamPage {
             }
           }
         }
-        algemenePage: {
+        termsAndConditionsPage: {
           data: {
             attributes: {
               url: string
@@ -101,7 +101,7 @@ export interface LocatiesPage {
             }
           }
         }
-        algemenePage: {
+        termsAndConditionsPage: {
           data: {
             attributes: {
               url: string
@@ -138,7 +138,7 @@ export interface ContactsUsPage {
             }
           }
         }
-        algemenePage: {
+        termsAndConditionsPage: {
           data: {
             attributes: {
               url: string

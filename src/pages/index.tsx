@@ -39,7 +39,7 @@ export default function Home(props: HomePage) {
       <Footer
         data={footer}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
-        aalgemeneLink={props.generalinfo.data.attributes.algemenePage.data.attributes.url}
+        termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
         info={props.generalinfo.data.attributes.contactsInfo}
       />
     </>

@@ -10,10 +10,10 @@ interface Props {
   data: Menu[],
   info: ContactInfo,
   privacyLink: string,
-  aalgemeneLink: string,
+  termsAndConditionsPage: string,
 }
 
-const Footer = ({ data, info, privacyLink = '#', aalgemeneLink = '#' }:Props) => {
+const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:Props) => {
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const Footer = ({ data, info, privacyLink = '#', aalgemeneLink = '#' }:Props) =>
           </div>
           <div className="flex flex-col-reverse items-start justify-between mt-12 md:mt-20 gap-y-8 md:flex-row">
             <div className="[&>*]: text-white md:text-lg text-sm flex md:gap-[34px] gap-[16px]">
-              <Link className="hover:underline" href={aalgemeneLink}>Algemene voorwaarden</Link>
+              <Link className="hover:underline" href={termsAndConditionsPage}>Algemene voorwaarden</Link>
               <span>|</span>
               <Link className="hover:underline" href={privacyLink}>Privacy Policy</Link>
             </div>
