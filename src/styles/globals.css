@@ -208,6 +208,17 @@ aside a.active {
   background-color: rgb(147, 197, 253);
 }
 
+figure.table table {
+  min-width: 600px;
+}
+
+figure.table {
+  display: block;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 @media (max-width: 1279px) {
   .teams_swiper.swiper .swiper-pagination-progressbar {
     display: none;

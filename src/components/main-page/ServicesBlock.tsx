@@ -17,7 +17,7 @@ const ServicesBlock = ({ data }: Props) => {
       <div className="flex justify-between 2xl:gap-x-[176px] md:gap-x-0 gap-[unset] gap-y-10 items-start mx-auto w-90% max-w-1560 xl:flex-nowrap flex-wrap">
         {data.map((item) =>
           <Link
-            href={item.link}
+            href={item.link.data.attributes.url}
             key={item.title}
             className="xl:max-w-[310px] xl:w-auto md:w-1/2 w-[45%] text-center group"
           >

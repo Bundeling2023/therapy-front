@@ -20,7 +20,13 @@ export const GET_HOMEPAGE_DATA = gql`
           }
           services {
             title
-            link
+            link {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
             img {
               data {
                 attributes {
@@ -55,7 +61,6 @@ export const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-
     locations {
       data {
         attributes {

@@ -215,7 +215,13 @@ export interface MainBanner {
 
 export interface Services {
   title: string
-  link: string
+  link: {
+    data: {
+      attributes: {
+        url: string
+      }
+    }
+  }
   img: {
     data: {
       attributes: {

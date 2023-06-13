@@ -7,11 +7,18 @@ import Head from "next/head";
 import { GetServerSideProps } from "next/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 
 export default function PostPage( props: any ) {
   const { header, footer } = props
   const { seo } = props.pages.data[0].attributes;
+
+  useEffect(() => {
+    const tables = document.querySelectorAll('table');
+
+    tables && tables.forEach((item) => item.classList.add('table'));
+  }, [])
 
   return (
     <>
@@ -29,7 +36,7 @@ export default function PostPage( props: any ) {
       <section className="flex bg-blue-100 page">
         {props.pages.data[0].attributes.simplePage ? (
           <div className="flex flex-col lg:flex-row items-start pb-20 w-90% max-w-1560 mx-auto">
-              <main className="bg-white rounded-xl p-7 simple-page">
+              <main className="w-full bg-white rounded-xl p-7 simple-page">
                 {props.pages.data[0].attributes.simplePage.img.data && (
                   <Image
                     className="w-full rounded-xl"
@@ -41,6 +48,7 @@ export default function PostPage( props: any ) {
                   />
                 )}
                 {HTMLReactParser(props.pages.data[0].attributes.simplePage.description)}
+
               </main>
             {props.sidemenu.data && (
               <aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
