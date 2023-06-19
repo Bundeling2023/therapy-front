@@ -48,7 +48,7 @@ const ServicesBlock = ({ data }: Props) => {
             diversiteit aan deskundigheden in huis te hebben.
           </p>
           <Link
-            href="#"
+            href="/specialisaties"
             className="bg-white btn btn-white text-dark-purple mt-14"
           >
             Bekijk meer

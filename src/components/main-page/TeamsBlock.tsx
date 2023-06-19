@@ -89,7 +89,7 @@ const TeamsBlock = ({ data }: Props) => {
       </div>
       <div className="mt-16 text-center">
         <Link
-          href="#"
+          href="/team"
           className="btn bg-dark-purple mx-auto hover:bg-light-purple focus:bg-light-purple h-16 px-8 mt-6 text-dark-purple normal-case text-base 2xl:text-[18px]"
         >
           Neem contact op
