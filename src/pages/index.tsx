@@ -8,7 +8,7 @@ import TeamsBlock from "@/components/main-page/TeamsBlock";
 import MapSection from "@/components/main-page/MapSection";
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps, GetStaticProps } from "next/types";
+import { GetServerSideProps } from "next/types";
 import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 
@@ -46,7 +46,7 @@ export default function Home(props: HomePage) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),

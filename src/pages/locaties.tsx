@@ -4,7 +4,7 @@ import { GET_LOCATIES_DATA, } from "@/graphql/queries";
 import { LocatiesPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { Icon } from "@iconify/react";
-import { GetServerSideProps, GetStaticProps } from "next/types";
+import { GetServerSideProps } from "next/types";
 import Image from "next/image";
 import Head from 'next/head'
 
@@ -125,7 +125,7 @@ export default function Team(props: LocatiesPage) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),
