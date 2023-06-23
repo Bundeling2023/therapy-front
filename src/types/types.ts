@@ -250,6 +250,7 @@ export interface Team {
 
 export interface AddressMap {
   attributes: {
+    title: string,
     coordinates: string
     url: string
     phone: string

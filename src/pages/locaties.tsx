@@ -34,7 +34,8 @@ export default function Team(props: LocatiesPage) {
               id={item.attributes.url.slice(item.attributes.url.indexOf('#') + 1)}
               className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.attributes.url}
             >
-              <div className="flex flex-col-reverse justify-between gap-6 sm:flex-row">
+              <h3 className="mb-8 text-2xl font-medium">{item.attributes.title}</h3>
+              <div className="flex justify-between gap-6 flex-row max-[1600px]:flex-col-reverse">
                 <div>
                   <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
                     <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
@@ -63,8 +64,8 @@ export default function Team(props: LocatiesPage) {
                   </p>
                 </div>
                 {item.attributes.img.data && (
-                  <div className="max-h-full sm:max-w-[50%]">
-                    <Image
+                  <div className="max-w-[50%] max-[1600px]:max-w-full">
+                  <Image
                       width="0"
                       height="0"
                       quality="80"

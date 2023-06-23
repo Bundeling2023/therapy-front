@@ -445,6 +445,7 @@ export const GET_LOCATIES_DATA = gql`
     locations {
       data {
         attributes {
+          title
           coordinates
           url
           phone
