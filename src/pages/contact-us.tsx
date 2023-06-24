@@ -3,7 +3,7 @@ import NavSection from "@/components/Header";
 import { GET_CONTACTUS_PAGE, } from "@/graphql/queries";
 import { ContactsUsPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps } from "next/types";
+import { GetServerSideProps, GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -121,7 +121,7 @@ export default function Team(props: ContactsUsPage) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),
