@@ -65,7 +65,7 @@ export default function Team(props: LocatiesPage) {
                 </div>
                 {item.attributes.img.data && (
                   <div className="max-w-[50%] max-[1600px]:max-w-full">
-                  <Image
+                    <Image
                       width="0"
                       height="0"
                       quality="80"
@@ -73,7 +73,7 @@ export default function Team(props: LocatiesPage) {
                       src={item.attributes.img.data && item.attributes.img.data.attributes.url}
                       sizes="100vw"
                       blurDataURL={item.attributes.img.data && item.attributes.img.data.attributes.url}
-                      className="relative z-10 aspect-video object-cover w-full h-full rounded-[42px]"
+                      className="relative z-0 aspect-video object-cover w-full h-full rounded-[42px]"
                     />
                   </div>
                 )}
