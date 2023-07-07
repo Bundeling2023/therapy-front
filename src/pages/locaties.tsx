@@ -26,7 +26,7 @@ export default function Team(props: LocatiesPage) {
           {props.locatie.data.attributes.title}
         </h1>
       </div>
-      <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-10">
+      <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="flex flex-wrap justify-between gap-y-10">
           {props.locations.data.map((item) =>
