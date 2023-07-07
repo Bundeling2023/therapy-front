@@ -21,7 +21,7 @@ export default function Team(props: LocatiesPage) {
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
       <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
-      <div className="py-20 sm:mb-11">
+      <div className="py-20 bg-blue-100 sm:mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.locatie.data.attributes.title}
         </h1>
