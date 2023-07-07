@@ -92,7 +92,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:
             <div className="[&>*]: text-white md:text-lg text-sm flex md:gap-[34px] gap-[16px]">
               <Link className="hover:underline" href={termsAndConditionsPage}>Algemene voorwaarden</Link>
               <span>|</span>
-              <Link className="hover:underline" href={privacyLink}>Privacy Policy</Link>
+              <Link className="hover:underline" href={privacyLink}>Privacy policy</Link>
             </div>
             <div className="flex gap-4">
               <a
@@ -155,7 +155,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:
       {isCookieBanner && (
         <div className="fixed bottom-5 w-90% max-w-1560 z-50 left-[50%] -translate-x-1/2 alert shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-6 h-6 stroke-info shrink-0"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <span>This site is using cookies. Read our <Link href={privacyLink} className="text-blue-600">Privacy notice</Link></span>
+          <span>Deze site gebruikt cookies. Lees hoe we ermee omgaan in onze <Link href={privacyLink} className="text-blue-600">privacy policy</Link></span>
           <Icon
             onClick={closeCookieBanner}
             className="absolute hidden cursor-pointer right-4 top-4 sm:top-auto sm:block"
