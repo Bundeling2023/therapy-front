@@ -15,30 +15,30 @@ export default function Team(props: ContactsUsPage) {
   const { header, footer } = props
   const { seo } = props.contactus.data.attributes;
   const [emailError, setEmailError] = useState<boolean>(false);
-  const [telefoonError, setTelefoonError] = useState<boolean>(false);
-  const [voornaamError, setVoornaamError] = useState<boolean>(false);
-  const [achternaamError, setAchternaamError] = useState<boolean>(false);
+  const [phoneError, setPhoneError] = useState<boolean>(false);
+  const [firstnameError, setFirstNameError] = useState<boolean>(false);
+  const [lastnameError, setLastNameError] = useState<boolean>(false);
   const [isLoading, setIsLoading ] = useState<boolean>(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     setEmailError(e.target.email.value === '');
-    setTelefoonError(e.target.telefoon.value === '');
-    setVoornaamError(e.target.voornaam.value === '');
-    setAchternaamError(e.target.achternaam.value === '');
+    setPhoneError(e.target.phone.value === '');
+    setFirstNameError(e.target.firstname.value === '');
+    setLastNameError(e.target.lastname.value === '');
 
-    if(!(e.target.email.value === '') && !(e.target.telefoon.value === '') && !(e.target.voornaam.value === '') && !(e.target.achternaam.value === '')){
+    if(!(e.target.email.value === '') && !(e.target.phone.value === '') && !(e.target.firstname.value === '') && !(e.target.lastname.value === '')){
       setIsLoading(true);
       try {
         await axios.post('/api/nodemailer', {
           email: e.target.email.value,
-          telefoon: e.target.telefoon.value,
-          voornaam: e.target.voornaam.value,
-          achternaam: e.target.achternaam.value,
-          locatie: e.target.achternaam.value,
+          phone: e.target.phone.value,
+          firstname: e.target.firstname.value,
+          lastname: e.target.lastname.value,
+          locatie: e.target.lastname.value,
         })
-        toast.success("Thank you! Your message was send", {
+        toast.success("Bedankt, uw bericht is verzonden.", {
           position: toast.POSITION.TOP_CENTER
         });
         setIsLoading(false);
@@ -71,15 +71,15 @@ export default function Team(props: ContactsUsPage) {
             <label className="label">
               <span className="label-text">Voornaam <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setVoornaamError(false)}  type="text" name="voornaam" placeholder="Voornaam" className="w-full input input-bordered" />
-            {voornaamError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
+            <input onChange={() => setFirstNameError(false)}  type="text" name="firstname" placeholder="Voornaam" className="w-full input input-bordered" />
+            {firstnameError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
               <span className="label-text">Achternaam <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setAchternaamError(false)} type="text" name="achternaam" placeholder="Achternaam" className="w-full input input-bordered" />
-            {achternaamError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
+            <input onChange={() => setLastNameError(false)} type="text" name="lastname" placeholder="Achternaam" className="w-full input input-bordered" />
+            {lastnameError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
@@ -90,10 +90,10 @@ export default function Team(props: ContactsUsPage) {
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
-              <span className="label-text">Telefoon <span className="text-red-700">*</span></span>
+              <span className="label-text">Telefoon nummer <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setTelefoonError(false)} type="text" name="telefoon" placeholder="Telefoon" className="w-full input input-bordered" />
-            {telefoonError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
+            <input onChange={() => setPhoneError(false)} type="text" name="phone" placeholder="Telefoon nummer" className="w-full input input-bordered" />
+            {phoneError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control">
             <label className="label">
