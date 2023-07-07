@@ -69,23 +69,23 @@ export default function Team(props: ContactsUsPage) {
         <form className="flex flex-wrap justify-between w-90% mx-auto gap-y-5 max-w-1560" onSubmit={(e) => handleSubmit(e)}>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
-              <span className="label-text">Naam (Voornaam) <span className="text-red-700">*</span></span>
+              <span className="label-text">Voornaam <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setVoornaamError(false)}  type="text" name="voornaam" placeholder="Naam (Voornaam)" className="w-full input input-bordered" />
+            <input onChange={() => setVoornaamError(false)}  type="text" name="voornaam" placeholder="Voornaam" className="w-full input input-bordered" />
             {voornaamError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
-              <span className="label-text">Naam (Achternaam) <span className="text-red-700">*</span></span>
+              <span className="label-text">Achternaam <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setAchternaamError(false)} type="text" name="achternaam" placeholder="Naam (Achternaam)" className="w-full input input-bordered" />
+            <input onChange={() => setAchternaamError(false)} type="text" name="achternaam" placeholder="Achternaam" className="w-full input input-bordered" />
             {achternaamError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
             <label className="label">
               <span className="label-text">E-mailadres <span className="text-red-700">*</span></span>
             </label>
-            <input onChange={() => setEmailError(false)} type="text" name="email" placeholder="Naam (Voornaam)" className="w-full input input-bordered" />
+            <input onChange={() => setEmailError(false)} type="text" name="email" placeholder="E-mail adres" className="w-full input input-bordered" />
             {emailError && <span className="font-semibold text-red-700">Dit veld is vereist.</span>}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
