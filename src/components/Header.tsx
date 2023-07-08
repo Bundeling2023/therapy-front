@@ -2,14 +2,16 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoDesktop from "../img/logo_desktop.svg";
-import { ContactInfo, Menu } from "@/types/types";
+import { AddressMap, ContactInfo, Menu, Team } from "@/types/types";
 
 interface Props {
   data: Menu[],
   info: ContactInfo,
+  team: Team[],
+  locations: AddressMap[],
 }
 
-const NavSection = ({ data, info }: Props) => {
+const NavSection = ({ data, info, team, locations }: Props) => {
   const openSubMenu = (e: { currentTarget: HTMLButtonElement }) => {
     (e.currentTarget.nextSibling! as HTMLElement).classList.toggle("hidden");
   };
@@ -80,7 +82,7 @@ const NavSection = ({ data, info }: Props) => {
                   href={item.related.attributes.url}
                 >
                   {item.title}
-                  {item?.items.length > 0 && (
+                  {(item?.items.length || item.title === "Team" || item.title === "Locaties") > 0 && (
                     <svg
                       className=""
                       width="10"
@@ -96,12 +98,40 @@ const NavSection = ({ data, info }: Props) => {
                     </svg>
                   )}
                 </Link>
+                {item.title === 'Team' && (
+                  <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+                    {team.map((i: Team) =>
+                       <li className="relative group/item" key={i.attributes.name + index}>
+                        <Link
+                          className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                          href={`/team#${i.attributes.url}`}
+                        >
+                          {i.attributes.name}
+                        </Link>
+                     </li>
+                    )}
+                  </ul>
+                )}
+                {item.title === 'Locaties' && (
+                  <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+                    {locations.map((i: AddressMap) =>
+                       <li className="relative group/item" key={i.attributes.title + index}>
+                        <Link
+                          className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                          href={`/locaties#${i.attributes.url}`}
+                        >
+                          {i.attributes.title}
+                        </Link>
+                     </li>
+                    )}
+                  </ul>
+                )}
                 {item?.items.length > 0 && (
                     <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
                     {item?.items.map((i) =>
                       <li className="relative group/item" key={i.title + index}>
                         <Link
-                          className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                          className="py-4 w-[95%] text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
                           href={i.related.attributes.url}
                         >
                           {i.title}
@@ -185,7 +215,7 @@ const NavSection = ({ data, info }: Props) => {
                       <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.related.attributes.url}>
                         {item.title}
                       </Link>
-                      {item.items.length > 0 && (
+                      {(item.items.length > 0 || item.title === "Team" || item.title === 'Locaties') && (
                         <button
                           onClick={(e) => openSubMenu(e)}
                           className="p-6 bg-arrow-down"
@@ -203,6 +233,34 @@ const NavSection = ({ data, info }: Props) => {
                             />
                           </svg>
                         </button>
+                      )}
+                      {item.title === 'Team' && (
+                        <ul className="hidden w-full pl-4 ">
+                          {team.map((i: Team) =>
+                            <li key={i.attributes.name + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
+                              <Link
+                               className="text-[20px] sm:max-w-none max-w-[250px]"
+                                href={`/team#${i.attributes.url}`}
+                              >
+                                {i.attributes.name}
+                              </Link>
+                          </li>
+                          )}
+                        </ul>
+                      )}
+                      {item.title === 'Locaties' && (
+                        <ul className="hidden w-full pl-4 ">
+                          {locations.map((i: AddressMap) =>
+                            <li key={i.attributes.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
+                              <Link
+                               className="text-[20px] sm:max-w-none max-w-[250px]"
+                                href={`/locatie#${i.attributes.url}`}
+                              >
+                                {i.attributes.title}
+                              </Link>
+                          </li>
+                          )}
+                        </ul>
                       )}
                       {item.items.length > 0 && (
                         <ul className="hidden w-full pl-4 ">

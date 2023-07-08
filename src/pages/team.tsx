@@ -4,7 +4,7 @@ import TeamMember from "@/components/team/TeamMember";
 import { GET_TEAMPAGE_DATA } from "@/graphql/queries";
 import { TeamPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps, GetStaticProps } from "next/types";
+import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect } from "react";
@@ -28,7 +28,7 @@ export default function Team(props: TeamPage) {
         <meta name='description' content={seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
-      <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <div className="py-20 bg-blue-100 mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.teampage.data.attributes.title}

@@ -3,7 +3,7 @@ import NavSection from "@/components/Header";
 import { GET_CONTACTUS_PAGE, } from "@/graphql/queries";
 import { ContactsUsPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps, GetStaticProps } from "next/types";
+import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -59,7 +59,7 @@ export default function Team(props: ContactsUsPage) {
         <meta name='description' content={seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
-      <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <div className="py-20 mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.contactus.data.attributes.title}

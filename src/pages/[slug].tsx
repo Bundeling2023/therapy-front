@@ -1,10 +1,10 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_PAGE_DATA, GET_SIDEMENU_PAGES } from "@/graphql/queries";
+import { GET_PAGES, GET_PAGE_DATA } from "@/graphql/queries";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import HTMLReactParser from "html-react-parser";
 import Head from "next/head";
-import { GetServerSideProps } from "next/types";
+import { GetStaticPaths, GetStaticProps } from "next/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -27,7 +27,7 @@ export default function PostPage( props: any ) {
         <meta name='description' content={seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
-      <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <div className="bg-blue-100 py-28">
         <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-5xl">
           {props.pages.data[0].attributes.title}
@@ -50,15 +50,15 @@ export default function PostPage( props: any ) {
                 {HTMLReactParser(props.pages.data[0].attributes.simplePage.description)}
 
               </main>
-            {props.sidemenu.data && (
+            {props.sidemenu.items && (
               <aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
-                <h3 className="mb-6 text-xl font-bold lg:text-2xl">{props.pages.data[0].attributes.simplePage.parrentPage.data.attributes.title}</h3>
-                {props.sidemenu.data.pages.data.map((item: any) =>
+                <h3 className="mb-6 text-xl font-bold lg:text-2xl">{props.sidemenu.title}</h3>
+                {props.sidemenu.items.map((item: any) =>
                   <Link
-                    className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.attributes.url === props.pages.data[0].attributes.url ? 'active' : ''}`}
-                    key={item.attributes.title}
-                    href={item.attributes.url}>
-                      {item.attributes.title}
+                    className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.related.attributes.url === props.pages.data[0].attributes.url ? 'active' : ''}`}
+                    key={item.title}
+                    href={item.related.attributes.url}>
+                      {item.title}
                   </Link>
                 )}
                 <Link href="/contact-us" className="text-white btn btn-primary mt-7">
@@ -113,12 +113,29 @@ export default function PostPage( props: any ) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+export const getStaticPaths: GetStaticPaths = async () => {
+  const client = new ApolloClient({
+    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+		cache: new InMemoryCache(),
+	})
 
+	const { data } = await client.query({
+		query: GET_PAGES,
+	})
+
+  const paths = data.pages.data.map((item: any) => {
+    return {
+      params: { slug: item.attributes.url}
+    }
+  })
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (contenxt) => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 		cache: new InMemoryCache(),
@@ -126,27 +143,43 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 	const { data } = await client.query({
 		query: GET_PAGE_DATA,
-		variables: { slugUrl: context.resolvedUrl.substring(1) },
+    variables: { slugUrl: contenxt!.params!.slug },
 	})
 
-	if (!(data.pages.data).length) {
+
+  if (!(data.pages.data).length) {
     return {
       notFound: true,
     };
   }
 
-  const parrentLink = data.pages.data[0].attributes.simplePage?.parrentPage?.data?.attributes.url;
+  const menuJSON = data.header;
 
-  let sideMenu = null
-
-  if(parrentLink) {
-    sideMenu = await client.query({
-      query: GET_SIDEMENU_PAGES,
-      variables: { slugUrl: parrentLink },
-    })
+  function get_parent(json_object: string | any[], url: string) {
+    if (!json_object || json_object.length === 0) {
+      return null;
+    }
+    for (let item of json_object) {
+      if(item.items.some((i: any) => i.related.attributes.url === url)) {
+        return item
+      }
+    }
+    return null;
   }
 
+  const sideMenuFirstLevel = get_parent(menuJSON, contenxt!.params!.slug as string)
+
+  const nestedItem = menuJSON.find((item: { items: any[]; }) =>
+    item.items?.find(subItem =>
+      subItem.items?.find((nestedSubItem: { related: { attributes: { url: string; }; }; }) =>
+      nestedSubItem.related?.attributes?.url === contenxt!.params!.slug)));
+
+  const sideMenuSecondLevel = get_parent(nestedItem?.items, contenxt!.params!.slug as string);
+
   return {
-		props: {...data, sidemenu: {...sideMenu}}
+		props: {
+      ...data,
+      sidemenu: {...sideMenuFirstLevel, ...sideMenuSecondLevel}
+    }
   }
 }

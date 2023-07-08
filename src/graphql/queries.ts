@@ -41,20 +41,21 @@ export const GET_HOMEPAGE_DATA = gql`
             metaDescription
             canonicalURL
           }
-          teams {
+        }
+      }
+    }
+    teams {
+      data {
+        attributes {
+          name
+          email
+          phone
+          desc
+          url
+          img {
             data {
               attributes {
-                name
-                email
-                phone
                 url
-                img {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
               }
             }
           }
@@ -66,6 +67,7 @@ export const GET_HOMEPAGE_DATA = gql`
         attributes {
           coordinates
           url
+          title
           phone
           email
           address
@@ -118,13 +120,7 @@ export const GET_HOMEPAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -140,13 +136,7 @@ export const GET_HOMEPAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -162,13 +152,7 @@ export const GET_HOMEPAGE_DATA = gql`
             ... on Page {
                 url
               }
-            ... on Team {
-                url
-              }
             ... on Teampage {
-                url
-              }
-            ... on Location {
                 url
               }
             ... on Locatie {
@@ -191,13 +175,7 @@ export const GET_HOMEPAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -213,13 +191,7 @@ export const GET_HOMEPAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -289,6 +261,14 @@ export const GET_TEAMPAGE_DATA = gql`
         }
       }
     }
+    locations {
+      data {
+        attributes {
+          url
+          title
+        }
+      }
+    }
     header: renderNavigation(
       navigationIdOrSlug: "header"
       type: TREE
@@ -301,13 +281,7 @@ export const GET_TEAMPAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -323,13 +297,7 @@ export const GET_TEAMPAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -362,13 +330,7 @@ export const GET_TEAMPAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -384,13 +346,7 @@ export const GET_TEAMPAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -470,6 +426,14 @@ export const GET_LOCATIES_DATA = gql`
         }
       }
     }
+    teams {
+      data {
+        attributes {
+          name
+          url
+        }
+      }
+    }
     header: renderNavigation(
       navigationIdOrSlug: "header"
       type: TREE
@@ -482,13 +446,7 @@ export const GET_LOCATIES_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -504,13 +462,7 @@ export const GET_LOCATIES_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -543,13 +495,7 @@ export const GET_LOCATIES_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -565,19 +511,26 @@ export const GET_LOCATIES_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
               url
             }
           }
+        }
+      }
+    }
+  }
+`
+
+export const GET_PAGES = gql`
+  query GET_PAGES  {
+    pages: pages {
+      data {
+        id
+        attributes {
+          url
         }
       }
     }
@@ -621,14 +574,6 @@ export const GET_PAGE_DATA = gql`
                 }
               }
             }
-            parrentPage {
-              data {
-                attributes {
-                  title
-                  url
-                }
-              }
-            }
           }
           seo {
             metaTitle
@@ -663,6 +608,22 @@ export const GET_PAGE_DATA = gql`
         }
       }
     }
+    teams {
+      data {
+        attributes {
+          name
+          url
+        }
+      }
+    }
+    locations {
+      data {
+        attributes {
+          url
+          title
+        }
+      }
+    }
     header: renderNavigation(
       navigationIdOrSlug: "header"
       type: TREE
@@ -675,13 +636,7 @@ export const GET_PAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -697,13 +652,7 @@ export const GET_PAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -736,13 +685,7 @@ export const GET_PAGE_DATA = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -758,75 +701,12 @@ export const GET_PAGE_DATA = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
               url
             }
-          }
-        }
-      }
-    }
-  }
-`
-
-export const GET_SIDEMENU_PAGES = gql`
-  query GET_SIDEMENU_PAGES ($slugUrl: String!) {
-    pages: pages(filters: {  simplePage: { parrentPage: { url: { eq: $slugUrl }}}})  {
-      data {
-        id
-        attributes {
-          url
-          title
-          pageWithBlocks {
-            blocks {
-              title
-              description
-              link {
-                data {
-                  attributes {
-                    url
-                  }
-                }
-              }
-              img {
-                data {
-                  attributes {
-                    url
-                  }
-                }
-              }
-            }
-          }
-          simplePage {
-            description
-            img {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-            parrentPage {
-              data {
-                attributes {
-                  title
-                  url
-                }
-              }
-            }
-          }
-          seo {
-            metaTitle
-            metaDescription
-            canonicalURL
           }
         }
       }
@@ -852,6 +732,16 @@ export const GET_CONTACTUS_PAGE = gql`
       data {
         attributes {
           address
+          url
+          title
+        }
+      }
+    }
+    teams {
+      data {
+        attributes {
+          name
+          url
         }
       }
     }
@@ -892,13 +782,7 @@ export const GET_CONTACTUS_PAGE = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -914,13 +798,7 @@ export const GET_CONTACTUS_PAGE = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {
@@ -953,13 +831,7 @@ export const GET_CONTACTUS_PAGE = gql`
           ... on Page {
             url
           }
-          ... on Team {
-            url
-          }
           ... on Teampage {
-            url
-          }
-          ... on Location {
             url
           }
           ... on Locatie {
@@ -975,13 +847,7 @@ export const GET_CONTACTUS_PAGE = gql`
           ... on Page {
               url
             }
-          ... on Team {
-              url
-            }
           ... on Teampage {
-              url
-            }
-          ... on Location {
               url
             }
           ... on Locatie {

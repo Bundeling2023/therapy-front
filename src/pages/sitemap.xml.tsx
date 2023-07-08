@@ -9,7 +9,7 @@ function Sitemap(){
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sitemap/index.xml`);
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/sitemap/index.xml`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     ${data.split('.xsl"?>').pop()}

@@ -4,15 +4,15 @@ export interface HomePage {
       attributes: {
         mainBanner: MainBanner[]
         services: Services[]
-        teams: {
-          data: Team[]
-        }
         seo: Seo
         modalVideo: {
           providerUid: string
         }
       }
     }
+  }
+  teams: {
+    data: Team[]
   }
   generalinfo: {
     data: {
@@ -52,6 +52,9 @@ export interface TeamPage {
       }
     }
   }
+  locations: {
+    data: AddressMap[]
+  }
   generalinfo: {
     data: {
       attributes: {
@@ -87,8 +90,12 @@ export interface LocatiesPage {
         title: string
         desc: string
         seo: Seo
+        url: string
       }
     }
+  }
+  teams: {
+    data: Team[]
   }
   generalinfo: {
     data: {
@@ -126,6 +133,9 @@ export interface ContactsUsPage {
         seo: Seo
       }
     }
+  }
+  teams: {
+    data: Team[]
   }
   generalinfo: {
     data: {

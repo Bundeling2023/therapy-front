@@ -8,7 +8,7 @@ import TeamsBlock from "@/components/main-page/TeamsBlock";
 import MapSection from "@/components/main-page/MapSection";
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GetServerSideProps, GetStaticProps } from "next/types";
+import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 
@@ -17,7 +17,6 @@ export default function Home(props: HomePage) {
   const {
     mainBanner,
     services,
-    teams,
     seo,
     modalVideo
   } = props.home.data.attributes;
@@ -29,10 +28,10 @@ export default function Home(props: HomePage) {
         <meta name='description' content={seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL} />
       </Head>
-      <NavSection data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
-      <TeamsBlock data={teams.data}/>
+      <TeamsBlock data={props.teams.data}/>
       <ModalVideo data={modalVideo}/>
       <ReviewsBlock />
       <MapSection data={locations.data} />
