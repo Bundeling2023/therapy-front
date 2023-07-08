@@ -30,7 +30,7 @@ const Map = ({ data, handleCLick }: Props) => {
 
   return (
     <MapContainer
-      zoom={13}
+      zoom={9}
       center={center as unknown as LatLngExpression}
       attributionControl={true}
       doubleClickZoom={true}

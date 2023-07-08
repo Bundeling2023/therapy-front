@@ -1,0 +1,4 @@
+uses: bervProject/railway-deploy@main
+with:
+  railway_token: 81df539c-bd32-42cb-adc6-4e839d3ed90a
+  service: "Bundeling"
