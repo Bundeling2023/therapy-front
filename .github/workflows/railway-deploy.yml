@@ -27,4 +27,4 @@ jobs:
       - name: Deploy
         run: railway up --service therapy-front
         env:
-          RAILWAY_TOKEN: ba35e093-04ef-4470-8d07-eedc61439de9
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
