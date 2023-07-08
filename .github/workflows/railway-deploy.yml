@@ -6,6 +6,11 @@ on: # trigger on push event and main branch to the repo
     #   run:
     #     working-directory: ./gatsbyJS
 
+# Allows external webhook trigger
+  repository_dispatch:
+    types:
+      - webhook
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
