@@ -1,6 +1,10 @@
-on:
+on: # trigger on push event and main branch to the repo
   push:
     branches: [main]
+    workflow_dispatch: # must be included in your .yml file for manually triggering event
+    # defaults: # in case of monorepo project you can use `defauls` and choose the subfolder
+    #   run:
+    #     working-directory: ./gatsbyJS
 
 jobs:
   deploy:
@@ -24,4 +28,4 @@ jobs:
       - name: Deploy
         run: railway up
         env:
-          RAILWAY_TOKEN: 81df539c-bd32-42cb-adc6-4e839d3ed90a
+          RAILWAY_TOKEN: ba35e093-04ef-4470-8d07-eedc61439de9
