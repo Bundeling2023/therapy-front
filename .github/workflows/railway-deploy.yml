@@ -1,15 +1,9 @@
-on: # trigger on push event and main branch to the repo
-  push:
-    branches: [main]
-    workflow_dispatch: # must be included in your .yml file for manually triggering event
-    # defaults: # in case of monorepo project you can use `defauls` and choose the subfolder
-    #   run:
-    #     working-directory: ./gatsbyJS
+name: Railway Deployment # a name for your workflow
 
-# Allows external webhook trigger
-  repository_dispatch:
-    types:
-      - webhook
+on: # trigger on push event and main branch to the repo
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
