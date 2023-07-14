@@ -24,9 +24,9 @@ export default function Home(props: HomePage) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle}</title>
-        <meta name='description' content={seo.metaDescription} />
-        <link rel="canonical" href={seo.canonicalURL} />
+        <title>{seo.metaTitle && seo.metaTitle}</title>
+        <meta name='description' content={seo.metaDescription && seo.metaDescription} />
+        <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       <NavSection locations={locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <HeaderSlider data={mainBanner} />

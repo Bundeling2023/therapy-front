@@ -227,7 +227,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                   fill="#2E3080"
                 />
               </svg>
-              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[64px] sm:top-[135px] absolute bg-dark-purple z-10 shadow-lg">
+              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[92px] sm:top-[135px] absolute bg-dark-purple z-10 shadow-lg">
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
