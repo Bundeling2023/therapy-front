@@ -20,8 +20,6 @@ export default function PostPage( props: any ) {
     tables && tables.forEach((item) => item.classList.add('table'));
   }, [])
 
-  console.log(props.sidemenu.items[2].related?.attributes.url === undefined);
-
   return (
     <>
       <Head>
