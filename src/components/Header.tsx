@@ -77,7 +77,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
           <ul className="flex gap-5 px-0 pt-11 2xl:gap-11">
             {data?.map((item: Menu, index) =>
               <li className="relative flex group" key={item.title + index} tabIndex={0}>
-                <Link
+                {item.related?.attributes.url ? <Link
                   className="flex items-center gap-2 text-base font-medium text-dark-purple 2xl:text-2xl pb-11 hover:text-light-purple"
                   href={item.related.attributes.url}
                 >
@@ -97,7 +97,26 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                       />
                     </svg>
                   )}
-                </Link>
+                  </Link> :
+                  <p className="flex items-center gap-2 text-base font-medium text-dark-purple 2xl:text-2xl pb-11 hover:text-light-purple">
+                    {item.title}
+                    {(item?.items.length || item.title === "Team" || item.title === "Locaties") > 0 && (
+                      <svg
+                        className=""
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
+                          fill="#2C2E80"
+                        />
+                      </svg>
+                    )}
+                  </p>
+                }
                 {item.title === 'Team' && (
                   <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
                     {team.map((i: Team) =>
@@ -130,9 +149,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                     <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
                     {item?.items.map((i) =>
                       <li className="relative group/item" key={i.title + index}>
-                        <Link
-                          className="py-4 w-[95%] text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                          href={i.related.attributes.url}
+                        {i.related?.attributes.url ? <Link
+                          className="w-full py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                          href={i.related?.attributes.url}
                         >
                           {i.title}
                           {i.items?.length > 0 && (
@@ -150,17 +169,17 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                               />
                             </svg>
                           )}
-                        </Link>
+                        </Link> : <p className="w-full py-4 text-base font-medium hover:cursor-auto text-dark-purple active:text-white 2xl:text-2xl">{i.title}</p> }
                         {i.items?.length > 0 && (
                           <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[270px] p-2 text-2xl shadow-md group-hover/item:block min-w-max menu menu-compact bg-base-100 rounded-box">
                             {i?.items?.map((itm, index) =>
                               <li key={itm.title ? itm.title + index : itm.related.attributes.title + index}>
-                                <Link
+                                {itm.related?.attributes.url ? <Link
                                     className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                                    href={itm.related && itm.related.attributes.url}
+                                    href={itm.related.attributes.url}
                                   >
-                                 {itm.title ? itm.title : itm.related.attributes.title}
-                                </Link>
+                                 {itm.related.attributes.title}
+                                </Link> : <p className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl">{itm.title}</p> }
                               </li>
                             )}
                           </ul>
@@ -212,9 +231,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
-                      <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.related.attributes.url}>
+                      {item.related?.attributes.url ? <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.related.attributes.url}>
                         {item.title}
-                      </Link>
+                      </Link> : <p className="text-[22px] sm:max-w-none max-w-[250px]">{item.title}</p> }
                       {(item.items.length > 0 || item.title === "Team" || item.title === 'Locaties') && (
                         <button
                           onClick={(e) => openSubMenu(e)}
@@ -266,9 +285,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                         <ul className="hidden w-full pl-4 ">
                           {item.items.map((i) =>
                             <li key={i.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
-                              <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.related.attributes.url}>
+                              {i.related?.attributes.url ? <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.related?.attributes.url}>
                                 {i.title}
-                              </Link>
+                              </Link> : <p className="text-[20px] sm:max-w-none max-w-[250px]">{i.title}</p> }
                               {i.items?.length > 0 && (
                                 <button
                                   onClick={(e) => openSubMenu(e)}
@@ -292,9 +311,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                                 <ul className="hidden w-full pl-4">
                                   {i.items.map((itm) =>
                                     <li key={itm.title ? itm.title + index : itm.related.attributes.title + index} className="flex justify-between p-4 last:pb-0">
-                                      <Link className="text-[20px]" href={itm.related.attributes.url}>
-                                        {itm.title ? itm.title : itm.related.attributes.title}
-                                      </Link>
+                                      {itm.related?.attributes.url ?<Link className="text-[20px]" href={itm.related.attributes.url}>
+                                        {itm.related.attributes.title}
+                                      </Link> : <p className="text-[20px]">{itm.title}</p> }
                                     </li>
                                   )}
                                 </ul>

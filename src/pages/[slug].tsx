@@ -7,7 +7,7 @@ import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 
 export default function PostPage( props: any ) {
@@ -19,6 +19,8 @@ export default function PostPage( props: any ) {
 
     tables && tables.forEach((item) => item.classList.add('table'));
   }, [])
+
+  console.log(props.sidemenu.items[2].related?.attributes.url === undefined);
 
   return (
     <>
@@ -54,12 +56,14 @@ export default function PostPage( props: any ) {
               <aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
                 <h3 className="mb-6 text-xl font-bold lg:text-2xl">{props.sidemenu.title}</h3>
                 {props.sidemenu.items.map((item: any) =>
-                  <Link
-                    className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.related.attributes.url === props.pages.data[0].attributes.url ? 'active' : ''}`}
-                    key={item.title}
-                    href={item.related.attributes.url}>
-                      {item.title}
-                  </Link>
+                  <Fragment key={item.title}>
+                    {!(item.related?.attributes.url === undefined) && <Link
+                      className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.related?.attributes.url === props.pages.data[0].attributes.url ? 'active' : ''}`}
+                      key={item.title}
+                      href={item.related?.attributes.url}>
+                        {item.title}
+                    </Link>}
+                  </Fragment>
                 )}
                 <Link href="/contact-us" className="text-white btn btn-primary mt-7">
                   Afspraak maken
@@ -160,7 +164,7 @@ export const getStaticProps: GetStaticProps = async (contenxt) => {
       return null;
     }
     for (let item of json_object) {
-      if(item.items.some((i: any) => i.related.attributes.url === url)) {
+      if(item.items.some((i: any) => i.related?.attributes.url || item.path === url)) {
         return item
       }
     }

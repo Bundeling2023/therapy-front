@@ -4,7 +4,7 @@ import Image from "next/image";
 import LogoFooter from "../img/logo_footer.svg";
 import { ContactInfo, Menu } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 interface Props {
   data: Menu[],
@@ -80,9 +80,15 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
               {data.map((item: Menu) =>
                 <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                  <Link href={item.related.attributes.url} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link>
+                  {item.related?.attributes.url ? <Link href={item.related.attributes.url} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> :
+                    <p key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</p>
+                  }
                   {item.items.length > 0 && item.items.map((i) =>
-                    <Link key={i.title} href={item.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
+                    <Fragment key={i.title}>
+                      {i.related?.attributes.url ? <Link key={i.title} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> :
+                      <p key={i.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
+                      }
+                    </Fragment>
                   )}
                 </div>
               )}
