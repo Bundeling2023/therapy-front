@@ -9,20 +9,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect } from "react";
 
-
 export default function PostPage( props: any ) {
+  useEffect(() => {
+    const tables = document.querySelectorAll('table');
+    tables && tables.forEach((item) => item.classList.add('table'));
+  }, [])
+
   if (!props.pages?.data?.length) {
     return <section className="flex bg-blue-100 page">Nog geen informatie beschikbaar</section>
   }
-	
+
   const { header, footer } = props
   const { seo } = props.pages.data[0].attributes;
-
-  useEffect(() => {
-    const tables = document.querySelectorAll('table');
-
-    tables && tables.forEach((item) => item.classList.add('table'));
-  }, [])
 
   return (
     <>
