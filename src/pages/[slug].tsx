@@ -20,7 +20,7 @@ export default function PostPage(props: any) {
   const isSimplePage = pageAttributes?.simplePage;
 
   const { header, footer } = props
-  const { seo } = props.pages.data?.[0]?.attributes ?? { metaTitle: '', metaDescription: '' };
+  const { seo } = props.pages.data?.[0]?.attributes ?? { seo: { metaTitle: '', metaDescription: '' } };
 
   return (
     <>
