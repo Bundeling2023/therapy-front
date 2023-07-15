@@ -11,6 +11,10 @@ import { Fragment, useEffect } from "react";
 
 
 export default function PostPage( props: any ) {
+  if (!props.pages?.data?.length) {
+    return <section className="flex bg-blue-100 page">Nog geen informatie beschikbaar</section>
+  }
+	
   const { header, footer } = props
   const { seo } = props.pages.data[0].attributes;
 
