@@ -15,7 +15,9 @@ export default function PostPage( props: any ) {
     tables && tables.forEach((item) => item.classList.add('table'));
   }, [])
 
-  if (!props.pages?.data?.length) {
+  const isBlocksPage = props.pages?.data?.[0]?.attributes?.pageWithBlocks?.blocks;
+  const isSimplePage = props.pages?.data?.[0]?.attributes?.simplePage
+  if (!(isBlocksPage || isSimplePage)) {
     return <section className="flex bg-blue-100 page">Nog geen informatie beschikbaar</section>
   }
 
