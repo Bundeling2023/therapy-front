@@ -31,7 +31,11 @@ export default function PostPage(props: any) {
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       {(!(isBlocksPage || isSimplePage)) ?
-        <section className="flex bg-blue-100 page">Nog geen informatie beschikbaar</section>
+        <section className="flex py-24 bg-blue-100 page">
+          <main className="bg-white rounded-xl p-7 simple-page w-90% max-w-1560 mx-auto">
+            Nog geen informatie beschikbaar
+          </main>
+        </section>
         :
         <>
           <div className="bg-blue-100 py-28">
@@ -140,7 +144,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
