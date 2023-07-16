@@ -407,6 +407,7 @@ export const GET_LOCATIES_DATA = gql`
           phone
           email
           address
+          displayPriority
           workingHours {
            	monday
             tuesday

@@ -13,6 +13,7 @@ export default function Team(props: LocatiesPage) {
   const { header, footer } = props
   const { seo } = props.locatie.data.attributes;
 
+  const locationsData = [...props.locations.data].sort((a, b) => a.attributes.displayPriority - (b.attributes.displayPriority ?? Infinity));
   return (
     <>
       <Head>
@@ -20,7 +21,7 @@ export default function Team(props: LocatiesPage) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={locationsData} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
       <div className="py-20 bg-blue-100 sm:mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.locatie.data.attributes.title}
@@ -29,7 +30,7 @@ export default function Team(props: LocatiesPage) {
       <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="flex flex-wrap justify-between gap-y-10">
-          {props.locations.data.map((item) =>
+          {locationsData.map((item) =>
             <div
               id={item.attributes.url.slice(item.attributes.url.indexOf('#') + 1)}
               className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.attributes.url}

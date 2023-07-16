@@ -266,6 +266,7 @@ export interface AddressMap {
     phone: string
     email: string
     address: string
+    displayPriority: number
     workingHours: {
       monday: string
       tuesday: string
