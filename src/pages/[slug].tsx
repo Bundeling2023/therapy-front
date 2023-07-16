@@ -110,7 +110,8 @@ export default function PostPage(props: any) {
               </main>
             )}
           </section>
-        </>}
+        </>
+      }
       <Footer
         data={footer}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
@@ -168,7 +169,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       return null;
     }
     for (let item of json_object) {
-      if (item.items.some((i: any) => i.related?.attributes.url || item.path === url)) {
+      if (item.items.some((i: any) => i.related?.attributes.url === url || item.path === url)) {
         return item
       }
     }

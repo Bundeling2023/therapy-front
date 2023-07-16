@@ -77,7 +77,8 @@ const NavSection = ({ data, info, team, locations }: Props) => {
           <ul className="flex gap-5 px-0 pt-11 2xl:gap-11">
             {data?.map((item: Menu, index) =>
               <li className="relative flex group" key={item.title + index} tabIndex={0}>
-                {item.related?.attributes.url ? <Link
+                {item.related?.attributes.url ?
+                <Link
                   className="flex items-center gap-2 text-base font-medium text-dark-purple 2xl:text-2xl pb-11 hover:text-light-purple"
                   href={item.related.attributes.url}
                 >
@@ -171,15 +172,16 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                           )}
                         </Link> : <p className="w-full py-4 text-base font-medium hover:cursor-auto text-dark-purple active:text-white 2xl:text-2xl">{i.title}</p> }
                         {i.items?.length > 0 && (
-                          <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[270px] p-2 text-2xl shadow-md group-hover/item:block min-w-max menu menu-compact bg-base-100 rounded-box">
+                          <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-2 text-2xl shadow-md group-hover/item:block menu menu-compact bg-base-100 rounded-box">
                             {i?.items?.map((itm, index) =>
                               <li key={itm.title ? itm.title + index : itm.related.attributes.title + index}>
-                                {itm.related?.attributes.url ? <Link
-                                    className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                                {itm.related?.attributes.url ?
+                                  <Link
+                                    className="block w-full py-4 text-base font-medium whitespace-pre-wrap text-dark-purple active:text-white 2xl:text-2xl"
                                     href={itm.related.attributes.url}
                                   >
-                                 {itm.related.attributes.title}
-                                </Link> : <p className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl">{itm.title}</p> }
+                                  {itm.title}
+                                  </Link> : <p className="w-full py-4 text-base font-medium whitespace-pre-wrap text-dark-purple active:text-white 2xl:text-2xl">{itm.title}</p> }
                               </li>
                             )}
                           </ul>
@@ -312,7 +314,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                                   {i.items.map((itm) =>
                                     <li key={itm.title ? itm.title + index : itm.related.attributes.title + index} className="flex justify-between p-4 last:pb-0">
                                       {itm.related?.attributes.url ?<Link className="text-[20px]" href={itm.related.attributes.url}>
-                                        {itm.related.attributes.title}
+                                        {itm.title}
                                       </Link> : <p className="text-[20px]">{itm.title}</p> }
                                     </li>
                                   )}
