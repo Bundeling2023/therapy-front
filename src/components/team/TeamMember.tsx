@@ -10,23 +10,12 @@ interface Props {
 }
 
 const TeamMember = ({ data, isMain = false }: Props) => {
-  function toogleDesc(id: string) {
-    const descElement = document.querySelector(`[data-id="${id}"]`);
-    const descAllElement = document.querySelectorAll('[data-id]');
-
-    descAllElement.forEach((item) =>
-      (!item.classList.contains('hidden') && item.getAttribute('data-id') !== `${id}`) && item.classList.add('hidden')
-    )
-
-    descElement?.classList.toggle("hidden");
-  };
 
   return (
     <div className="lg:pb-[60px] pb-[45px] team-member">
       <div className="member-wrapper h-auto aspect-square flex items-center justify-center p-2 w-full max-h-[405px] relative max-w-[405px] overflow-hidden mx-auto">
         <Image
           id={data.attributes.url.slice(data.attributes.url.indexOf('#') + 1)}
-          onClick={(e) => toogleDesc((e.target as HTMLImageElement).id)}
           width="0"
           height="0"
           src={data.attributes.img.data.attributes.url}
@@ -58,9 +47,17 @@ const TeamMember = ({ data, isMain = false }: Props) => {
         </div>
       </div>
       {!isMain && (
-        <div className="hidden mt-5 text-lg team-desc" data-id={data.attributes.url.slice(data.attributes.url.indexOf('#') + 1)}>
-          {HTMLReactParser(data.attributes.desc)}
-        </div>
+        <>
+          {data.attributes.bigRegistrationNumber && (
+            <div className="mt-5 text-lg">
+              <span className="font-bold">BIG nr.: </span>
+              <a className="text-blue-800 hover:underline" href={`tel:${data.attributes.bigRegistrationNumber}`}>{data.attributes.bigRegistrationNumber}</a>
+            </div>
+          )}
+          <div className="mt-5 text-lg team-desc" data-id={data.attributes.url.slice(data.attributes.url.indexOf('#') + 1)}>
+            {HTMLReactParser(data.attributes.desc)}
+          </div>
+        </>
       )}
     </div>
   );

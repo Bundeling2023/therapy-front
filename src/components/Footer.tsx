@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoFooter from "../img/logo_footer.svg";
-import { ContactInfo, Menu } from "@/types/types";
+import { AddressMap, ContactInfo, Menu } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";
 
@@ -11,9 +11,10 @@ interface Props {
   info: ContactInfo,
   privacyLink: string,
   termsAndConditionsPage: string,
+  locations: AddressMap[],
 }
 
-const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:Props) => {
+const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations }:Props) => {
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -88,6 +89,13 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#' }:
                       {i.related?.attributes.url ? <Link key={i.title} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> :
                       <p key={i.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
                       }
+                    </Fragment>
+                  )}
+                  {item.title === 'Locaties' && (
+                    <Fragment key={item.title}>
+                      {locations.map((i: AddressMap) =>
+                        <Link key={i.attributes.title} href={`/locaties#${i.attributes.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.attributes.title}</Link>
+                      )}
                     </Fragment>
                   )}
                 </div>

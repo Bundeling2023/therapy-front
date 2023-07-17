@@ -251,6 +251,7 @@ export const GET_TEAMPAGE_DATA = gql`
           phone
           desc
           url
+          bigRegistrationNumber
           img {
             data {
               attributes {

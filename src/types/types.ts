@@ -246,6 +246,7 @@ export interface Team {
     name: string
     email: string
     phone: string
+    bigRegistrationNumber: string,
     desc: string
     url: string
     img: {

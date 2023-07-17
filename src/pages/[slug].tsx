@@ -118,6 +118,7 @@ export default function PostPage(props: any) {
       }
       <Footer
         data={footer}
+        locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
         info={props.generalinfo.data.attributes.contactsInfo}
