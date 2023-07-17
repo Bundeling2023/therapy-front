@@ -8,7 +8,7 @@ import { GetStaticPaths, GetStaticProps } from "next/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect } from "react";
-import SideMenu from "@/components/SideMenu";
+import SideMenu, { SideMenuItem } from "@/components/SideMenu";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -43,6 +43,9 @@ export default function PostPage(props: any) {
             {hasSimplePageData ?
               <SimplePageContent data={pageAttributes.simplePage} />
               : <NoInfo />}
+            {props.childSideMenu.items && (
+              <SideMenu items={props.childSideMenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} />
+            )}
             {props.sidemenu.items && (
               <SideMenu items={props.sidemenu.items} title={props.sidemenu.title} currentPageUrl={pageAttributes.url} />
             )}
@@ -112,13 +115,13 @@ const BlocksPageContent = (data: any) => {
       return (<>
         {item.link.data ? (
           <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
-            {imageUrl && <ImageComponent /> }
+            {imageUrl && <ImageComponent />}
             <h2>{item.title}</h2>
             <div>{HTMLReactParser(item.description)}</div>
           </Link>
         ) : (
           <div key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out">
-            {imageUrl && <ImageComponent /> }
+            {imageUrl && <ImageComponent />}
             <h2>{item.title}</h2>
             <div>{HTMLReactParser(item.description)}</div>
           </div>
@@ -171,31 +174,91 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const menuJSON = data.header;
 
-  function get_parent(json_object: string | any[], url: string) {
-    if (!json_object || json_object.length === 0) {
-      return null;
-    }
-    for (let item of json_object) {
-      if (item.items.some((i: any) => i.related?.attributes.url === url || item.path === url)) {
-        return item
-      }
-    }
-    return null;
-  }
+  console.log(JSON.stringify(menuJSON[0]))
 
-  const sideMenuFirstLevel = get_parent(menuJSON, context!.params!.slug as string)
+  const slug = context!.params!.slug as string
+  const current = findNodeBySlug(menuJSON[0], slug);
+  const parent = findParentNode(current, menuJSON[0]);
 
-  const nestedItem = menuJSON.find((item: { items: any[]; }) =>
-    item.items?.find(subItem =>
-      subItem.items?.find((nestedSubItem: { related: { attributes: { url: string; }; }; }) =>
-        nestedSubItem.related?.attributes?.url === context!.params!.slug)));
-
-  const sideMenuSecondLevel = get_parent(nestedItem?.items, context!.params!.slug as string);
+  const childItems = getChildItems(current);
+  const parentChildItems = parent ? getChildItems(parent) : [];
 
   return {
     props: {
       ...data,
-      sidemenu: { ...sideMenuFirstLevel, ...sideMenuSecondLevel }
+      sidemenu: { items: childItems, title: current?.title ?? null },
+      childSideMenu: { items: parentChildItems, title: parent?.title ?? null }
     }
   }
 }
+
+interface NavigationItem {
+  __typename: string;
+  title: string;
+  path: string;
+  related: {
+    __typename: string;
+    attributes: {
+      __typename: string;
+      url: string;
+    };
+  };
+  items: NavigationItem[];
+}
+
+function findNodeBySlug(node: NavigationItem | null, slug: string): NavigationItem | null {
+  if (!node) {
+    return null;
+  }
+
+  if (node.related?.attributes?.url === slug) {
+    return node;
+  }
+
+  if (!node.items) {
+    return null;
+  }
+
+  for (const item of node.items) {
+    const found = findNodeBySlug(item, slug);
+    if (found) {
+      return found;
+    }
+  }
+
+  return null;
+}
+
+function getChildItems(node: NavigationItem | null): SideMenuItem[] {
+  if (!node || !node.items || !Array.isArray(node.items)) {
+    return [];
+  }
+
+  return node.items.map((x) => {
+    return {
+      title: x.title,
+      url: x.related?.attributes?.url
+    }
+  });
+}
+
+function findParentNode(node: NavigationItem | null, root: NavigationItem): NavigationItem | null {
+  if (!node || !root.items || !Array.isArray(root.items)) {
+    return null;
+  }
+
+  if (root.items.includes(node)) {
+    return root;
+  }
+
+  for (const item of root.items) {
+    const parent = findParentNode(node, item);
+    if (parent) {
+      return parent;
+    }
+  }
+
+  return null;
+}
+
+
