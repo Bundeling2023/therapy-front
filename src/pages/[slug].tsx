@@ -43,11 +43,11 @@ export default function PostPage(props: any) {
             {hasSimplePageData ?
               <SimplePageContent data={pageAttributes.simplePage} />
               : <NoInfo />}
-            {props.childSideMenu.items && (
-              <SideMenu items={props.childSideMenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} />
+            {props.childSideMenu.items?.length !== 0 && (
+              <SideMenu items={props.childSideMenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} showAppointment />
             )}
-            {props.sidemenu.items && (
-              <SideMenu items={props.sidemenu.items} title={props.sidemenu.title} currentPageUrl={pageAttributes.url} />
+            {props.sidemenu.items?.length !== 0 && (
+              <SideMenu items={props.sidemenu.items} title={props.sidemenu.title} currentPageUrl={pageAttributes.url}  />
             )}
           </div>
         ) :
@@ -173,8 +173,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   const menuJSON = data.header;
-
-  console.log(JSON.stringify(menuJSON[0]))
 
   const slug = context!.params!.slug as string
   const current = findNodeBySlug(menuJSON[0], slug);

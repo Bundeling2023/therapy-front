@@ -5,6 +5,7 @@ interface Props {
     items: SideMenuItem[],
     title: string
     currentPageUrl: string
+    showAppointment?: boolean
 }
 
 export interface SideMenuItem {
@@ -13,7 +14,7 @@ export interface SideMenuItem {
 
 }
 
-const SideMenu = ({ items, title, currentPageUrl: pageUrl }: Props) => {
+const SideMenu = ({ items, title, currentPageUrl: pageUrl, showAppointment }: Props) => {
     return (<aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
         <h3 className="mb-6 text-xl font-bold lg:text-2xl">{title}</h3>
         {items.map((item: SideMenuItem) =>
@@ -26,9 +27,9 @@ const SideMenu = ({ items, title, currentPageUrl: pageUrl }: Props) => {
                 </Link>}
             </Fragment>
         )}
-        <Link href="/contact-us" className="text-white btn btn-primary mt-7">
+        {showAppointment && <Link href="/contact-us" className="text-white btn btn-primary mt-7">
             Afspraak maken
-        </Link>
+        </Link>}
     </aside>)
 }
 
