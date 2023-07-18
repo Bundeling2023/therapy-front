@@ -234,4 +234,12 @@ figure.table {
   .simple-page h3 {
     font-size: 24px;
   }
+
+  h1,
+  .simple-page h2,
+  .simple-page h3,
+  .simple-page h4,
+  .simple-page h5 {
+    word-break: break-word;
+  }
 }

@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,6 +16,12 @@ const NavSection = ({ data, info, team, locations }: Props) => {
   const openSubMenu = (e: { currentTarget: HTMLButtonElement }) => {
     (e.currentTarget.nextSibling! as HTMLElement).classList.toggle("hidden");
   };
+
+  const mobNav = useRef<HTMLInputElement>(null);
+
+  const hideMenu = () => {
+    mobNav.current!.checked = false;
+  }
 
   return (
     <>
@@ -203,7 +210,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
           </Link>
           <div className="max-w-[70px]">
             <div className="static overflow-visible collapse">
-              <input type="checkbox" className="peer" />
+              <input ref={mobNav} type="checkbox" className="peer" />
               <svg
                 width="40"
                 height="26"
@@ -233,13 +240,13 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) =>
                     <li key={item.title + index} className="flex flex-wrap items-center min-h-[56px] justify-between">
-                      {item.related?.attributes.url ? <Link className="text-[22px] sm:max-w-none max-w-[250px]" href={item.related.attributes.url}>
+                      {item.related?.attributes.url ? <Link onClick={hideMenu} className="text-[22px] sm:max-w-none max-w-[240px]" href={item.related.attributes.url}>
                         {item.title}
-                      </Link> : <p className="text-[22px] sm:max-w-none max-w-[250px]">{item.title}</p> }
+                      </Link> : <p className="text-[22px] sm:max-w-none max-w-[240px]">{item.title}</p> }
                       {(item.items.length > 0 || item.title === "Team" || item.title === 'Locaties') && (
                         <button
                           onClick={(e) => openSubMenu(e)}
-                          className="p-6 bg-arrow-down"
+                          className="p-6 pl-10 bg-arrow-down"
                         >
                           <svg
                             width="12"
@@ -260,7 +267,8 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                           {team.map((i: Team) =>
                             <li key={i.attributes.name + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
                               <Link
-                               className="text-[20px] sm:max-w-none max-w-[250px]"
+                                onClick={hideMenu}
+                                className="text-[20px] sm:max-w-none max-w-[240px]"
                                 href={`/team#${i.attributes.url}`}
                               >
                                 {i.attributes.name}
@@ -274,7 +282,8 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                           {locations.map((i: AddressMap) =>
                             <li key={i.attributes.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
                               <Link
-                               className="text-[20px] sm:max-w-none max-w-[250px]"
+                                onClick={hideMenu}
+                                className="text-[20px] sm:max-w-none max-w-[240px]"
                                 href={`/locatie#${i.attributes.url}`}
                               >
                                 {i.attributes.title}
@@ -287,13 +296,13 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                         <ul className="hidden w-full pl-4 ">
                           {item.items.map((i) =>
                             <li key={i.title + index} className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]">
-                              {i.related?.attributes.url ? <Link className="text-[20px] sm:max-w-none max-w-[250px]" href={i.related?.attributes.url}>
+                              {i.related?.attributes.url ? <Link onClick={hideMenu} className="text-[20px] sm:max-w-none max-w-[240px]" href={i.related?.attributes.url}>
                                 {i.title}
-                              </Link> : <p className="text-[20px] sm:max-w-none max-w-[250px]">{i.title}</p> }
+                              </Link> : <p className="text-[20px] sm:max-w-none max-w-[240px]">{i.title}</p> }
                               {i.items?.length > 0 && (
                                 <button
                                   onClick={(e) => openSubMenu(e)}
-                                  className="p-6 bg-arrow-down"
+                                  className="p-6 pl-10 bg-arrow-down"
                                 >
                                   <svg
                                     width="12"
@@ -313,7 +322,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                                 <ul className="hidden w-full pl-4">
                                   {i.items.map((itm) =>
                                     <li key={itm.title ? itm.title + index : itm.related.attributes.title + index} className="flex justify-between p-4 last:pb-0">
-                                      {itm.related?.attributes.url ?<Link className="text-[20px]" href={itm.related.attributes.url}>
+                                      {itm.related?.attributes.url ?<Link onClick={hideMenu} className="text-[20px]" href={itm.related.attributes.url}>
                                         {itm.title}
                                       </Link> : <p className="text-[20px]">{itm.title}</p> }
                                     </li>
