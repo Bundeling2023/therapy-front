@@ -44,10 +44,7 @@ export default function PostPage(props: any) {
               <SimplePageContent data={pageAttributes.simplePage} />
               : <NoInfo />}
             {props.childSideMenu.items?.length !== 0 && (
-              <SideMenu items={props.childSideMenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} showAppointment />
-            )}
-            {props.sidemenu.items?.length !== 0 && (
-              <SideMenu items={props.sidemenu.items} title={props.sidemenu.title} currentPageUrl={pageAttributes.url}  />
+              <SideMenu items={props.childSideMenu.items} childItems={props.sidemenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} showAppointment />
             )}
           </div>
         ) :
