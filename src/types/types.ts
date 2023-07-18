@@ -193,6 +193,16 @@ export interface Menu {
           title: string
         }
       }
+      items: [{
+        title: string
+        path: string
+        related: {
+          attributes: {
+            url: string
+            title: string
+          }
+        }
+      }]
     }]
   }]
 }

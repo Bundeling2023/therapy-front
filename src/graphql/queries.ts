@@ -160,6 +160,23 @@ export const GET_HOMEPAGE_DATA = gql`
               }
             }
           }
+          items {
+            title
+            path
+            related {
+            attributes {
+              ... on Page {
+                  url
+                }
+              ... on Teampage {
+                  url
+                }
+              ... on Locatie {
+                  url
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -313,6 +330,17 @@ export const GET_TEAMPAGE_DATA = gql`
           attributes {
             ... on Page {
                 url
+              }
+            }
+          }
+          items {
+            title
+            path
+            related {
+            attributes {
+              ... on Page {
+                  url
+                }
               }
             }
           }
@@ -479,6 +507,17 @@ export const GET_LOCATIES_DATA = gql`
           attributes {
             ... on Page {
                 url
+              }
+            }
+          }
+          items {
+            title
+            path
+            related {
+            attributes {
+              ... on Page {
+                  url
+                }
               }
             }
           }
@@ -669,6 +708,17 @@ export const GET_PAGE_DATA = gql`
           attributes {
             ... on Page {
                 url
+              }
+            }
+          }
+          items {
+            title
+            path
+            related {
+            attributes {
+              ... on Page {
+                  url
+                }
               }
             }
           }
