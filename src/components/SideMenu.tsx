@@ -20,7 +20,7 @@ const SideMenu = ({ items, title, currentPageUrl: pageUrl, showAppointment }: Pr
         {items.map((item: SideMenuItem) =>
             <Fragment key={item.title}>
                 {!(item.url === undefined) && <Link
-                    className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.related?.attributes.url === pageUrl ? 'active' : ''}`}
+                    className={`block w-full p-5 pl-7 mb-5 overflow-hidden transition duration-300 ease-in-out before:left-0 before:top-0 relative before:content-[''] before:block before:absolute before:h-full before:w-3 before:bg-blue-300 hover:bg-blue-300 last:mb-0 lg:text-lg text-base font-medium bg-gray-100 rounded-xl ${item.url === pageUrl ? 'active' : ''}`}
                     key={item.title}
                     href={item.url}>
                     {item.title}
