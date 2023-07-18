@@ -43,8 +43,14 @@ export default function PostPage(props: any) {
             {hasSimplePageData ?
               <SimplePageContent data={pageAttributes.simplePage} />
               : <NoInfo />}
-            {props.childSideMenu.items?.length !== 0 && (
-              <SideMenu items={props.childSideMenu.items} childItems={props.sidemenu.items} title={props.childSideMenu.title} currentPageUrl={pageAttributes.url} showAppointment />
+            {props.siblingsSideMenu.items?.length !== 0 && (
+              <SideMenu
+                items={props.siblingsSideMenu.items}
+                childItems={props.childsSideMenu.items}
+                currentPageUrl={pageAttributes.url}
+                parentTitle={props.siblingsSideMenu?.title}
+                parentPageUrl={props.siblingsSideMenu?.url}
+                showAppointment />
             )}
           </div>
         ) :
@@ -181,8 +187,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       ...data,
-      sidemenu: { items: childItems, title: current?.title ?? null },
-      childSideMenu: { items: parentChildItems, title: parent?.title ?? null }
+      childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.attributes?.url ?? null },
+      siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.attributes?.url ?? null }
     }
   }
 }
@@ -242,11 +248,11 @@ function findParentNode(node: NavigationItem | null, root: NavigationItem): Navi
     return null;
   }
 
-  if (root.items.includes(node)) {
-    return root;
-  }
-
   for (const item of root.items) {
+    if (item.title === node.title || item.path === node.path) {
+      return root;
+    }
+
     const parent = findParentNode(node, item);
     if (parent) {
       return parent;

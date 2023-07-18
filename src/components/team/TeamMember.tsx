@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { Team } from "@/types/types";
 import HTMLReactParser from "html-react-parser";
+import { useState } from "react";
 
 interface Props {
   data: Team,
@@ -28,7 +29,7 @@ const TeamMember = ({ data, isMain = false }: Props) => {
       <div
         className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case h-auto inline-flex gap-5 2xl:text-[30px] text-lg text-white"
       >
-        {isMain ? <Link href={`${data.attributes.url}`}>{data.attributes.name}</Link> : data.attributes.name }
+        {isMain ? <Link href={`${data.attributes.url}`}>{data.attributes.name}</Link> : data.attributes.name}
         <div className="flex gap-x-3">
           <a href={`tel:${data.attributes.phone}`} className="block p-3 bg-white rounded-full" >
             <Icon
@@ -48,12 +49,7 @@ const TeamMember = ({ data, isMain = false }: Props) => {
       </div>
       {!isMain && (
         <>
-          {data.attributes.bigRegistrationNumber && (
-            <div className="mt-5 text-lg">
-              <span className="font-bold">BIG nr.: </span>
-              <a className="text-blue-800 hover:underline" href={`tel:${data.attributes.bigRegistrationNumber}`}>{data.attributes.bigRegistrationNumber}</a>
-            </div>
-          )}
+          <ContactTable email={data.attributes.email} phone={data.attributes.phone} bigRegistrationNumber={data.attributes.bigRegistrationNumber} />
           <div className="mt-5 text-lg team-desc" data-id={data.attributes.url.slice(data.attributes.url.indexOf('#') + 1)}>
             {HTMLReactParser(data.attributes.desc)}
           </div>
@@ -64,3 +60,55 @@ const TeamMember = ({ data, isMain = false }: Props) => {
 }
 
 export default TeamMember;
+
+interface ContactTableProps {
+  email?: string;
+  phone?: string;
+  bigRegistrationNumber?: string;
+}
+
+const ContactTable = ({ email, phone, bigRegistrationNumber }: ContactTableProps) => {
+  const [showTable, setShowTable] = useState(false);
+
+  if (!showTable) {
+    return <button className="mt-2 text-blue-500 hover:underline cursor-pointer text-sm text-center w-full" onClick={() => setShowTable(true)}>Contact info weergeven</button>
+  }
+
+  return (
+    <>
+      <button className="mt-2 text-blue-500 hover:underline cursor-pointer text-sm text-center w-full" onClick={() => setShowTable(false)}>Contact info verbergen</button>
+      <div className="mt-5 p-2 break-words rounded-lg bg-zinc-100">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-y-2 text-lg">
+          {email && (
+            <>
+              <div>E-mail:</div>
+              <div className="col-span-2 lg:col-span-3">
+                <a href={`mailto:${email}`} className="text-blue-500 hover:underline">
+                  {email}
+                </a>
+              </div>
+            </>
+          )}
+          {phone && (
+            <>
+              <div>Tel:</div>
+              <div className="col-span-2 lg:col-span-3">
+                <a href={`tel:${phone}`} className="text-blue-500 hover:underline">
+                  {phone}
+                </a>
+              </div>
+            </>
+          )}
+          {bigRegistrationNumber && (
+            <>
+              <div>BIG nr.:</div>
+              <div className="col-span-1 md:col-span-2 lg:col-span-3">
+                {bigRegistrationNumber}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
