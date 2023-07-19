@@ -7,13 +7,13 @@ import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
 import Head from 'next/head'
-
+import { SortLocations } from "@/types/utils";
 
 export default function Team(props: LocatiesPage) {
   const { header, footer } = props
   const { seo } = props.locatie.data.attributes;
 
-  const locationsData = [...props.locations.data].sort((a, b) => a.attributes.displayPriority - (b.attributes.displayPriority ?? Infinity));
+  const locationsData = SortLocations(props.locations.data);
   return (
     <>
       <Head>

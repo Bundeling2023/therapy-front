@@ -71,6 +71,7 @@ export const GET_HOMEPAGE_DATA = gql`
           phone
           email
           address
+          displayPriority
           workingHours {
            	monday
             tuesday
@@ -284,6 +285,7 @@ export const GET_TEAMPAGE_DATA = gql`
         attributes {
           url
           title
+          displayPriority
         }
       }
     }
@@ -662,6 +664,7 @@ export const GET_PAGE_DATA = gql`
         attributes {
           url
           title
+          displayPriority
         }
       }
     }
@@ -786,6 +789,7 @@ export const GET_CONTACTUS_PAGE = gql`
           address
           url
           title
+          displayPriority
         }
       }
     }

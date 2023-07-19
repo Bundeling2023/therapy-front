@@ -1,14 +1,17 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import "node_modules/leaflet/dist/leaflet.css";
-import { AddressMap, ContactInfo } from "@/types/types";
+import { AddressMap } from "@/types/types";
 import dynamic from "next/dynamic";
+import { SortLocations } from "@/types/utils";
 
 interface Props {
   data: AddressMap[],
 }
 
-const MapSection = ({ data }:Props) => {
+const MapSection = ({ data }: Props) => {
+  const sortedLocations = SortLocations(data);
+  
   const MapBlock = dynamic(() => import("@/components/Map"), {
     ssr: false,
   });
@@ -27,23 +30,25 @@ const MapSection = ({ data }:Props) => {
   return (
     <section className="relative pt-20 pb-24 w-full mx-auto bg-[#EBF3FF]">
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
-        <div className="w-full z-[1] max-w-[1022px] lg:h-auto h-[395px]">
-          <MapBlock handleCLick={changeTab} data={data} />
+        <div className="relative w-full z-[20] max-w-[1022px] lg:h-auto h-[395px]">
+          <div className="z-[999] absolute pb-10 bottom-0 left-0 right-0 mx-auto text-center">
+            <span className="bg-gray-400/60 rounded-lg p-2 text-white">Selecteer een locatie om de contactgegevens te bekijken</span>
+            </div>
+          <MapBlock handleCLick={changeTab} data={sortedLocations} />
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
-          <h3 className="lg:text-[48px] text-3xl text-dark-purple font-semibold mb-6 leading-normal">
-            Contact info
-          </h3>
-          {data.map((item, index) =>
-            <div tab-index={index} className={index === 0 ? '': 'hidden'} key={item.attributes.url}>
+          {sortedLocations.map((item, index) =>
+            <div tab-index={index} className={index === 0 ? '' : 'hidden'} key={item.attributes.url}>
+              <h3 className="lg:text-[36px] text-2xl text-dark-purple font-semibold mb-6 leading-normal">
+                {item.attributes.title}
+              </h3>
               <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
                 <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
                   <Icon
                     icon="material-symbols:mail-rounded"
                     color="white"
                     width="24"
-                    height="24"
-                  />
+                    height="24" />
                 </span>
                 <a href={`mailto:${item.attributes.email}`}>{item.attributes.email}</a>
               </div>
@@ -53,8 +58,7 @@ const MapSection = ({ data }:Props) => {
                     icon="ic:baseline-local-phone"
                     color="white"
                     width="24"
-                    height="24"
-                  />
+                    height="24" />
                 </span>
                 <a href={`tel:${item.attributes.phone}`}>{item.attributes.phone}</a>
               </div>
@@ -94,7 +98,7 @@ const MapSection = ({ data }:Props) => {
                   <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.sunday}</p>
                 </div>
               </div>
-          </div>
+            </div>
           )}
         </div>
       </div>
