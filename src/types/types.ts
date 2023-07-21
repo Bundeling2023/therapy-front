@@ -83,7 +83,7 @@ export interface TeamPage {
   footer: Menu[]
 }
 
-export interface LocatiesPage {
+export interface LocationsPage {
   locatie: {
      data: {
       attributes: {

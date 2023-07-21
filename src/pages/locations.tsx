@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_LOCATIES_DATA, } from "@/graphql/queries";
-import { LocatiesPage } from "@/types/types";
+import { GET_LOCATIONS_DATA, } from "@/graphql/queries";
+import { LocationsPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
@@ -9,7 +9,7 @@ import Image from "next/image";
 import Head from 'next/head'
 import { SortLocations } from "@/types/utils";
 
-export default function Team(props: LocatiesPage) {
+export default function Team(props: LocationsPage) {
   const { header, footer } = props
   const { seo } = props.locatie.data.attributes;
 
@@ -22,12 +22,12 @@ export default function Team(props: LocatiesPage) {
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       <NavSection locations={locationsData} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
-      <div className="py-20 bg-blue-100 sm:mb-11">
+      <div className="py-20 bg-blue-100">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.locatie.data.attributes.title}
         </h1>
       </div>
-      <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] pb-10">
+      <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="flex flex-wrap justify-between gap-y-10">
           {locationsData.map((item) =>
@@ -135,7 +135,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	const { data } = await client.query({
-		query: GET_LOCATIES_DATA
+		query: GET_LOCATIONS_DATA
 	})
 
 	return {

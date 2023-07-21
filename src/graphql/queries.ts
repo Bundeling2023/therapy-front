@@ -390,8 +390,8 @@ export const GET_TEAMPAGE_DATA = gql`
   }
 `
 
-export const GET_LOCATIES_DATA = gql`
-  query GET_LOCATIES_DATA {
+export const GET_LOCATIONS_DATA = gql`
+  query GET_LOCATIONS_DATA {
     locatie {
       data {
         attributes {

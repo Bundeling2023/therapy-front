@@ -10,6 +10,18 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+        {
+            source: '/contact-opnemen',
+            destination: '/contact-us',
+        },
+        {
+          source: '/locaties',
+          destination: '/locations',
+        },
+    ]
+  }
 }
 
 module.exports = nextConfig
