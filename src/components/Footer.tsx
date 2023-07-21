@@ -51,7 +51,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             </Link>
             <div className="flex flex-col items-start gap-6 md:gap-16 md:items-center md:flex-row">
               <p className="text-lg font-semibold text-white">Wil je eens langskomen?</p>
-              <Link href="/contact-us" className="bg-white btn-white btn">Maak afspraak</Link>
+              <Link href="/contact-opnemen" className="bg-white btn-white btn">Maak afspraak</Link>
             </div>
           </div>
           <hr className="mt-8 mb-8" />

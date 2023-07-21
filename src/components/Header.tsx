@@ -203,7 +203,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
             </li>
             )}
           </ul>
-          <Link href="/contact-us" className="text-white btn btn-primary mt-7">
+          <Link href="/contact-opnemen" className="text-white btn btn-primary mt-7">
             Afspraak maken
           </Link>
         </nav>

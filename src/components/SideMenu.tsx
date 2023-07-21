@@ -25,7 +25,7 @@ const SideMenu = ({ items, childItems, parentTitle, currentPageUrl: pageUrl, par
                 {item.url === pageUrl && childItems?.map((childItem: SideMenuItem) => <MenuItem key={childItem.url} className="ml-5" item={childItem} pageUrl={pageUrl} />)}
             </>
         )}
-        {showAppointment && <Link href="/contact-us" className="text-white btn btn-primary mt-7">
+        {showAppointment && <Link href="/contact-opnemen" className="text-white btn btn-primary mt-7">
             Afspraak maken
         </Link>}
     </aside>)
