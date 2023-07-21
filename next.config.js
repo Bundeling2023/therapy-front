@@ -14,7 +14,19 @@ const nextConfig = {
     return [
         {
             source: '/contact-opnemen',
-            destination: '/contact-us',
+            destination: '/contact',
+        },
+        {
+          source: '/contact/link:id',
+          destination: '/contact',
+        },
+        {
+          source: '/maak-afspraak',
+          destination: '/contact',
+        },
+        {
+          source: '/contact-us',
+          destination: '/contact',
         },
         {
           source: '/locaties',
@@ -22,6 +34,14 @@ const nextConfig = {
         },
         {
           source: '/locatie',
+          destination: '/locations',
+        },
+        {
+          source: '/team/:first',
+          destination: '/team',
+        },
+        {
+          source: '/locaties/:first',
           destination: '/locations',
         },
     ]
