@@ -31,6 +31,11 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
     setCookie('notFirstVisit', true, { path: '/', maxAge: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()});
   }
 
+  function getPathFromUrl(url: string) {
+    const baseUrl = url.split('/').slice(0, 3).join('/'); // Assuming base URL has 3 components (protocol, hostname, and path)
+    return url.substring(baseUrl.length);
+  }
+
   return (
     <>
       <footer className="md:bg-[url('/footer_bgr.svg')] bg-[url('/footer_bgr_mob.svg')] bg-no-repeat bg-top bg-cover bg pt-16 pb-8 md:mt-[130px] mt-10">
@@ -84,18 +89,33 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
               {data.map((item: Menu) =>
                 <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                  {item.related?.attributes.url ? <Link href={item.related.attributes.url} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> :
-                    <p key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</p>
+                  {
+                    item.related?.attributes.url ? 
+                            <Link href={item.related.attributes.url} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> 
+                                    :
+                            (
+                              item?.path.includes('local.bundeling') ?                            
+                               <Link href={getPathFromUrl(item.path)} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> 
+                              :
+                              <p key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</p>
+                            )
                   }
                   {item.items.length > 0 && item.items.map((i) =>
-                    <Fragment key={i.title}>
-                      {i.related?.attributes.url ? <Link key={i.title} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> :
-                      <p key={i.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
+                    <Fragment key={i.path}>
+                      {i.related?.attributes.url ? 
+                        <Link key={i.title+i.path} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> 
+                        :
+                        (
+                          i?.path.includes('local.bundeling') ?                            
+                            <Link key={i.title+i.path} href={getPathFromUrl(i.path)} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> 
+                          :
+                            <p key={i.title+i.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
+                          )
                       }
                     </Fragment>
                   )}
                   {item.title === 'Locaties' && (
-                    <Fragment key={item.title}>
+                    <Fragment key={item.title+item.path}>
                       {sortedLocations.map((i: AddressMap) =>
                         <Link key={i.attributes.title} href={`/locaties#${i.attributes.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.attributes.title}</Link>
                       )}
