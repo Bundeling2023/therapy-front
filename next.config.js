@@ -20,6 +20,10 @@ const nextConfig = {
           source: '/locaties',
           destination: '/locations',
         },
+        {
+          source: '/locatie',
+          destination: '/locations',
+        },
     ]
   }
 }

@@ -287,7 +287,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                               <Link
                                 onClick={hideMenu}
                                 className="text-[20px] sm:max-w-none max-w-[240px]"
-                                href={`/locatie#${i.attributes.url}`}
+                                href={`/locaties#${i.attributes.url}`}
                               >
                                 {i.attributes.title}
                               </Link>
