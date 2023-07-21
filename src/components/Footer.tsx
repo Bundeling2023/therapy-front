@@ -5,7 +5,8 @@ import LogoFooter from "../img/logo_footer.svg";
 import { AddressMap, ContactInfo, Menu } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";
-import { SortLocations } from "@/types/utils";
+import { SortLocations, getPathFromUrl } from "@/types/utils";
+import MenuLink from "./MenuLink";
 
 interface Props {
   data: Menu[],
@@ -29,11 +30,6 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
   const closeCookieBanner = () => {
     seIsCookieBanner(false);
     setCookie('notFirstVisit', true, { path: '/', maxAge: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()});
-  }
-
-  function getPathFromUrl(url: string) {
-    const baseUrl = url.split('/').slice(0, 3).join('/'); // Assuming base URL has 3 components (protocol, hostname, and path)
-    return url.substring(baseUrl.length);
   }
 
   return (
@@ -89,17 +85,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
               {data.map((item: Menu) =>
                 <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                  {
-                    item.related?.attributes.url ? 
-                            <Link href={item.related.attributes.url} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> 
-                                    :
-                            (
-                              item?.path.includes('local.bundeling') ?                            
-                               <Link href={getPathFromUrl(item.path)} key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</Link> 
-                              :
-                              <p key={item.title} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text- first:font-medium">{item.title}</p>
-                            )
-                  }
+                  <MenuLink key={item.title} pageUrl={item.related?.attributes.url} path={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text-first:font-medium">{item.title}</MenuLink>
                   {item.items.length > 0 && item.items.map((i) =>
                     <Fragment key={i.path}>
                       {i.related?.attributes.url ? 

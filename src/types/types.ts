@@ -1,3 +1,11 @@
+export interface PageUrl {
+  data: {
+    attributes: {
+      url: string
+    }
+  }
+}
+
 export interface HomePage {
   home: {
      data: {
@@ -18,20 +26,8 @@ export interface HomePage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
-        privacyPolicyPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
-        termsAndConditionsPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
+        privacyPolicyPage: PageUrl
+        termsAndConditionsPage: PageUrl
       }
     }
   }
@@ -59,20 +55,8 @@ export interface TeamPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
-        privacyPolicyPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
-        termsAndConditionsPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
+        privacyPolicyPage: PageUrl
+        termsAndConditionsPage: PageUrl
       }
     }
   }
@@ -101,20 +85,8 @@ export interface LocationsPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
-        privacyPolicyPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
-        termsAndConditionsPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
+        privacyPolicyPage: PageUrl
+        termsAndConditionsPage: PageUrl
       }
     }
   }
@@ -141,20 +113,8 @@ export interface ContactsUsPage {
     data: {
       attributes: {
         contactsInfo: ContactInfo
-        privacyPolicyPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
-        termsAndConditionsPage: {
-          data: {
-            attributes: {
-              url: string
-            }
-          }
-        }
+        privacyPolicyPage: PageUrl
+        termsAndConditionsPage: PageUrl
       }
     }
   }
@@ -166,7 +126,7 @@ export interface ContactsUsPage {
 }
 
 
-export interface Menu {
+export interface MenuItemFields {
   title: string
   path: string
   related: {
@@ -175,34 +135,12 @@ export interface Menu {
       title: string
     }
   }
-  items: [{
-    title: string
-    path: string
-    related: {
-      attributes: {
-        url: string
-        title: string
-      }
-    }
-    items: [{
-      title: string
-      path: string
-      related: {
-        attributes: {
-          url: string
-          title: string
-        }
-      }
-      items: [{
-        title: string
-        path: string
-        related: {
-          attributes: {
-            url: string
-            title: string
-          }
-        }
-      }]
+}
+
+export interface Menu extends MenuItemFields {
+  items: [MenuItemFields & {    
+    items: [MenuItemFields & {
+      items: [MenuItemFields]
     }]
   }]
 }
