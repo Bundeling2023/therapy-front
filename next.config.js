@@ -17,10 +17,6 @@ const nextConfig = {
             destination: '/contact',
         },
         {
-          source: '/contact/link:id',
-          destination: '/contact',
-        },
-        {
           source: '/maak-afspraak',
           destination: '/contact',
         },
