@@ -9,7 +9,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    TagManager.initialize({ gtmId: `${process.env.NEXT_PUBLIC_GTM_ID}` });
+    process.env.NEXT_PUBLIC_GTM_ID && TagManager.initialize({ gtmId: `${process.env.NEXT_PUBLIC_GTM_ID}` });
   }, []);
 
   return (
