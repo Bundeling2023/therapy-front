@@ -6,7 +6,9 @@ interface MenuLinkProps {
   path?: string;
   children: React.ReactNode;
   className?: string;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLParagraphElement>) => void;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLParagraphElement>
+  ) => void;
 }
 
 const MenuLink: React.FC<MenuLinkProps> = ({
@@ -14,7 +16,7 @@ const MenuLink: React.FC<MenuLinkProps> = ({
   path,
   children,
   className,
-  onClick
+  onClick,
 }) => {
   if (pageUrl) {
     return (
@@ -22,7 +24,10 @@ const MenuLink: React.FC<MenuLinkProps> = ({
         {children}
       </Link>
     );
-  } else if (path && (path.includes("local.bundeling") || path.includes("bundeling.local"))) {
+  } else if (
+    path &&
+    (path.includes("local.bundeling") || path.includes("bundeling.local"))
+  ) {
     const externalUrl = getPathFromUrl(path);
     return (
       <Link className={className} href={externalUrl}>
