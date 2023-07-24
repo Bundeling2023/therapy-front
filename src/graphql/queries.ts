@@ -62,7 +62,7 @@ export const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-    locations {
+    locations (sort: "displayPriority") {
       data {
         attributes {
           coordinates
@@ -280,7 +280,7 @@ export const GET_TEAMPAGE_DATA = gql`
         }
       }
     }
-    locations {
+    locations (sort: "displayPriority") {
       data {
         attributes {
           url
@@ -429,7 +429,7 @@ export const GET_LOCATIONS_DATA = gql`
         }
       }
     }
-    locations {
+    locations (sort: "displayPriority") {
       data {
         attributes {
           title
@@ -659,7 +659,7 @@ export const GET_PAGE_DATA = gql`
         }
       }
     }
-    locations {
+    locations (sort: "displayPriority") {
       data {
         attributes {
           url
@@ -783,7 +783,7 @@ export const GET_CONTACTUS_PAGE = gql`
         }
       }
     }
-    locations {
+    locations (sort: "displayPriority") {
       data {
         attributes {
           address

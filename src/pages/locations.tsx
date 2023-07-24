@@ -7,14 +7,13 @@ import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
 import Head from 'next/head'
-import { SortLocations } from "@/types/utils";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
   const { seo } = props.locatie.data.attributes;
 
-  const locationsData = SortLocations(props.locations.data);
+  const locationsData = props.locations.data;
   return (
     <>
       <Head>

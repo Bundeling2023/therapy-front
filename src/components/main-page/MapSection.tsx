@@ -3,15 +3,12 @@ import { Icon } from "@iconify/react";
 import "node_modules/leaflet/dist/leaflet.css";
 import { AddressMap } from "@/types/types";
 import dynamic from "next/dynamic";
-import { SortLocations } from "@/types/utils";
 
 interface Props {
   data: AddressMap[],
 }
 
-const MapSection = ({ data }: Props) => {
-  const sortedLocations = SortLocations(data);
-  
+const MapSection = ({ data: locations }: Props) => {
   const MapBlock = dynamic(() => import("@/components/Map"), {
     ssr: false,
   });
@@ -34,10 +31,10 @@ const MapSection = ({ data }: Props) => {
           <div className="z-[999] absolute pb-10 bottom-0 left-0 right-0 mx-auto text-center">
             <span className="bg-gray-400/60 rounded-lg p-2 text-white">Selecteer een locatie om de contactgegevens te bekijken</span>
             </div>
-          <MapBlock handleCLick={changeTab} data={sortedLocations} />
+          <MapBlock handleCLick={changeTab} data={locations} />
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
-          {sortedLocations.map((item, index) =>
+          {locations.map((item, index) =>
             <div tab-index={index} className={index === 0 ? '' : 'hidden'} key={item.attributes.url}>
               <h3 className="lg:text-[36px] text-2xl text-dark-purple font-semibold mb-6 leading-normal">
                 {item.attributes.title}

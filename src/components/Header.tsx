@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoDesktop from "../img/logo_desktop.svg";
 import { AddressMap, ContactInfo, Menu, Team } from "@/types/types";
-import { SortLocations } from "@/types/utils";
 import MenuLink from "./MenuLink";
 
 interface Props {
@@ -15,8 +14,6 @@ interface Props {
 }
 
 const NavSection = ({ data, info, team, locations }: Props) => {
-  const sortedLocations = SortLocations(locations);
-
   const openSubMenu = (e: { currentTarget: HTMLButtonElement }) => {
     (e.currentTarget.nextSibling! as HTMLElement).classList.toggle("hidden");
   };
@@ -136,7 +133,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                 )}
                 {item.title === "Locaties" && (
                   <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
-                    {sortedLocations.map((i: AddressMap) => (
+                    {locations.map((i: AddressMap) => (
                       <li
                         className="relative group/item"
                         key={i.attributes.title + index}

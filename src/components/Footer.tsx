@@ -5,7 +5,7 @@ import LogoFooter from "../img/logo_footer.svg";
 import { AddressMap, ContactInfo, Menu } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";
-import { SortLocations, getPathFromUrl } from "@/types/utils";
+import { getPathFromUrl } from "@/types/utils";
 import MenuLink from "./MenuLink";
 
 interface Props {
@@ -17,8 +17,6 @@ interface Props {
 }
 
 const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations }:Props) => {
-  const sortedLocations = SortLocations(locations);
-  
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -102,7 +100,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                   )}
                   {item.title === 'Locaties' && (
                     <Fragment key={item.title+item.path}>
-                      {sortedLocations.map((i: AddressMap) =>
+                      {locations.map((i: AddressMap) =>
                         <Link key={i.attributes.title} href={`/locaties#${i.attributes.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.attributes.title}</Link>
                       )}
                     </Fragment>

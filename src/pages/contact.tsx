@@ -9,7 +9,6 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
-import { SortLocations } from "@/types/utils";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function ContactPage(props: ContactsUsPage) {
@@ -20,7 +19,7 @@ export default function ContactPage(props: ContactsUsPage) {
   const [firstnameError, setFirstNameError] = useState<boolean>(false);
   const [lastnameError, setLastNameError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const sortedLocations = SortLocations(props.locations.data);
+  const locations = props.locations.data;
 
   const [selectedContactOption, setSelectedContactOption] =
     useState("appointment");
@@ -235,7 +234,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <span className="label-text">Voorkeur behandellocatie</span>
             </label>
             <select name="location" className="select select-bordered">
-              {sortedLocations.map((item) => (
+              {locations.map((item) => (
                 <option
                   key={`${item.attributes.title}`}
                   value={item.attributes.title}
@@ -268,7 +267,7 @@ export default function ContactPage(props: ContactsUsPage) {
       </section>
       <Footer
         data={footer}
-        locations={sortedLocations}
+        locations={locations}
         privacyLink={
           props.generalinfo.data.attributes.privacyPolicyPage.data.attributes
             .url
