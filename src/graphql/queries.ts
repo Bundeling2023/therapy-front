@@ -44,7 +44,7 @@ export const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-    teams {
+    teams (sort: "displayPriority") {
       data {
         attributes {
           name
@@ -261,7 +261,7 @@ export const GET_TEAMPAGE_DATA = gql`
         }
       }
     }
-    teams {
+    teams (sort: "displayPriority") {
       data {
         attributes {
           name
@@ -458,7 +458,7 @@ export const GET_LOCATIONS_DATA = gql`
         }
       }
     }
-    teams {
+    teams (sort: "displayPriority") {
       data {
         attributes {
           name
@@ -651,7 +651,7 @@ export const GET_PAGE_DATA = gql`
         }
       }
     }
-    teams {
+    teams (sort: "displayPriority") {
       data {
         attributes {
           name
@@ -793,7 +793,7 @@ export const GET_CONTACTUS_PAGE = gql`
         }
       }
     }
-    teams {
+    teams (sort: "displayPriority") {
       data {
         attributes {
           name
