@@ -22,7 +22,7 @@ export default function ContactPage(props: ContactsUsPage) {
   const sortedLocations = SortLocations(props.locations.data);
 
   const [selectedContactOption, setSelectedContactOption] =
-    useState("typeOfContact");
+    useState("appointment");
 
   const handleSelectedTypeOfContactChange = (event: any) => {
     setSelectedContactOption(event.target.value);
@@ -176,7 +176,6 @@ export default function ContactPage(props: ContactsUsPage) {
               </span>
             )}
           </div>
-
           <fieldset>
             <legend className="text-sm leading-6 text-gray-900">
               Soort contact
@@ -245,11 +244,11 @@ export default function ContactPage(props: ContactsUsPage) {
               ))}
             </select>
           </div>
-          <div className="w-full form-control">
+          <div className="w-full h-48 form-control">
             <label className="label">
               <span className="label-text">Bericht</span>
             </label>
-            <textarea name="message" className="w-full input input-bordered" />
+            <textarea name="message" className="w-full h-full input input-bordered" />
           </div>
           <input
             type="submit"
