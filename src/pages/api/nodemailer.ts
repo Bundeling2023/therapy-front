@@ -6,13 +6,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const message = {
     from: req.body.email,
     to: `${process.env.NEXT_PUBLIC_EMAIL_TO}`,
-    subject: "Message from Bundeling website",
-    html: `<h2>Message from Bundeling website:</h2>
-    <p><strong>Voornaam:</strong> ${req.body.voornaam}</p>
-    <p><strong>achternaam:</strong> ${req.body.achternaam}</p>
-    <p><strong>Telefoon:</strong> ${req.body.telefoon}</p>
-    <p><strong>Email:</strong> ${req.body.email}</p>
-    <p><strong>Locatie:</strong> ${req.body.locatie}</p>`,
+    subject: "Bericht van het contactformulier van de website",
+    html: `<h2>Bericht van het contactformulier van de website</h2>
+    <ul>
+      <li><strong>Voornaam:</strong> ${req.body.firstname}</li>
+      <li><strong>achternaam:</strong> ${req.body.lastname}</li>
+      <li><strong>Telefoon:</strong> ${req.body.phone}</li>
+      <li><strong>Email:</strong> ${req.body.email}</li>
+      <li><strong>Locatie:</strong> ${req.body.location}</li>      
+      <li><strong>Soort therapie:</strong> ${req.body.service}</li>
+    </ul>
+    <p>${req.body.message}</p>`,
   };
 
   const emailAuth = {

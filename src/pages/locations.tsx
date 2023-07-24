@@ -9,7 +9,7 @@ import Image from "next/image";
 import Head from 'next/head'
 import { SortLocations } from "@/types/utils";
 
-export default function Team(props: LocationsPage) {
+export default function Locations(props: LocationsPage) {
   const { header, footer } = props
   const { seo } = props.locatie.data.attributes;
 
