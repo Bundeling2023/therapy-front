@@ -1,3 +1,4 @@
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import axios from "axios"
 import { GetServerSideProps } from "next";
 
@@ -20,7 +21,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.end()
 
   return {
-    props: {}
+    props: {},
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME
   }
 }
 

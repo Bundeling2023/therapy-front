@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -189,7 +190,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       ...data,
       childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.attributes?.url ?? null },
       siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.attributes?.url ?? null }
-    }
+    },
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
   }
 }
 

@@ -8,6 +8,7 @@ import { GetStaticProps } from "next/types";
 import Image from "next/image";
 import Head from 'next/head'
 import { SortLocations } from "@/types/utils";
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
@@ -139,6 +140,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	return {
-		props: data
+		props: data,
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
   }
 }

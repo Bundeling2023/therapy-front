@@ -11,6 +11,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props
@@ -57,6 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	return {
-		props: data
+		props: data,
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
   }
 }

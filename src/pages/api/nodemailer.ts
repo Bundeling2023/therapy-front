@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const message = {
     from: req.body.email,
-    to: `${process.env.NEXT_PUBLIC_EMAIL_TO}`,
+    to: `${process.env.EMAIL_TO}`,
     subject: "Bericht van het contactformulier van de website",
     html: `<h2>Bericht van het contactformulier van de website</h2>
     <ul>
@@ -20,16 +20,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   const emailAuth = {
-    user: `${process.env.NEXT_PUBLIC_SMTP_EMAIL}`,
-    pass: `${process.env.NEXT_PUBLIC_SMTP_PASS}`,
+    user: `${process.env.SMTP_EMAIL}`,
+    pass: `${process.env.SMTP_PASS}`,
   };
-  let transporter = process.env.NEXT_PUBLIC_SMTP_EMAIL?.includes("gmail")
+  let transporter = process.env.SMTP_EMAIL?.includes("gmail")
     ? nodemailer.createTransport({
         service: "gmail",
         auth: emailAuth,
       })
     : nodemailer.createTransport({
-        host: process.env.NEXT_PUBLIC_SMTP_HOST,
+        host: process.env.SMTP_HOST,
         port: 587,
         secure: false, // upgrade later with STARTTLS
         auth: emailAuth,

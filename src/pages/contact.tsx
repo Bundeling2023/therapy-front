@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { SortLocations } from "@/types/utils";
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
@@ -294,5 +295,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: data,
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
   };
 };

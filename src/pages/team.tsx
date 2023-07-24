@@ -8,6 +8,7 @@ import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect } from "react";
+import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 
 export default function Team(props: TeamPage) {
@@ -54,10 +55,11 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	const { data } = await client.query({
-		query: GET_TEAMPAGE_DATA
+		query: GET_TEAMPAGE_DATA,
 	})
 
 	return {
-		props: data
+		props: data,
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
   }
 }
