@@ -295,6 +295,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: data,
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ?? DEFAULT_REVALIDATE_TIME,
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
   };
 };
