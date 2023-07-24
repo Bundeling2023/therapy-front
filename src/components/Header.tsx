@@ -389,7 +389,7 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                   Wil je eens langskomen?
                 </p>
                 <Link
-                  href="#"
+                  href="/contact"
                   className="btn btn-white bg-white focus:bg-light-purple h-16 px-8 mt-6 normal-case text-base 2xl:text-[18px]"
                 >
                   Maak afspraak
