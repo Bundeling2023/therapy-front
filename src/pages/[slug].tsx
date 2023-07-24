@@ -1,15 +1,14 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_PAGES, GET_PAGE_DATA } from "@/graphql/queries";
+import { GET_PAGE_DATA } from "@/graphql/queries";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import HTMLReactParser from "html-react-parser";
 import Head from "next/head";
-import { GetStaticPaths, GetStaticProps } from "next/types";
+import { GetServerSideProps } from "next/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
-import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -136,29 +135,13 @@ const BlocksPageContent = (data: any) => {
   </main>
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    cache: new InMemoryCache(),
-  })
 
-  const { data } = await client.query({
-    query: GET_PAGES,
-  })
-
-  const paths = data.pages.data.map((item: any) => {
-    return {
-      params: { slug: item.attributes.url }
-    }
-  })
-
-  return {
-    paths,
-    fallback: 'blocking',
-  }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=29, stale-while-revalidate=179'
+)
+  
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
     cache: new InMemoryCache(),
@@ -190,8 +173,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       ...data,
       childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.attributes?.url ?? null },
       siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.attributes?.url ?? null }
-    },
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    }
   }
 }
 
