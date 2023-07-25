@@ -29,7 +29,7 @@ const MapSection = ({ data: locations }: Props) => {
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
         <div className="relative w-full z-[20] max-w-[1022px] lg:h-auto h-[395px]">
           <div className="z-[999] absolute pb-10 bottom-0 left-0 right-0 mx-auto text-center">
-            <span className="bg-gray-400/60 rounded-lg p-2 text-white">Selecteer een locatie om de contactgegevens te bekijken</span>
+            <span className="bg-gray-400/80 rounded-lg p-2 text-white">Selecteer een locatie om de contactgegevens te bekijken</span>
             </div>
           <MapBlock handleCLick={changeTab} data={locations} />
         </div>
