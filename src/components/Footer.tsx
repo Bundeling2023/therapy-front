@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoFooter from "../img/logo_footer.svg";
-import { AddressMap, ContactInfo, Menu } from "@/types/types";
+import { AddressMap, ContactInfo, Menu, SocialLinks } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";
 import { getPathFromUrl } from "@/types/utils";
@@ -14,9 +14,10 @@ interface Props {
   privacyLink: string,
   termsAndConditionsPage: string,
   locations: AddressMap[],
+  socialLinks: SocialLinks
 }
 
-const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations }:Props) => {
+const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations, socialLinks }:Props) => {
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -117,7 +118,9 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             </div>
             <div className="flex gap-4">
               <a
-                href="#"
+                title="Facebook"
+                href={socialLinks?.facebook}
+                target="_blank"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
                 <svg
@@ -134,7 +137,9 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 </svg>
               </a>
               <a
-                href="#"
+                title="YouTube"
+                href={socialLinks?.youtube}
+                target="_blank"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width='35' viewBox="-35.2 -41.333 305.067 248">
@@ -145,7 +150,9 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 </svg>
               </a>
               <a
-                href="#"
+                title="Instagram"
+                href={socialLinks?.instagram}
+                target="_blank"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
                 <svg

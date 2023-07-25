@@ -22,7 +22,7 @@ export default function Team(props: TeamPage) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="py-20 bg-blue-100 mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.teampage.data.attributes.title}
@@ -42,7 +42,8 @@ export default function Team(props: TeamPage) {
         locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
+        info={props.generalinfo.data.attributes.contactsInfo} 
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
   );

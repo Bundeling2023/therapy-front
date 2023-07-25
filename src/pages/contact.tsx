@@ -88,7 +88,8 @@ export default function ContactPage(props: ContactsUsPage) {
         locations={props.locations.data}
         team={props.teams.data}
         data={header}
-        info={props.generalinfo.data.attributes.contactsInfo}
+        info={props.generalinfo.data.attributes.contactsInfo} 
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
       <div className="py-20 mb-11">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
@@ -276,7 +277,7 @@ export default function ContactPage(props: ContactsUsPage) {
           props.generalinfo.data.attributes.termsAndConditionsPage.data
             .attributes.url
         }
-        info={props.generalinfo.data.attributes.contactsInfo}
+        info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
   );

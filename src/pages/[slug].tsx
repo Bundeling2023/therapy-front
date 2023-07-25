@@ -31,7 +31,7 @@ export default function PostPage(props: any) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="bg-blue-100 py-28">
         <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-5xl">
           {pageAttributes?.title}
@@ -62,7 +62,8 @@ export default function PostPage(props: any) {
         locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
+        info={props.generalinfo.data.attributes.contactsInfo} 
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
   )

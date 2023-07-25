@@ -6,6 +6,19 @@ export interface PageUrl {
   }
 }
 
+export interface SocialLinks {
+  facebook: string
+  youtube: string
+  instagram: string
+}
+
+interface GeneralInfoProperties {
+  contactsInfo: ContactInfo
+  privacyPolicyPage: PageUrl
+  termsAndConditionsPage: PageUrl
+  socialLinks: SocialLinks
+}
+
 export interface HomePage {
   home: {
      data: {
@@ -24,11 +37,7 @@ export interface HomePage {
   }
   generalinfo: {
     data: {
-      attributes: {
-        contactsInfo: ContactInfo
-        privacyPolicyPage: PageUrl
-        termsAndConditionsPage: PageUrl
-      }
+      attributes: GeneralInfoProperties
     }
   }
   locations: {
@@ -53,11 +62,7 @@ export interface TeamPage {
   }
   generalinfo: {
     data: {
-      attributes: {
-        contactsInfo: ContactInfo
-        privacyPolicyPage: PageUrl
-        termsAndConditionsPage: PageUrl
-      }
+      attributes: GeneralInfoProperties
     }
   }
   teams: {
@@ -83,11 +88,7 @@ export interface LocationsPage {
   }
   generalinfo: {
     data: {
-      attributes: {
-        contactsInfo: ContactInfo
-        privacyPolicyPage: PageUrl
-        termsAndConditionsPage: PageUrl
-      }
+      attributes: GeneralInfoProperties
     }
   }
   locations: {
@@ -111,11 +112,7 @@ export interface ContactsUsPage {
   }
   generalinfo: {
     data: {
-      attributes: {
-        contactsInfo: ContactInfo
-        privacyPolicyPage: PageUrl
-        termsAndConditionsPage: PageUrl
-      }
+      attributes: GeneralInfoProperties
     }
   }
   locations: {

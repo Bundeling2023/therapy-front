@@ -21,7 +21,7 @@ export default function Locations(props: LocationsPage) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={locationsData} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} />
+      <NavSection locations={locationsData} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="py-20 bg-blue-100">
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.locatie.data.attributes.title}
@@ -122,7 +122,8 @@ export default function Locations(props: LocationsPage) {
         locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
+        info={props.generalinfo.data.attributes.contactsInfo} 
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
   );

@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoDesktop from "../img/logo_desktop.svg";
-import { AddressMap, ContactInfo, Menu, Team } from "@/types/types";
+import { AddressMap, ContactInfo, Menu, SocialLinks, Team } from "@/types/types";
 import MenuLink from "./MenuLink";
 
 interface Props {
@@ -11,9 +11,10 @@ interface Props {
   info: ContactInfo;
   team: Team[];
   locations: AddressMap[];
+  socialLinks: SocialLinks
 }
 
-const NavSection = ({ data, info, team, locations }: Props) => {
+const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
   const openSubMenu = (e: { currentTarget: HTMLButtonElement }) => {
     (e.currentTarget.nextSibling! as HTMLElement).classList.toggle("hidden");
   };
@@ -422,7 +423,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                 </a>
                 <div className="flex gap-4 mt-10">
                   <a
-                    href="#"
+                    title="Facebook"
+                    href={socialLinks?.facebook}
+                    target="_blank"
                     className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
                   >
                     <svg
@@ -439,7 +442,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                     </svg>
                   </a>
                   <a
-                    href="#"
+                    title="YouTube"
+                    href={socialLinks?.youtube}
+                    target="_blank"
                     className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
                   >
                     <svg
@@ -456,7 +461,9 @@ const NavSection = ({ data, info, team, locations }: Props) => {
                     </svg>
                   </a>
                   <a
-                    href="#"
+                    title="Instagram"
+                    href={socialLinks?.instagram}
+                    target="_blank"
                     className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
                   >
                     <svg

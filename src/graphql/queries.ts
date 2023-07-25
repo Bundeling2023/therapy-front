@@ -1,6 +1,8 @@
 import { gql } from "@apollo/client";
+import { GeneralInfoFragment } from "./fragments";
 
 export const GET_HOMEPAGE_DATA = gql`
+  ${GeneralInfoFragment}
   query GET_HOMEPAGE_DATA {
     home {
       data {
@@ -85,29 +87,7 @@ export const GET_HOMEPAGE_DATA = gql`
       }
     }
     generalinfo {
-      data {
-        attributes {
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
-          privacyPolicyPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          termsAndConditionsPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...GeneralInfoFragment
     }
     header: renderNavigation(
       navigationIdOrSlug: "header"
@@ -223,6 +203,7 @@ export const GET_HOMEPAGE_DATA = gql`
 `
 
 export const GET_TEAMPAGE_DATA = gql`
+  ${GeneralInfoFragment}
   query GET_TEAMPAGE_DATA {
     teampage {
       data {
@@ -237,29 +218,7 @@ export const GET_TEAMPAGE_DATA = gql`
       }
     }
     generalinfo {
-      data {
-        attributes {
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
-          privacyPolicyPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          termsAndConditionsPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...GeneralInfoFragment
     }
     teams (sort: "displayPriority") {
       data {
@@ -391,6 +350,7 @@ export const GET_TEAMPAGE_DATA = gql`
 `
 
 export const GET_LOCATIONS_DATA = gql`
+  ${GeneralInfoFragment}
   query GET_LOCATIONS_DATA {
     locatie {
       data {
@@ -405,29 +365,7 @@ export const GET_LOCATIONS_DATA = gql`
       }
     }
     generalinfo {
-      data {
-        attributes {
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
-          privacyPolicyPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          termsAndConditionsPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...GeneralInfoFragment
     }
     locations (sort: "displayPriority") {
       data {
@@ -581,6 +519,7 @@ export const GET_PAGES = gql`
 `
 
 export const GET_PAGE_DATA = gql`
+  ${GeneralInfoFragment}
   query GET_PAGE_DATA ($slugUrl: String!) {
     pages: pages(filters: { url: { eq: $slugUrl }})  {
       data {
@@ -627,29 +566,7 @@ export const GET_PAGE_DATA = gql`
       }
     }
     generalinfo {
-      data {
-        attributes {
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
-          privacyPolicyPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          termsAndConditionsPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...GeneralInfoFragment
     }
     teams (sort: "displayPriority") {
       data {
@@ -770,6 +687,7 @@ export const GET_PAGE_DATA = gql`
 `
 
 export const GET_CONTACTUS_PAGE = gql`
+  ${GeneralInfoFragment}
   query GET_CONTACTUS_PAGE {
     contactus {
       data {
@@ -802,29 +720,7 @@ export const GET_CONTACTUS_PAGE = gql`
       }
     }
     generalinfo {
-      data {
-        attributes {
-          contactsInfo {
-            email
-            phone
-            mainAddress
-          }
-          privacyPolicyPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          termsAndConditionsPage {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...GeneralInfoFragment
     }
     header: renderNavigation(
       navigationIdOrSlug: "header"
