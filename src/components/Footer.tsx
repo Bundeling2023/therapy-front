@@ -136,7 +136,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                   />
                 </svg>
               </a>
-              <a
+              {/* <a
                 title="YouTube"
                 href={socialLinks?.youtube}
                 target="_blank"
@@ -148,7 +148,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                     fill="#fff"
                   />
                 </svg>
-              </a>
+              </a> */}
               <a
                 title="Instagram"
                 href={socialLinks?.instagram}

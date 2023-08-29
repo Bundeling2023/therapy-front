@@ -20,10 +20,10 @@ const SideMenu = ({ items, childItems, parentTitle, currentPageUrl: pageUrl, par
     return (<aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
         {parentPageUrl && <Link href={parentPageUrl}><h3 className="mb-6 text-xl font-bold lg:text-2xl link">{parentTitle}</h3></Link>}
         {items.map((item: SideMenuItem) =>
-            <>
+            <Fragment key={item.url}>
                 <MenuItem key={item.url} item={item} pageUrl={pageUrl} />
                 {item.url === pageUrl && childItems?.map((childItem: SideMenuItem) => <MenuItem key={childItem.url} className="ml-5" item={childItem} pageUrl={pageUrl} />)}
-            </>
+            </Fragment>
         )}
         {showAppointment && <Link href="/contact-opnemen" className="text-white btn btn-primary mt-7">
             Afspraak maken

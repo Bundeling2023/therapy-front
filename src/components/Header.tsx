@@ -34,17 +34,17 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
   return (
     <>
       <section className="relative w-full bg-dark-purple">
-        <div className="hidden w-full py-5 xl:block bg-white">
+      <div className="hidden w-full py-5 bg-dark-purple xl:block">
           <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="ic:baseline-local-phone"
-                color="rgb(44, 46, 128)"
+                color="white"
                 width="20"
                 height="20"
               />
               <a
-                className="font-medium leading-5 text-dark-purple"
+                className="font-medium leading-5 text-white"
                 href={`tel:${info.phone}`}
               >
                 {info.phone}
@@ -53,12 +53,12 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="material-symbols:mail-rounded"
-                color="rgb(44, 46, 128)"
+                color="white"
                 width="20"
                 height="20"
               />
               <a
-                className="font-medium leading-5 text-dark-purple"
+                className="font-medium leading-5 text-white"
                 href={`mailto:${info.email}`}
               >
                 {info.email}
@@ -67,11 +67,11 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="material-symbols:location-on-rounded"
-                color="rgb(44, 46, 128)"
+                color="white"
                 width="20"
                 height="20"
               />
-              <p className="font-medium leading-5 text-dark-purple">
+              <p className="font-medium leading-5 text-white">
                 {info.mainAddress}
               </p>
             </div>
@@ -84,13 +84,13 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
           >
             <Image
               blurDataURL={LogoDesktop}
-              className="w-full z-20 relative"
+              className="w-full h-44 pl-4 -my-16 z-20 relative"
               src={LogoDesktop}
               alt="De Bundeling"
             />
 
               <div
-                className="bg-dark-purple w-[680px] h-44 absolute -left-20 -my-[130px]"
+                className="bg-dark-purple w-[680px] h-44 absolute -left-20 -my-[56px]"
                 style={{
                   borderRadius: "50% / 0 0 100% 100%",
                 }}
@@ -99,7 +99,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               </div>
 
           </Link>
-          <ul className="flex gap-5 px-0 pt-11 2xl:gap-11">
+          <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
             {data?.map((item: Menu, index) => (
               <li
                 className="relative flex group"
@@ -234,7 +234,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
           >
             <Image
               src={LogoDesktop}
-              className="w-full z-20 relative"
+              className="w-full ml-2 z-20 relative"
               alt="De Bundeling (small)"
             />
             <div
@@ -422,10 +422,10 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                 </Link>
                 <hr className="relative w-[110%] mt-9 mb-9 left-[-20px] opacity-20" />
                 <a
-                  href="tel:045 525 0116"
+                  href={`"tel:${info.phone}"`}
                   className="bg-white sm:mr-5 rounded-lg font-medium items-center p-3 pl-6 hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
                 >
-                  045 525 0116
+                  {info.phone}
                   <span className="block p-3 rounded-lg bg-dark-purple">
                     <Icon
                       icon="ic:baseline-local-phone"
@@ -436,10 +436,10 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                   </span>
                 </a>
                 <a
-                  href="mailto:info@debundeling.nl"
+                  href={`"mailto:${info.email}"`}
                   className="bg-white rounded-lg font-medium items-center p-3 pl-6 mt-6 normal-case hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
                 >
-                  info@debundeling.nl
+                  {info.email}
                   <span className="block p-3 rounded-lg bg-dark-purple">
                     <Icon
                       icon="material-symbols:mail-rounded"
@@ -469,7 +469,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                       />
                     </svg>
                   </a>
-                  <a
+                  {/* <a
                     title="YouTube"
                     href={socialLinks?.youtube}
                     target="_blank"
@@ -487,7 +487,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                         fill="white"
                       />
                     </svg>
-                  </a>
+                  </a> */}
                   <a
                     title="Instagram"
                     href={socialLinks?.instagram}
