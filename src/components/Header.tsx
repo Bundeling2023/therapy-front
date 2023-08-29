@@ -35,47 +35,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
     <>
       <section className="relative w-full bg-dark-purple">
       <div className="hidden w-full py-5 bg-dark-purple xl:block">
-          <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
-            <div className="flex gap-2.5 items-center">
-              <Icon
-                icon="ic:baseline-local-phone"
-                color="white"
-                width="20"
-                height="20"
-              />
-              <a
-                className="font-medium leading-5 text-white"
-                href={`tel:${info.phone}`}
-              >
-                {info.phone}
-              </a>
-            </div>
-            <div className="flex gap-2.5 items-center">
-              <Icon
-                icon="material-symbols:mail-rounded"
-                color="white"
-                width="20"
-                height="20"
-              />
-              <a
-                className="font-medium leading-5 text-white"
-                href={`mailto:${info.email}`}
-              >
-                {info.email}
-              </a>
-            </div>
-            <div className="flex gap-2.5 items-center">
-              <Icon
-                icon="material-symbols:location-on-rounded"
-                color="white"
-                width="20"
-                height="20"
-              />
-              <p className="font-medium leading-5 text-white">
-                {info.mainAddress}
-              </p>
-            </div>
-          </div>
+          <TopBar info={info}/>
         </div>
         <nav className="mx-auto 3xl:relative hidden xl:flex w-full px-10 max-w-1560 items-start gap-52px justify-end">
           <Link
@@ -99,127 +59,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               </div>
 
           </Link>
-          <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
-            {data?.map((item: Menu, index) => (
-              <li
-                className="relative flex group"
-                key={item.title + index}
-                tabIndex={0}
-              >
-                <MenuLink
-                  pageUrl={item.related?.attributes.url}
-                  path={item.path}
-                  className="flex items-center gap-2 text-base font-medium text-white 2xl:text-2xl pb-11 hover:text-blue-gray"
-                >
-                  {item.title}
-                  {(item?.items.length ||
-                    item.title === "Team" ||
-                    item.title === "Locaties") > 0 && (
-                    <svg
-                      className=""
-                      width="10"
-                      height="6"
-                      viewBox="0 0 10 6"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
-                        fill="#fff"
-                      />
-                    </svg>
-                  )}
-                </MenuLink>
-
-                {item.title === "Team" && (
-                  <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
-                    {team.map((i: Team) => (
-                      <li
-                        className="relative group/item"
-                        key={i.attributes.name + index}
-                      >
-                        <Link
-                          className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                          href={`/team#${i.attributes.url}`}
-                        >
-                          {i.attributes.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {item.title === "Locaties" && (
-                  <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
-                    {locations.map((i: AddressMap) => (
-                      <li
-                        className="relative group/item"
-                        key={i.attributes.title + index}
-                      >
-                        <Link
-                          className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                          href={`/locaties#${i.attributes.url}`}
-                        >
-                          {i.attributes.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {item?.items.length > 0 && (
-                  <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
-                    {item?.items.map((i) => (
-                      <li className="relative group/item" key={i.title + index}>
-                        <MenuLink
-                          className="w-full py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
-                          pageUrl={i.related?.attributes.url}
-                          path={i.path}
-                        >
-                          {i.title}
-                          {i.items?.length > 0 && (
-                            <svg
-                              className="rotate-[270deg]"
-                              width="10"
-                              height="6"
-                              viewBox="0 0 10 6"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
-                                fill="#2C2E80"
-                              />
-                            </svg>
-                          )}
-                        </MenuLink>
-
-                        {i.items?.length > 0 && (
-                          <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-2 text-2xl shadow-md group-hover/item:block menu menu-compact bg-base-100 rounded-box">
-                            {i?.items?.map((itm, index) => (
-                              <li
-                                key={
-                                  itm.title
-                                    ? itm.title + index
-                                    : itm.related.attributes.title + index
-                                }
-                              >
-                                <MenuLink
-                                  className="block w-full py-4 text-base font-medium whitespace-pre-wrap text-dark-purple active:text-white 2xl:text-2xl"
-                                  pageUrl={itm.related?.attributes.url}
-                                  path={itm.path}
-                                >
-                                  {itm.title}
-                                </MenuLink>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+          <Menu data={data} team={team} locations={locations} />
           <Link
             href="/contact-opnemen"
             className="text-white btn btn-white mt-7"
@@ -229,16 +69,16 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
         </nav>
         <nav className="flex justify-end w-full p-0 mx-auto sm:py-3 xl:hidden">
           <Link
-            className="absolute left-0 z-20 max-w-[300px] sm:max-w-[400px] md:max-w-[500px] top-2"
+            className="absolute left-0 z-30 max-w-[250px] sm:max-w-[400px] md:max-w-[500px] top-2"
             href="/"
           >
             <Image
               src={LogoDesktop}
-              className="w-full ml-2 z-20 relative"
+              className="w-full ml-2 z-30 relative"
               alt="De Bundeling (small)"
             />
             <div
-              className="bg-dark-purple h-40 w-[480px] sm:w-[560px] z-0 md:w-[680px] md:h-40 absolute -left-20 -my-[130px]"
+              className="z-0 absolute bg-dark-purple h-10 w-[280px] -my-5 sm:w-[440px] sm:-my-6 md:w-[560px] md:h-24 md:-my-16 -left-2"
               style={{
                 borderRadius: "50% / 0 0 100% 100%",
               }}
@@ -246,8 +86,8 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               &nbsp;
             </div>
           </Link>
-          <div className="max-w-[70px] z-10">
-            <div className="static overflow-visible collapse">
+          <div className="max-w-[70px] z-20">
+            <div className="static overflow-visible collapse z-20">
               <input ref={mobNav} type="checkbox" className="peer" />
               <svg
                 width="40"
@@ -274,7 +114,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                   fill="#fff"
                 />
               </svg>
-              <div className="collapse-content pb-0 pr-0 pl-5 pt-10 w-full left-0 top-[60px] sm:top-[84px] absolute bg-dark-purple z-10 shadow-lg">
+              <div className="collapse-content pb-0 pr-0 pl-5 pt-10 w-full left-0 top-[60px] sm:top-[84px] absolute bg-dark-purple z-40 shadow-lg">
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) => (
                     <li
@@ -531,3 +371,164 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
 };
 
 export default NavSection;
+
+
+
+const TopBar = ({info}: {info: ContactInfo}) => <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
+<div className="flex gap-2.5 items-center">
+  <Icon
+    icon="ic:baseline-local-phone"
+    color="white"
+    width="20"
+    height="20" />
+  <a
+    className="font-medium leading-5 text-white"
+    href={`tel:${info.phone}`}
+  >
+    {info.phone}
+  </a>
+</div>
+<div className="flex gap-2.5 items-center">
+  <Icon
+    icon="material-symbols:mail-rounded"
+    color="white"
+    width="20"
+    height="20" />
+  <a
+    className="font-medium leading-5 text-white"
+    href={`mailto:${info.email}`}
+  >
+    {info.email}
+  </a>
+</div>
+<div className="flex gap-2.5 items-center">
+  <Icon
+    icon="material-symbols:location-on-rounded"
+    color="white"
+    width="20"
+    height="20" />
+  <p className="font-medium leading-5 text-white">
+    {info.mainAddress}
+  </p>
+</div>
+</div>;
+
+const Menu = ({data, team, locations}:{ data: Menu[], team: Team[], locations: AddressMap[]}) => {
+  return <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
+    {data?.map((item: Menu, index) => (
+      <li
+        className="relative flex group"
+        key={item.title + index}
+        tabIndex={0}
+      >
+        <MenuLink
+          pageUrl={item.related?.attributes.url}
+          path={item.path}
+          className="flex items-center gap-2 text-base font-medium text-white 2xl:text-2xl pb-11 hover:text-blue-gray"
+        >
+          {item.title}
+          {(item?.items.length ||
+            item.title === "Team" ||
+            item.title === "Locaties") > 0 && (
+              <svg
+                className=""
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
+                  fill="#fff" />
+              </svg>
+            )}
+        </MenuLink>
+
+        {item.title === "Team" && (
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+            {team.map((i: Team) => (
+              <li
+                className="relative group/item"
+                key={i.attributes.name + index}
+              >
+                <Link
+                  className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  href={`/team#${i.attributes.url}`}
+                >
+                  {i.attributes.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+        {item.title === "Locaties" && (
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+            {locations.map((i: AddressMap) => (
+              <li
+                className="relative group/item"
+                key={i.attributes.title + index}
+              >
+                <Link
+                  className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  href={`/locaties#${i.attributes.url}`}
+                >
+                  {i.attributes.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+        {item?.items.length > 0 && (
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+            {item?.items.map((i) => (
+              <li className="relative group/item" key={i.title + index}>
+                <MenuLink
+                  className="w-full py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  pageUrl={i.related?.attributes.url}
+                  path={i.path}
+                >
+                  {i.title}
+                  {i.items?.length > 0 && (
+                    <svg
+                      className="rotate-[270deg]"
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
+                        fill="#2C2E80" />
+                    </svg>
+                  )}
+                </MenuLink>
+
+                {i.items?.length > 0 && (
+                  <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-2 text-2xl shadow-md group-hover/item:block menu menu-compact bg-base-100 rounded-box">
+                    {i?.items?.map((itm, index) => (
+                      <li
+                        key={itm.title
+                          ? itm.title + index
+                          : itm.related.attributes.title + index}
+                      >
+                        <MenuLink
+                          className="block w-full py-4 text-base font-medium whitespace-pre-wrap text-dark-purple active:text-white 2xl:text-2xl"
+                          pageUrl={itm.related?.attributes.url}
+                          path={itm.path}
+                        >
+                          {itm.title}
+                        </MenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>;
+}
