@@ -41,7 +41,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 blurDataURL={LogoFooter}
                 className="w-full"
                 src={LogoFooter}
-                alt="test"
+                alt="De Bundeling"
               />
             </Link>
             <div className="flex flex-col items-start gap-6 md:gap-16 md:items-center md:flex-row">
@@ -56,7 +56,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 href={`tel:${info.phone}`}
                 className="bg-white rounded-lg font-medium items-center p-3 pl-6 hover:bg-light-purple focus:bg-light-purple hover:text-white h-auto inline-flex gap-8 text-[18px] text-dark-purple"
               >
-                045 525 0116
+                {info.phone}
                 <span className="block p-3 rounded-lg bg-dark-purple">
                   <Icon
                     icon="ic:baseline-local-phone"

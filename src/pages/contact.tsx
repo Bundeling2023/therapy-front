@@ -159,7 +159,7 @@ export default function ContactPage(props: ContactsUsPage) {
             )}
           </div>
           <div className="w-full form-control sm:max-w-[49%]">
-            <label className="label">
+            <label htmlFor="phone" className="label">
               <span className="label-text">
                 Telefoon nummer <span className="text-red-700">*</span>
               </span>
@@ -219,7 +219,7 @@ export default function ContactPage(props: ContactsUsPage) {
             </div>
           </fieldset>
           <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
-            <label className="label">
+            <label htmlFor="service" className="label">
               <span className="label-text">Soort therapie</span>
             </label>
             <select name="service" className="select select-bordered">
@@ -231,7 +231,7 @@ export default function ContactPage(props: ContactsUsPage) {
             </select>
           </div>
           <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
-            <label className="label">
+            <label htmlFor="location" className="label">
               <span className="label-text">Voorkeur behandellocatie</span>
             </label>
             <select name="location" className="select select-bordered">
@@ -245,8 +245,15 @@ export default function ContactPage(props: ContactsUsPage) {
               ))}
             </select>
           </div>
+          <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
+            <label htmlFor="fileUpload" className="label">
+              <span className="label-text">Verwijzing</span>
+            </label>
+            Bestand uploaden
+            <input type="file" name="fileUpload" className="w-full" />
+          </div>
           <div className="w-full h-48 form-control">
-            <label className="label">
+            <label htmlFor="message" className="label">
               <span className="label-text">Bericht</span>
             </label>
             <textarea name="message" className="w-full h-full input input-bordered" />

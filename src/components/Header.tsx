@@ -2,8 +2,14 @@ import { useRef } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
-import LogoDesktop from "../img/logo_desktop.svg";
-import { AddressMap, ContactInfo, Menu, SocialLinks, Team } from "@/types/types";
+import LogoDesktop from "../img/logo_footer.svg";
+import {
+  AddressMap,
+  ContactInfo,
+  Menu,
+  SocialLinks,
+  Team,
+} from "@/types/types";
 import MenuLink from "./MenuLink";
 
 interface Props {
@@ -11,7 +17,7 @@ interface Props {
   info: ContactInfo;
   team: Team[];
   locations: AddressMap[];
-  socialLinks: SocialLinks
+  socialLinks: SocialLinks;
 }
 
 const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
@@ -27,18 +33,18 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
 
   return (
     <>
-      <section className="relative w-full">
-        <div className="hidden w-full py-5 bg-dark-purple xl:block">
+      <section className="relative w-full bg-dark-purple">
+        <div className="hidden w-full py-5 xl:block bg-white">
           <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="ic:baseline-local-phone"
-                color="white"
+                color="rgb(44, 46, 128)"
                 width="20"
                 height="20"
               />
               <a
-                className="font-medium leading-5 text-white"
+                className="font-medium leading-5 text-dark-purple"
                 href={`tel:${info.phone}`}
               >
                 {info.phone}
@@ -47,12 +53,12 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="material-symbols:mail-rounded"
-                color="white"
+                color="rgb(44, 46, 128)"
                 width="20"
                 height="20"
               />
               <a
-                className="font-medium leading-5 text-white"
+                className="font-medium leading-5 text-dark-purple"
                 href={`mailto:${info.email}`}
               >
                 {info.email}
@@ -61,27 +67,37 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
             <div className="flex gap-2.5 items-center">
               <Icon
                 icon="material-symbols:location-on-rounded"
-                color="white"
+                color="rgb(44, 46, 128)"
                 width="20"
                 height="20"
               />
-              <p className="font-medium leading-5 text-white">
+              <p className="font-medium leading-5 text-dark-purple">
                 {info.mainAddress}
               </p>
             </div>
           </div>
         </div>
-        <nav className="mx-auto 3xl:relative hidden xl:flex w-90% max-w-1560 items-start gap-52px justify-end">
+        <nav className="mx-auto 3xl:relative hidden xl:flex w-full px-10 max-w-1560 items-start gap-52px justify-end">
           <Link
-            className="absolute 3xl:left-[-180px] left-0 z-10 max-w-lg mt-4 2xl:max-w-none"
+            className="absolute 3xl:left-[-180px] left-0 z-20 max-w-lg mt-4 2xl:max-w-none"
             href="/"
           >
             <Image
               blurDataURL={LogoDesktop}
-              className="w-full"
+              className="w-full z-20 relative"
               src={LogoDesktop}
-              alt="test"
+              alt="De Bundeling"
             />
+
+              <div
+                className="bg-dark-purple w-[680px] h-44 absolute -left-20 -my-[130px]"
+                style={{
+                  borderRadius: "50% / 0 0 100% 100%",
+                }}
+              >
+                &nbsp;
+              </div>
+
           </Link>
           <ul className="flex gap-5 px-0 pt-11 2xl:gap-11">
             {data?.map((item: Menu, index) => (
@@ -93,7 +109,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                 <MenuLink
                   pageUrl={item.related?.attributes.url}
                   path={item.path}
-                  className="flex items-center gap-2 text-base font-medium text-dark-purple 2xl:text-2xl pb-11 hover:text-light-purple"
+                  className="flex items-center gap-2 text-base font-medium text-white 2xl:text-2xl pb-11 hover:text-blue-gray"
                 >
                   {item.title}
                   {(item?.items.length ||
@@ -109,7 +125,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                     >
                       <path
                         d="M9.5176 0.260254H0.482354C0.0547936 0.260254 -0.16302 0.776554 0.143533 1.08311L4.66115 5.60073C4.8467 5.78628 5.15325 5.78628 5.33888 5.60073L9.8565 1.08311C10.163 0.776554 9.94516 0.260254 9.5176 0.260254Z"
-                        fill="#2C2E80"
+                        fill="#fff"
                       />
                     </svg>
                   )}
@@ -206,19 +222,31 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
           </ul>
           <Link
             href="/contact-opnemen"
-            className="text-white btn btn-primary mt-7"
+            className="text-white btn btn-white mt-7"
           >
             Afspraak maken
           </Link>
         </nav>
         <nav className="flex justify-end w-full p-0 mx-auto sm:py-3 xl:hidden">
           <Link
-            className="absolute left-0 z-10 max-w-[300px] sm:max-w-[500px] top-2"
+            className="absolute left-0 z-20 max-w-[300px] sm:max-w-[400px] md:max-w-[500px] top-2"
             href="/"
           >
-            <Image src={LogoDesktop} className="w-full" alt="test" />
+            <Image
+              src={LogoDesktop}
+              className="w-full z-20 relative"
+              alt="De Bundeling (small)"
+            />
+            <div
+              className="bg-dark-purple h-40 w-[480px] sm:w-[560px] z-0 md:w-[680px] md:h-40 absolute -left-20 -my-[130px]"
+              style={{
+                borderRadius: "50% / 0 0 100% 100%",
+              }}
+            >
+              &nbsp;
+            </div>
           </Link>
-          <div className="max-w-[70px]">
+          <div className="max-w-[70px] z-10">
             <div className="static overflow-visible collapse">
               <input ref={mobNav} type="checkbox" className="peer" />
               <svg
@@ -229,9 +257,9 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                 className="p-5 collapse-title peer-checked:hidden"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect width="40" height="3.5" rx="1" fill="#2E3080" />
-                <rect y="11" width="40" height="3.5" rx="1" fill="#2E3080" />
-                <rect y="22" width="40" height="3.5" rx="1" fill="#2E3080" />
+                <rect width="40" height="3.5" rx="1" fill="#fff" />
+                <rect y="11" width="40" height="3.5" rx="1" fill="#fff" />
+                <rect y="22" width="40" height="3.5" rx="1" fill="#fff" />
               </svg>
               <svg
                 width="40"
@@ -243,10 +271,10 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               >
                 <path
                   d="M24.2534 20L39.1404 5.11301C39.6951 4.54703 40.004 3.78503 40 2.99259C39.996 2.20015 39.6794 1.4413 39.119 0.880958C38.5587 0.320612 37.7999 0.00404073 37.0074 3.84139e-05C36.215 -0.0039639 35.453 0.304926 34.887 0.859584L20 15.7466L5.11301 0.859584C4.54703 0.304926 3.78503 -0.0039639 2.99259 3.84139e-05C2.20015 0.00404073 1.4413 0.320612 0.880958 0.880958C0.320612 1.4413 0.00404073 2.20015 3.84139e-05 2.99259C-0.0039639 3.78503 0.304926 4.54703 0.859584 5.11301L15.7466 20L0.859584 34.887C0.304926 35.453 -0.0039639 36.215 3.84139e-05 37.0074C0.00404073 37.7999 0.320612 38.5587 0.880958 39.119C1.4413 39.6794 2.20015 39.996 2.99259 40C3.78503 40.004 4.54703 39.6951 5.11301 39.1404L20 24.2534L34.887 39.1404C35.453 39.6951 36.215 40.004 37.0074 40C37.7999 39.996 38.5587 39.6794 39.119 39.119C39.6794 38.5587 39.996 37.7999 40 37.0074C40.004 36.215 39.6951 35.453 39.1404 34.887L24.2534 20Z"
-                  fill="#2E3080"
+                  fill="#fff"
                 />
               </svg>
-              <div className="collapse-content pb-0 pr-0 pl-5 w-full left-0 top-[92px] sm:top-[135px] absolute bg-dark-purple z-10 shadow-lg">
+              <div className="collapse-content pb-0 pr-0 pl-5 pt-10 w-full left-0 top-[60px] sm:top-[84px] absolute bg-dark-purple z-10 shadow-lg">
                 <ul className="[&>*]:text-white pt-1">
                   {data?.map((item: Menu, index) => (
                     <li

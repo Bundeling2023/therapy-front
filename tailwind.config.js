@@ -102,6 +102,7 @@ module.exports = {
       colors: {
         'dark-purple': '#2C2E80',
         'light-purple': '#4C4FCE',
+        'blue-gray': '#EDF0FF'
       },
       maxWidth: {
         '1560': '1560px',
