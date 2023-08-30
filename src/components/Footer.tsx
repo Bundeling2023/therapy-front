@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
-import LogoFooter from "../img/logo_footer.svg";
+import LogoFooter from "../img/logo.svg";
 import { AddressMap, ContactInfo, Menu, SocialLinks } from "@/types/types";
 import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";

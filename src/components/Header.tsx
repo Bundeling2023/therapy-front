@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
-import LogoDesktop from "../img/logo_footer.svg";
+import LogoDesktop from "../img/logo.svg";
 import {
   AddressMap,
   ContactInfo,
