@@ -9,6 +9,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect } from "react";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
+import BackButton from "@/components/BackButton";
 
 
 export default function Team(props: TeamPage) {
@@ -23,7 +24,8 @@ export default function Team(props: TeamPage) {
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
-      <div className="py-20 bg-blue-100 mb-11">
+      <div className="pt-20 pb-16 bg-blue-100 mb-11">
+        <BackButton className="absolute pl-4 -mt-8">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.teampage.data.attributes.title}
         </h1>

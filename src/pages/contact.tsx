@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
+import BackButton from "@/components/BackButton";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
@@ -91,7 +92,8 @@ export default function ContactPage(props: ContactsUsPage) {
         info={props.generalinfo.data.attributes.contactsInfo} 
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
-      <div className="py-20 mb-11">
+      <div className="pt-20 mb-11">
+        <BackButton className="absolute pl-4 -mt-8">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.contactus.data.attributes.title}
         </h1>

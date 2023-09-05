@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
+import BackButton from "@/components/BackButton";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -32,7 +33,8 @@ export default function PostPage(props: any) {
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
-      <div className="bg-blue-100 py-28">
+      <div className="bg-blue-100 pt-20 pb-10">
+        <BackButton className="absolute pl-4 -mt-8">Home</BackButton>
         <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-5xl">
           {pageAttributes?.title}
         </h1>

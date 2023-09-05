@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import "node_modules/leaflet/dist/leaflet.css";
 import { AddressMap } from "@/types/types";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 interface Props {
   data: AddressMap[],
@@ -25,7 +26,7 @@ const MapSection = ({ data: locations }: Props) => {
   }
 
   return (
-    <section className="relative pt-20 pb-24 w-full mx-auto bg-[#EBF3FF]">
+    <section className="relative pt-20 pb-16 w-full mx-auto bg-[#EBF3FF]">
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
         <div className="relative w-full z-[20] max-w-[1022px] lg:h-auto h-[395px]">
           <div className="z-[999] absolute pb-10 bottom-0 left-0 right-0 mx-auto text-center">
@@ -98,6 +99,14 @@ const MapSection = ({ data: locations }: Props) => {
             </div>
           )}
         </div>
+      </div>
+      <div className="mt-2 text-center">
+        <Link
+              href="locaties"
+              className="py-[16px] hover:bg-dark-purple hover:text-white inline-block px-7 border mt-11 border-dark-purple rounded-lg font-bold text-dark-purple text-base"
+            >
+          Alle locaties bekijken
+        </Link>
       </div>
     </section>
   );
