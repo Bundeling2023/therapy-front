@@ -44,13 +44,13 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
           >
             <Image
               blurDataURL={LogoDesktop}
-              className="w-full h-44 pl-4 -my-16 z-20 relative"
+              className="w-full 2xl:w-10/12 h-44 pl-4 -my-16 z-20 relative"
               src={LogoDesktop}
               alt="De Bundeling"
             />
 
               <div
-                className="bg-dark-purple w-[680px] h-44 absolute -left-20 -my-[56px]"
+                className="bg-dark-purple w-[680px] 2xl:w-[820px] h-44 absolute -left-20 -my-[56px]"
                 style={{
                   borderRadius: "50% / 0 0 100% 100%",
                 }}
