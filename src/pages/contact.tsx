@@ -56,14 +56,19 @@ export default function ContactPage(props: ContactsUsPage) {
         });
         toast.success("Bedankt, uw bericht is verzonden.", {
           position: toast.POSITION.TOP_CENTER,
+          autoClose: 30000,
         });
         setIsLoading(false);
         e.target.reset();
       } catch (e) {
         setIsLoading(true);
-        toast.error("Error!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.error(
+          "Er is iets misgegaan met het verzenden van het formulier, probeert u het nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 30000,
+          }
+        );
       }
     }
   };
@@ -89,7 +94,7 @@ export default function ContactPage(props: ContactsUsPage) {
         locations={props.locations.data}
         team={props.teams.data}
         data={header}
-        info={props.generalinfo.data.attributes.contactsInfo} 
+        info={props.generalinfo.data.attributes.contactsInfo}
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
       <div className="pt-20 mb-11">
@@ -220,7 +225,11 @@ export default function ContactPage(props: ContactsUsPage) {
               </div>
             </div>
           </fieldset>
-          <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
+          <div
+            className={`w-full form-control ${
+              selectedContactOption === "appointment" ? "" : "hidden"
+            }`}
+          >
             <label htmlFor="service" className="label">
               <span className="label-text">Soort therapie</span>
             </label>
@@ -232,7 +241,11 @@ export default function ContactPage(props: ContactsUsPage) {
               ))}
             </select>
           </div>
-          <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
+          <div
+            className={`w-full form-control ${
+              selectedContactOption === "appointment" ? "" : "hidden"
+            }`}
+          >
             <label htmlFor="location" className="label">
               <span className="label-text">Voorkeur behandellocatie</span>
             </label>
@@ -247,26 +260,42 @@ export default function ContactPage(props: ContactsUsPage) {
               ))}
             </select>
           </div>
-          <div className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden" }`}>
+          <div
+            className={`w-full form-control ${
+              selectedContactOption === "appointment" ? "" : "hidden"
+            }`}
+          >
             <label htmlFor="fileUpload" className="label">
-              <span className="label-text">Verwijzing</span>
+              <span className="label-text">
+                Verwijzing (
+                <em>
+                  Indien u een verwijziging heeft, kunt u deze hier uploaden.
+                </em>
+                )
+              </span>
             </label>
-            Bestand uploaden
-            <input type="file" name="fileUpload" className="w-full" />
+            <input type="file" name="fileUpload" className="w-4/6" />
           </div>
           <div className="w-full h-48 form-control">
             <label htmlFor="message" className="label">
               <span className="label-text">Bericht</span>
             </label>
-            <textarea name="message" className="w-full h-full input input-bordered" />
+            <textarea
+              name="message"
+              className="w-full h-full input input-bordered"
+            />
           </div>
           <input
             type="submit"
             className="btn bg-dark-purple mt-7 hover:bg-purple-950"
-            value="Afspraak maken"
+            value={
+              selectedContactOption === "appointment"
+                ? "Afspraak maken"
+                : "Verzenden"
+            }
           />
           {isLoading && (
-            <span className="loading loading-spinner loading-md"></span>
+            <span className="loading loading-spinner loading-lg"></span>
           )}
         </form>
         <p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
@@ -286,7 +315,8 @@ export default function ContactPage(props: ContactsUsPage) {
           props.generalinfo.data.attributes.termsAndConditionsPage.data
             .attributes.url
         }
-        info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks}
+        info={props.generalinfo.data.attributes.contactsInfo}
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
   );
@@ -304,6 +334,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: data,
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    revalidate:
+      Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
+      DEFAULT_REVALIDATE_TIME,
   };
 };
