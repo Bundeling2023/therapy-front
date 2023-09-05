@@ -46,7 +46,7 @@ export const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-    teams (sort: "displayPriority") {
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
       data {
         attributes {
           name
@@ -220,7 +220,7 @@ export const GET_TEAMPAGE_DATA = gql`
     generalinfo {
       ...GeneralInfoFragment
     }
-    teams (sort: "displayPriority") {
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
       data {
         attributes {
           name
@@ -396,7 +396,7 @@ export const GET_LOCATIONS_DATA = gql`
         }
       }
     }
-    teams (sort: "displayPriority") {
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
       data {
         attributes {
           name
@@ -568,7 +568,7 @@ export const GET_PAGE_DATA = gql`
     generalinfo {
       ...GeneralInfoFragment
     }
-    teams (sort: "displayPriority") {
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
       data {
         attributes {
           name
@@ -711,7 +711,7 @@ export const GET_CONTACTUS_PAGE = gql`
         }
       }
     }
-    teams (sort: "displayPriority") {
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
       data {
         attributes {
           name

@@ -10,21 +10,37 @@ interface Props {
   isMain?: boolean,
 }
 
+function getInitials(fullName: string) {
+  const [firstName, ...restNames] = fullName.toUpperCase().trim().split(' ')
+
+  if (!restNames.length) {
+    return firstName.substring(0,2)
+  }
+
+  const firstNameInitial = firstName[0]
+  const lastNameInitial = restNames.pop()?.[0]
+
+  return `${firstNameInitial}${lastNameInitial}`
+}
+
 const TeamMember = ({ data, isMain = false }: Props) => {
 
   return (
     <div className="lg:pb-[60px] pb-[45px] team-member">
       <div className="member-wrapper h-auto aspect-square flex items-center justify-center p-2 w-full max-h-[405px] relative max-w-[405px] overflow-hidden mx-auto">
-        <Image
+        {data.attributes.img.data?.attributes ? (<Image
           id={data.attributes.url.slice(data.attributes.url.indexOf('#') + 1)}
           width="0"
           height="0"
-          src={data.attributes.img.data.attributes.url}
+          src={data.attributes.img.data?.attributes.url}
           alt={data.attributes.name}
           sizes="404px"
           priority
           className="object-cover w-full h-full rounded-full"
-          blurDataURL={data.attributes.img.data.attributes.url} />
+          blurDataURL={data.attributes.img.data?.attributes.url} />) : 
+<div className="relative inline-flex items-center justify-center w-4/6 h-4/6 overflow-hidden bg-[#827CB1] rounded-full">
+    <span className="text-gray-900 text-7xl font-semibold ease-linear tracking-widest	">{getInitials(data.attributes.name)}</span>
+</div>          } 
       </div>
       <div
         className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case h-auto inline-flex gap-5 2xl:text-[30px] text-lg text-white"
