@@ -68,7 +68,7 @@ const ModalVideo = () => {
               letterSpacing="0.24em"
             >
               <tspan x="57.4069" y="42.321">
-                PATIENTENERVARINGEN
+                PATIËNTENERVARINGEN
               </tspan>
             </text>
             <path
@@ -94,13 +94,13 @@ const ModalVideo = () => {
           </svg>
           <p className="2xl:text-5xl text-3xl text-dark-purple font-semibold mt-2 2xl:leading-[62px] leading-10">
             Wij vinden het leveren van goede zorg en een goede
-            patient/therepeut relatie erg belangrijk.
+            patiënt/therapeut relatie erg belangrijk.
           </p>
           <Link
-            href="#"
+            href="/specialisaties"
             className="py-[16px] hover:bg-dark-purple hover:text-white inline-block px-7 border mt-11 border-dark-purple rounded-lg font-bold text-dark-purple text-base"
           >
-            Ervaar meer
+            Bekijk wat wij doen
           </Link>
         </div>
       </div>
