@@ -3,8 +3,10 @@ export function getPathFromUrl(url: string) {
   return url.substring(baseUrl.length);
 }
 
-export function ConstructPageTitle(seoTitle?: string, defaultPageName?: string) {
+export function ConstructPageTitle(seoTitle?: string, defaultPageName?: string, showPublicSiteAlways: boolean = true) {
   const title = seoTitle ? seoTitle : defaultPageName;
   
+  if(!showPublicSiteAlways) return title;
+
   return title ? title + ' | ' + process.env.NEXT_PUBLIC_SITE_NAME : process.env.NEXT_PUBLIC_SITE_NAME
 }

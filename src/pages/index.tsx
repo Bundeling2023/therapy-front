@@ -26,7 +26,7 @@ export default function Home(props: HomePage) {
   return (
     <>
       <Head>
-        <title>{ConstructPageTitle(seo.metaTitle)}</title>
+        <title>{ConstructPageTitle(seo.metaTitle, undefined, false)}</title>
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
