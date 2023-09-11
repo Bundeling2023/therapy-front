@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
 import BackButton from "@/components/BackButton";
+import { ConstructPageTitle } from "@/types/utils";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function PostPage(props: any) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle ? seo.metaTitle : pageAttributes?.title}</title>
+        <title>{ConstructPageTitle(seo.metaTitle, pageAttributes?.title)}</title>
         <meta name='description' content={seo.metaDescription ? seo.metaDescription : (pageAttributes?.simplePage?.data?.description ?? pageAttributes.pageWithBlocks?.blocks?.[0]?.description)} />
         {seo.canonicalURL && <link rel="canonical" href={seo.canonicalURL } />}
       </Head>

@@ -11,6 +11,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
+import { ConstructPageTitle } from "@/types/utils";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
@@ -83,7 +84,7 @@ export default function ContactPage(props: ContactsUsPage) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle && seo.metaTitle}</title>
+        <title>{ConstructPageTitle(seo.metaTitle, 'Contact')}</title>
         <meta
           name="description"
           content={seo.metaDescription && seo.metaDescription}

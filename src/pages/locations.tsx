@@ -9,6 +9,7 @@ import Image from "next/image";
 import Head from 'next/head'
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
+import { ConstructPageTitle } from "@/types/utils";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
@@ -18,7 +19,7 @@ export default function Locations(props: LocationsPage) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle && seo.metaTitle}</title>
+        <title>{ConstructPageTitle(seo.metaTitle, 'Locaties')}</title>
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>

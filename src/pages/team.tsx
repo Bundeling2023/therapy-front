@@ -2,14 +2,13 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import TeamMember from "@/components/team/TeamMember";
 import { GET_TEAMPAGE_DATA } from "@/graphql/queries";
-import { TeamPage } from "@/types/types";
+import { Seo, TeamPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from 'next/head'
-import { useRouter } from 'next/router';
-import { useEffect } from "react";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
+import { ConstructPageTitle } from "@/types/utils";
 
 
 export default function Team(props: TeamPage) {
@@ -19,7 +18,7 @@ export default function Team(props: TeamPage) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle && seo.metaTitle}</title>
+        <title>{ConstructPageTitle(seo.metaTitle, 'Team')}</title>
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
@@ -66,3 +65,4 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
   }
 }
+

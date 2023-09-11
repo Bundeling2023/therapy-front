@@ -12,6 +12,7 @@ import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
+import { ConstructPageTitle } from "@/types/utils";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props
@@ -25,7 +26,7 @@ export default function Home(props: HomePage) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle && seo.metaTitle}</title>
+        <title>{ConstructPageTitle(seo.metaTitle)}</title>
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
