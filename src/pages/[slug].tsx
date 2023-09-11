@@ -28,9 +28,9 @@ export default function PostPage(props: any) {
   return (
     <>
       <Head>
-        <title>{seo.metaTitle && seo.metaTitle}</title>
-        <meta name='description' content={seo.metaDescription && seo.metaDescription} />
-        <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
+        <title>{seo.metaTitle ? seo.metaTitle : pageAttributes?.title}</title>
+        <meta name='description' content={seo.metaDescription ? seo.metaDescription : (pageAttributes?.simplePage?.data?.description ?? pageAttributes.pageWithBlocks?.blocks?.[0]?.description)} />
+        {seo.canonicalURL && <link rel="canonical" href={seo.canonicalURL } />}
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="bg-blue-100 pt-20 pb-10">
@@ -74,7 +74,10 @@ export default function PostPage(props: any) {
 const NoInfo = () => {
   return (
     <main className="w-full bg-white rounded-xl p-7 simple-page break-words">
-      Nog geen informatie beschikbaar
+      Deze pagina is momenteel in ontwikkeling. Onze excuses voor het ongemak. 
+      We werken eraan om hier binnenkort waardevolle informatie te plaatsen. 
+      Kom alstublieft later terug om de volledige inhoud te bekijken. 
+      Wil je toch al meer weten neem dan <Link className="underline text-dark-purple" href="/contact">contact met ons op</Link>.
     </main>
   )
 }

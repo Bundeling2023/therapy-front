@@ -260,7 +260,7 @@ export default function ContactPage(props: ContactsUsPage) {
               ))}
             </select>
           </div>
-          <div
+          {/* <div
             className={`w-full form-control ${
               selectedContactOption === "appointment" ? "" : "hidden"
             }`}
@@ -275,7 +275,7 @@ export default function ContactPage(props: ContactsUsPage) {
               </span>
             </label>
             <input type="file" name="fileUpload" className="w-4/6" />
-          </div>
+          </div> */}
           <div className="w-full h-48 form-control">
             <label htmlFor="message" className="label">
               <span className="label-text">Bericht</span>
