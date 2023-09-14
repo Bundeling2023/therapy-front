@@ -27,6 +27,7 @@ export default function Home(props: HomePage) {
     <>
       <Head>
         <title>{ConstructPageTitle(seo.metaTitle, undefined, false)}</title>
+        <meta name="robots" content="noindex, nofollow"></meta> {/* Remove when going live */}
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
