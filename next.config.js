@@ -41,7 +41,17 @@ const nextConfig = {
           destination: '/locations',
         },
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/beheer',
+        destination: process.env.NEXT_PUBLIC_API_URL + '/admin',    
+        permanent: false,
+        basePath: false,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
