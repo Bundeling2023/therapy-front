@@ -35,8 +35,8 @@ export default function Home(props: HomePage) {
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
       <TeamsBlock data={props.teams.data}/>
-      <MapSection data={locations.data} />
       <ModalVideo data={modalVideo}/>
+      <MapSection data={locations.data} />
       <ReviewsBlock />
       <Footer
         data={footer}
