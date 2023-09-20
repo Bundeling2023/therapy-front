@@ -4,16 +4,19 @@ import NextNProgress from "nextjs-progressbar";
 import { Montserrat } from "next/font/google";
 import ReactGA from "react-ga4";
 import { isEnvironment } from "@/types/utils";
+import { useEffect } from "react";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const isProduction = isEnvironment("production");
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  useEffect(() => {
+    const isProduction = isEnvironment("production");
+    const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
-  if (gtmId && isProduction) {
-    ReactGA.initialize(gtmId);
-  }
+    if (gtmId && isProduction) {
+      ReactGA.initialize(gtmId);
+    }
+  }, []);
 
   return (
     <>
