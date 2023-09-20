@@ -13,6 +13,7 @@ import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import { ConstructPageTitle } from "@/types/utils";
+import Script from "next/script";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props
@@ -23,9 +24,23 @@ export default function Home(props: HomePage) {
     modalVideo
   } = props.home.data.attributes;
 
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+
   return (
     <>
       <Head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <title>{ConstructPageTitle(seo.metaTitle, undefined, false)}</title>
         <meta name="robots" content={process.env.NEXT_PUBLIC_INDEX_IN_SEARCH_ENGINES ? "index, follow" : "noindex, nofollow"}></meta>
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
