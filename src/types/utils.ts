@@ -10,3 +10,6 @@ export function ConstructPageTitle(seoTitle?: string, defaultPageName?: string, 
 
   return title ? title + ' | ' + process.env.NEXT_PUBLIC_SITE_NAME : process.env.NEXT_PUBLIC_SITE_NAME
 }
+
+export const isEnvironment = (env: string) => process.env.NODE_ENV === env;
+
