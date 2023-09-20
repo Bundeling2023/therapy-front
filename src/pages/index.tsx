@@ -12,7 +12,7 @@ import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
-import { ConstructPageTitle } from "@/types/utils";
+import { ConstructPageTitle, isEnvironment } from "@/types/utils";
 import Script from "next/script";
 
 export default function Home(props: HomePage) {
@@ -25,40 +25,67 @@ export default function Home(props: HomePage) {
   } = props.home.data.attributes;
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+  const isProduction = isEnvironment("production")
 
   return (
     <>
       <Head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
+        {isProduction && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-        </Script>
+            </Script>
+          </>
+        )}
         <title>{ConstructPageTitle(seo.metaTitle, undefined, false)}</title>
-        <meta name="robots" content={process.env.NEXT_PUBLIC_INDEX_IN_SEARCH_ENGINES ? "index, follow" : "noindex, nofollow"}></meta>
-        <meta name='description' content={seo.metaDescription && seo.metaDescription} />
+        <meta
+          name="robots"
+          content={
+            process.env.NEXT_PUBLIC_INDEX_IN_SEARCH_ENGINES
+              ? "index, follow"
+              : "noindex, nofollow"
+          }
+        ></meta>
+        <meta
+          name="description"
+          content={seo.metaDescription && seo.metaDescription}
+        />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
+      <NavSection
+        locations={locations.data}
+        team={props.teams.data}
+        data={header}
+        info={props.generalinfo.data.attributes.contactsInfo}
+        socialLinks={props.generalinfo.data.attributes.socialLinks}
+      />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
-      <TeamsBlock data={props.teams.data}/>
-      <ModalVideo data={modalVideo}/>
+      <TeamsBlock data={props.teams.data} />
+      <ModalVideo data={modalVideo} />
       <MapSection data={locations.data} />
       <ReviewsBlock />
       <Footer
         data={footer}
         locations={locations.data}
-        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
-        termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo} 
+        privacyLink={
+          props.generalinfo.data.attributes.privacyPolicyPage.data.attributes
+            .url
+        }
+        termsAndConditionsPage={
+          props.generalinfo.data.attributes.termsAndConditionsPage.data
+            .attributes.url
+        }
+        info={props.generalinfo.data.attributes.contactsInfo}
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
