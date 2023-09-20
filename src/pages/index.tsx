@@ -30,22 +30,6 @@ export default function Home(props: HomePage) {
   return (
     <>
       <Head>
-        {isProduction && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-            </Script>
-          </>
-        )}
         <title>{ConstructPageTitle(seo.metaTitle, undefined, false)}</title>
         <meta
           name="robots"
@@ -61,6 +45,22 @@ export default function Home(props: HomePage) {
         />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
+      {isProduction && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+            </Script>
+          </>
+        )}
       <NavSection
         locations={locations.data}
         team={props.teams.data}
