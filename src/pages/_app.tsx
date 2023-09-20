@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     if (gtmId && isProduction) {
       ReactGA.initialize(gtmId);
+      ReactGA.send("pageview");
     }
   }, []);
 
