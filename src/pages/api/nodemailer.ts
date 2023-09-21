@@ -14,6 +14,7 @@ export default async function handler(
     location,
     service,
     message,
+    contactMethod,
     captchaToken,
   } = req.body;
 
@@ -33,11 +34,12 @@ export default async function handler(
     html: `<h2>Bericht van het contactformulier van de website</h2>
     <ul>
       <li><strong>Voornaam:</strong> ${firstname}</li>
-      <li><strong>achternaam:</strong> ${lastname}</li>
+      <li><strong>Achternaam:</strong> ${lastname}</li>
       <li><strong>Telefoon:</strong> ${phone}</li>
-      <li><strong>Email:</strong> ${email}</li>
-      <li><strong>Locatie:</strong> ${location}</li>      
-      <li><strong>Soort therapie:</strong> ${service}</li>
+      <li><strong>Email:</strong> ${email}</li>      
+      ${contactMethod === "appointment" ? `
+        <li><strong>Locatie:</strong> ${location}</li>      
+        <li><strong>Soort therapie:</strong> ${service}</li>` : ''}
     </ul>
     <p>${message}</p>`,
   };
@@ -54,10 +56,9 @@ export default async function handler(
     : nodemailer.createTransport({
         host: process.env.SMTP_HOST,
         port: 587,
-        secure: false,
         auth: emailAuth,
         tls: {
-          rejectUnauthorized: false,
+          rejectUnauthorized: true,
         },
       },);
 

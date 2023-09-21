@@ -28,6 +28,7 @@ export default function ContactPage(props: ContactsUsPage) {
   const locations = props.locations.data;
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const [lastSentTime, setLastSentTime] = useState<number>(0);
 
   const [selectedContactOption, setSelectedContactOption] =
     useState("appointment");
@@ -57,6 +58,18 @@ export default function ContactPage(props: ContactsUsPage) {
       !(e.target.lastname.value === "")
     ) {
       setIsLoading(true);
+      const currentTime = Date.now();
+      if (currentTime - lastSentTime < 30000) {
+        toast.warning(
+          "U heeft recent al een bericht verzonden, probeert u het over enkele minuten nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 30000,
+          }
+        );
+        return;
+      }
+
       try {
         await axios.post("/api/nodemailer", {
           email: e.target.email.value,
@@ -66,11 +79,13 @@ export default function ContactPage(props: ContactsUsPage) {
           location: e.target.location.value,
           service: e.target.service.value,
           message: e.target.message.value,
+          contactMethod: selectedContactOption,
           captchaToken: captchaToken,
         });
+        setLastSentTime(currentTime);
         toast.success(
           selectedContactOption === "appointment"
-            ? `Bedankt ${e.target.firstname.value}, uw bericht over ${e.target.service.value} is verzonden.`
+            ? `Bedankt ${e.target.firstname.value}, uw bericht over ${e.target.service.value?.toLowerCase()} is verzonden.`
             : `Bedankt ${e.target.firstname.value}, uw bericht is verzonden.`,
           {
             position: toast.POSITION.TOP_CENTER,
@@ -283,29 +298,13 @@ export default function ContactPage(props: ContactsUsPage) {
                 <option value="Geen voorkeur">Geen voorkeur</option>
               </select>
             </div>
-            {/* <div
-            className={`w-full form-control ${
-              selectedContactOption === "appointment" ? "" : "hidden"
-            }`}
-          >
-            <label htmlFor="fileUpload" className="label">
-              <span className="label-text">
-                Verwijzing (
-                <em>
-                  Indien u een verwijziging heeft, kunt u deze hier uploaden.
-                </em>
-                )
-              </span>
-            </label>
-            <input type="file" name="fileUpload" className="w-4/6" />
-          </div> */}
             <div className="w-full h-48 form-control">
               <label htmlFor="message" className="label">
                 <span className="label-text">Bericht</span>
               </label>
               <textarea
                 name="message"
-                className="w-full h-full input input-bordered"
+                className="w-full h-full input input-bordered pt-2"
               />
             </div>
             <GoogleReCaptcha
