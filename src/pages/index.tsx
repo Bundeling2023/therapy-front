@@ -9,23 +9,18 @@ import MapSection from "@/components/main-page/MapSection";
 import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";
-import Head from 'next/head'
+import Head from "next/head";
 import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import { ConstructPageTitle, isEnvironment } from "@/types/utils";
 import Script from "next/script";
 
 export default function Home(props: HomePage) {
-  const { header, footer, locations } = props
-  const {
-    mainBanner,
-    services,
-    seo,
-    modalVideo
-  } = props.home.data.attributes;
+  const { header, footer, locations } = props;
+  const { mainBanner, services, seo, modalVideo } = props.home.data.attributes;
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
-  const isProduction = isEnvironment("production")
+  const isProduction = isEnvironment("production");
 
   return (
     <>
@@ -46,21 +41,21 @@ export default function Home(props: HomePage) {
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       {isProduction && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-            </Script>
-          </>
-        )}
+          </Script>
+        </>
+      )}
       <NavSection
         locations={locations.data}
         team={props.teams.data}
@@ -95,15 +90,17 @@ export default function Home(props: HomePage) {
 export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-		cache: new InMemoryCache(),
-	})
+    cache: new InMemoryCache(),
+  });
 
-	const { data } = await client.query({
-		query: GET_HOMEPAGE_DATA
-	})
+  const { data } = await client.query({
+    query: GET_HOMEPAGE_DATA,
+  });
 
-	return {
-		props: data,
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
-  }
-}
+  return {
+    props: data,
+    revalidate:
+      Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
+      DEFAULT_REVALIDATE_TIME,
+  };
+};

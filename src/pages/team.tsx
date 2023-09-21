@@ -10,7 +10,6 @@ import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
 
-
 export default function Team(props: TeamPage) {
   const { header, footer } = props
   const { seo } = props.teampage.data.attributes;
