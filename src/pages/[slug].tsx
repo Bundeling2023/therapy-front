@@ -31,7 +31,7 @@ export default function PostPage(props: any) {
       <Head>
         <title>{ConstructPageTitle(seo.metaTitle, pageAttributes?.title)}</title>
         <meta name='description' content={seo.metaDescription ? seo.metaDescription : (pageAttributes?.simplePage?.data?.description ?? pageAttributes.pageWithBlocks?.blocks?.[0]?.description)} />
-        {seo.canonicalURL && <link rel="canonical" href={seo.canonicalURL } />}
+        {seo.canonicalURL && <link rel="canonical" href={seo.canonicalURL} />}
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="bg-blue-100 pt-20 pb-10">
@@ -65,7 +65,7 @@ export default function PostPage(props: any) {
         locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo} 
+        info={props.generalinfo.data.attributes.contactsInfo}
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
@@ -75,10 +75,10 @@ export default function PostPage(props: any) {
 const NoInfo = () => {
   return (
     <main className="w-full bg-white rounded-xl p-7 simple-page break-words">
-      Deze pagina is momenteel in ontwikkeling. Onze excuses voor het ongemak. 
-      We werken eraan om hier binnenkort waardevolle informatie te plaatsen. 
-      Kom alstublieft later terug om de volledige inhoud te bekijken. 
-      Wil je toch al meer weten neem dan <Link className="underline text-dark-purple" href="/contact">contact met ons op</Link>.
+      Deze pagina is momenteel in ontwikkeling. Onze excuses voor het ongemak.
+      We werken eraan om hier binnenkort waardevolle informatie te plaatsen.
+      Kom alstublieft later terug om de volledige inhoud te bekijken.
+      Wilt u toch al meer weten neem dan <Link className="underline text-dark-purple" href="/contact">contact met ons op</Link>.
     </main>
   )
 }
@@ -147,8 +147,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   context.res.setHeader(
     'Cache-Control',
     'public, s-maxage=29, stale-while-revalidate=179'
-)
-  
+  )
+
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
     cache: new InMemoryCache(),

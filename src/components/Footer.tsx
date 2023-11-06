@@ -17,18 +17,18 @@ interface Props {
   socialLinks: SocialLinks
 }
 
-const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations, socialLinks }:Props) => {
+const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', locations, socialLinks }: Props) => {
   const [isCookieBanner, seIsCookieBanner] = useState<boolean>(false);
 
   useEffect(() => {
-    if(!hasCookie("notFirstVisit")){
+    if (!hasCookie("notFirstVisit")) {
       seIsCookieBanner(true)
     }
   }, [])
 
   const closeCookieBanner = () => {
     seIsCookieBanner(false);
-    setCookie('notFirstVisit', true, { path: '/', maxAge: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()});
+    setCookie('notFirstVisit', true, { path: '/', maxAge: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime() });
   }
 
   return (
@@ -45,7 +45,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
               />
             </Link>
             <div className="flex flex-col items-start gap-6 md:gap-16 md:items-center md:flex-row">
-              <p className="text-lg font-semibold text-white">Wil je eens langskomen?</p>
+              <p className="text-lg font-semibold text-white">Wilt u eens langskomen?</p>
               <Link href="/contact-opnemen" className="bg-white btn-white btn">Maak afspraak</Link>
             </div>
           </div>
@@ -87,20 +87,20 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                   <MenuLink key={item.title} pageUrl={item.related?.attributes.url} path={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text-first:font-medium">{item.title}</MenuLink>
                   {item.items.length > 0 && item.items.map((i) =>
                     <Fragment key={i.path}>
-                      {i.related?.attributes.url ? 
-                        <Link key={i.title+i.path} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> 
+                      {i.related?.attributes.url ?
+                        <Link key={i.title + i.path} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
                         :
                         (
-                          i?.path.includes('local.bundeling') ?                            
-                            <Link key={i.title+i.path} href={getPathFromUrl(i.path)} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link> 
-                          :
-                            <p key={i.title+i.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
-                          )
+                          i?.path.includes('local.bundeling') ?
+                            <Link key={i.title + i.path} href={getPathFromUrl(i.path)} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
+                            :
+                            <p key={i.title + i.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 2xl:first:text-xl first:text-base first:font-medium">{i.title}</p>
+                        )
                       }
                     </Fragment>
                   )}
                   {item.title === 'Locaties' && (
-                    <Fragment key={item.title+item.path}>
+                    <Fragment key={item.title + item.path}>
                       {locations.map((i: AddressMap) =>
                         <Link key={i.attributes.title} href={`/locaties#${i.attributes.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.attributes.title}</Link>
                       )}
@@ -191,7 +191,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             height="30"
             icon="iconamoon:close-bold"
           />
-          <button  onClick={closeCookieBanner} className="block btn btn-sm btn-primary sm:hidden">Accept</button>
+          <button onClick={closeCookieBanner} className="block btn btn-sm btn-primary sm:hidden">Accept</button>
         </div>
       )}
     </>

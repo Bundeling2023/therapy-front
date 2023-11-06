@@ -312,7 +312,7 @@ export default function ContactPage(props: ContactsUsPage) {
             </div>
             {selectedContactOption === "appointment" && (
               <>
-                <p className="w-full">Indien u onderstaande informatie verstrekt kunnen wij je sneller van dienst zijn:
+                <p className="w-full">Indien u onderstaande informatie verstrekt kunnen wij u sneller van dienst zijn:
                 </p>
                 <div className="w-full form-control sm:max-w-[34%]">
                   <label className="label">
@@ -377,7 +377,7 @@ export default function ContactPage(props: ContactsUsPage) {
         </GoogleReCaptchaProvider>
 
         <p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
-          Wij gebruiken de opgegeven gegevens alleen om contact met je op te
+          Wij gebruiken de opgegeven gegevens alleen om contact met u op te
           nemen voor de afspraak.
         </p>
         <p className="w-90% mx-auto max-w-1560 mt-2 text-sm">

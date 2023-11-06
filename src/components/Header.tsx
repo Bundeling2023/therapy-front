@@ -34,8 +34,8 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
   return (
     <>
       <section className="relative w-full bg-dark-purple">
-      <div className="hidden w-full py-5 bg-dark-purple xl:block">
-          <TopBar info={info}/>
+        <div className="hidden w-full py-5 bg-dark-purple xl:block">
+          <TopBar info={info} />
         </div>
         <nav className="mx-auto 3xl:relative hidden xl:flex w-full px-10 max-w-1560 items-start gap-52px justify-end">
           <Link
@@ -49,14 +49,14 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               alt="De Bundeling"
             />
 
-              <div
-                className="bg-dark-purple w-[680px] 2xl:w-[820px] h-44 absolute -left-20 -my-[56px]"
-                style={{
-                  borderRadius: "50% / 0 0 100% 100%",
-                }}
-              >
-                &nbsp;
-              </div>
+            <div
+              className="bg-dark-purple w-[680px] 2xl:w-[820px] h-44 absolute -left-20 -my-[56px]"
+              style={{
+                borderRadius: "50% / 0 0 100% 100%",
+              }}
+            >
+              &nbsp;
+            </div>
 
           </Link>
           <Menu data={data} team={team} locations={locations} />
@@ -132,24 +132,24 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                       {(item.items.length > 0 ||
                         item.title === "Team" ||
                         item.title === "Locaties") && (
-                        <button
-                          onClick={(e) => openSubMenu(e)}
-                          className="p-6 pl-10 bg-arrow-down"
-                        >
-                          <svg
-                            width="12"
-                            height="8"
-                            viewBox="0 0 12 8"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                          <button
+                            onClick={(e) => openSubMenu(e)}
+                            className="p-6 pl-10 bg-arrow-down"
                           >
-                            <path
-                              d="M11.4211 0.712158H0.578825C0.0657523 0.712158 -0.195624 1.33172 0.172239 1.69958L5.59338 7.12073C5.81604 7.34338 6.1839 7.34338 6.40665 7.12073L11.8278 1.69958C12.1956 1.33172 11.9342 0.712158 11.4211 0.712158Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </button>
-                      )}
+                            <svg
+                              width="12"
+                              height="8"
+                              viewBox="0 0 12 8"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M11.4211 0.712158H0.578825C0.0657523 0.712158 -0.195624 1.33172 0.172239 1.69958L5.59338 7.12073C5.81604 7.34338 6.1839 7.34338 6.40665 7.12073L11.8278 1.69958C12.1956 1.33172 11.9342 0.712158 11.4211 0.712158Z"
+                                fill="white"
+                              />
+                            </svg>
+                          </button>
+                        )}
                       {item.title === "Team" && (
                         <ul className="hidden w-full pl-4 ">
                           {team.map((i: Team) => (
@@ -252,7 +252,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                   ))}
                 </ul>
                 <p className="text-white pt-6 text-[18px] font-medium">
-                  Wil je eens langskomen?
+                  Wilt u eens langskomen?
                 </p>
                 <Link
                   href="/contact"
@@ -374,46 +374,46 @@ export default NavSection;
 
 
 
-const TopBar = ({info}: {info: ContactInfo}) => <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
-<div className="flex gap-2.5 items-center">
-  <Icon
-    icon="ic:baseline-local-phone"
-    color="white"
-    width="20"
-    height="20" />
-  <a
-    className="font-medium leading-5 text-white"
-    href={`tel:${info.phone}`}
-  >
-    {info.phone}
-  </a>
-</div>
-<div className="flex gap-2.5 items-center">
-  <Icon
-    icon="material-symbols:mail-rounded"
-    color="white"
-    width="20"
-    height="20" />
-  <a
-    className="font-medium leading-5 text-white"
-    href={`mailto:${info.email}`}
-  >
-    {info.email}
-  </a>
-</div>
-<div className="flex gap-2.5 items-center">
-  <Icon
-    icon="material-symbols:location-on-rounded"
-    color="white"
-    width="20"
-    height="20" />
-  <p className="font-medium leading-5 text-white">
-    {info.mainAddress}
-  </p>
-</div>
+const TopBar = ({ info }: { info: ContactInfo }) => <div className="flex mx-auto w-90% max-w-1560 justify-end gap-10">
+  <div className="flex gap-2.5 items-center">
+    <Icon
+      icon="ic:baseline-local-phone"
+      color="white"
+      width="20"
+      height="20" />
+    <a
+      className="font-medium leading-5 text-white"
+      href={`tel:${info.phone}`}
+    >
+      {info.phone}
+    </a>
+  </div>
+  <div className="flex gap-2.5 items-center">
+    <Icon
+      icon="material-symbols:mail-rounded"
+      color="white"
+      width="20"
+      height="20" />
+    <a
+      className="font-medium leading-5 text-white"
+      href={`mailto:${info.email}`}
+    >
+      {info.email}
+    </a>
+  </div>
+  <div className="flex gap-2.5 items-center">
+    <Icon
+      icon="material-symbols:location-on-rounded"
+      color="white"
+      width="20"
+      height="20" />
+    <p className="font-medium leading-5 text-white">
+      {info.mainAddress}
+    </p>
+  </div>
 </div>;
 
-const Menu = ({data, team, locations}:{ data: Menu[], team: Team[], locations: AddressMap[]}) => {
+const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations: AddressMap[] }) => {
   return <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
     {data?.map((item: Menu, index) => (
       <li
