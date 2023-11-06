@@ -138,7 +138,7 @@ export default function ContactPage(props: ContactsUsPage) {
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
       <div className="pt-20 mb-11">
-        <BackButton className="absolute pl-4 -mt-8">Terug</BackButton>
+        <BackButton className="absolute pl-4 -mt-4">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.contactus.data.attributes.title}
         </h1>

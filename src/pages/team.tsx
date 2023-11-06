@@ -23,7 +23,7 @@ export default function Team(props: TeamPage) {
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="pt-20 pb-16 bg-blue-100 mb-11">
-        <BackButton className="absolute pl-4 -mt-8">Terug</BackButton>
+        <BackButton className="absolute pl-4 -mt-4">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
           {props.teampage.data.attributes.title}
         </h1>
@@ -31,9 +31,9 @@ export default function Team(props: TeamPage) {
       <section className="xl:bg-[url('/team_bgr.svg')] bg-[url('/team_bgr_mob.svg')] bg-no-repeat bg-top md:bg-cover bg-contain relative md:pt-[85px] pt-[67px] md:mt-[27px] mt-2 pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-          {props.teams.data.map((item) =>
-            <TeamMember key={item.attributes.name} data={item} />
-          )}
+            {props.teams.data.map((item) =>
+              <TeamMember key={item.attributes.name} data={item} />
+            )}
           </div>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function Team(props: TeamPage) {
         locations={props.locations.data}
         privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
         termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo} 
+        info={props.generalinfo.data.attributes.contactsInfo}
         socialLinks={props.generalinfo.data.attributes.socialLinks}
       />
     </>
@@ -52,15 +52,15 @@ export default function Team(props: TeamPage) {
 export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-		cache: new InMemoryCache(),
-	})
+    cache: new InMemoryCache(),
+  })
 
-	const { data } = await client.query({
-		query: GET_TEAMPAGE_DATA,
-	})
+  const { data } = await client.query({
+    query: GET_TEAMPAGE_DATA,
+  })
 
-	return {
-		props: data,
+  return {
+    props: data,
     revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
   }
 }

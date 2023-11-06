@@ -35,8 +35,8 @@ export default function PostPage(props: any) {
       </Head>
       <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
       <div className="bg-blue-100 pt-20 pb-10">
-        <BackButton className="absolute pl-4 -mt-8">Home</BackButton>
-        <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-5xl">
+        <BackButton className="absolute pl-4 -mt-6 sm:-mt-4">Home</BackButton>
+        <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-4xl md:mt-2">
           {pageAttributes?.title}
         </h1>
       </div>
