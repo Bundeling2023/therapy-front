@@ -13,6 +13,9 @@ export default async function handler(
     lastname,
     location,
     service,
+    postalCode,
+    houseNumber,
+    birthDate,
     message,
     contactMethod,
     captchaToken,
@@ -39,7 +42,12 @@ export default async function handler(
       <li><strong>Email:</strong> ${email}</li>      
       ${contactMethod === "appointment" ? `
         <li><strong>Locatie:</strong> ${location}</li>      
-        <li><strong>Soort therapie:</strong> ${service}</li>` : ''}
+        <li><strong>Soort therapie:</strong> ${service}</li>
+        <li><strong>Postcode:</strong> ${postalCode}</li>
+        <li><strong>Huisnummer:</strong> ${houseNumber}</li>
+        <li><strong>Geboortedatum:</strong> ${birthDate}</li>
+        `
+        : ''}        
     </ul>
     <p>${message}</p>`,
   };
@@ -50,17 +58,17 @@ export default async function handler(
   };
   let transporter = process.env.SMTP_EMAIL?.includes("gmail")
     ? nodemailer.createTransport({
-        service: "gmail",
-        auth: emailAuth,
-      })
+      service: "gmail",
+      auth: emailAuth,
+    })
     : nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: 587,
-        auth: emailAuth,
-        tls: {
-          rejectUnauthorized: true,
-        },
-      },);
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: emailAuth,
+      tls: {
+        rejectUnauthorized: true,
+      },
+    },);
 
   if (req.method === "POST") {
     transporter.sendMail(composedEmail, (err: any, info: any) => {

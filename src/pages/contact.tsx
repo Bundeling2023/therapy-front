@@ -79,14 +79,18 @@ export default function ContactPage(props: ContactsUsPage) {
           location: e.target.location.value,
           service: e.target.service.value,
           message: e.target.message.value,
+          postalCode: e.target.postalCode.value,
+          houseNumber: e.target.houseNumber.value,
+          birthDate: e.target.birthDate.value,
           contactMethod: selectedContactOption,
           captchaToken: captchaToken,
         });
         setLastSentTime(currentTime);
         toast.success(
-          selectedContactOption === "appointment"
+          (selectedContactOption === "appointment"
             ? `Bedankt ${e.target.firstname.value}, uw bericht over ${e.target.service.value?.toLowerCase()} is verzonden.`
-            : `Bedankt ${e.target.firstname.value}, uw bericht is verzonden.`,
+            : `Bedankt ${e.target.firstname.value}, uw bericht is verzonden.`)
+          + " We nemen zo snel mogelijk contact met u op.",
           {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 30000,
@@ -263,9 +267,8 @@ export default function ContactPage(props: ContactsUsPage) {
               </div>
             </fieldset>
             <div
-              className={`w-full form-control ${
-                selectedContactOption === "appointment" ? "" : "hidden"
-              }`}
+              className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden"
+                }`}
             >
               <label htmlFor="service" className="label">
                 <span className="label-text">Soort therapie</span>
@@ -279,9 +282,8 @@ export default function ContactPage(props: ContactsUsPage) {
               </select>
             </div>
             <div
-              className={`w-full form-control ${
-                selectedContactOption === "appointment" ? "" : "hidden"
-              }`}
+              className={`w-full form-control ${selectedContactOption === "appointment" ? "" : "hidden"
+                }`}
             >
               <label htmlFor="location" className="label">
                 <span className="label-text">Voorkeur behandellocatie</span>
@@ -304,22 +306,70 @@ export default function ContactPage(props: ContactsUsPage) {
               </label>
               <textarea
                 name="message"
+                placeholder="Beschrijf hier waarmee we u kunnen helpen."
                 className="w-full h-full input input-bordered pt-2"
               />
             </div>
+            {selectedContactOption === "appointment" && (
+              <>
+                <p className="w-full">Indien u onderstaande informatie verstrekt kunnen wij je sneller van dienst zijn:
+                </p>
+                <div className="w-full form-control sm:max-w-[34%]">
+                  <label className="label">
+                    <span className="label-text">
+                      Postcode
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    name="postalCode"
+                    placeholder="1234 AB"
+                    className="w-full input input-bordered"
+                  />
+                </div>
+                <div className="w-full form-control sm:max-w-[15%]">
+                  <label className="label">
+                    <span className="label-text">
+                      Huisnummer
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    name="houseNumber"
+                    placeholder="10A"
+                    className="w-full input input-bordered"
+                  />
+                </div>
+                <div className="w-full form-control sm:max-w-[45%]">
+                  <label className="label">
+                    <span className="label-text">
+                      Geboortedatum
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    name="birthDate"
+                    placeholder="DD-MM-JJJJ"
+                    className="w-full input input-bordered"
+                  />
+                </div>
+              </>
+            )}
             <GoogleReCaptcha
               onVerify={handleCaptchaChange}
               refreshReCaptcha={refreshReCaptcha}
             />
-            <input
-              type="submit"
-              className="btn bg-dark-purple mt-7 hover:bg-purple-950"
-              value={
-                selectedContactOption === "appointment"
-                  ? "Afspraak maken"
-                  : "Verzenden"
-              }
-            />
+            <div className="w-full">
+              <input
+                type="submit"
+                className="btn bg-dark-purple mt-7 hover:bg-purple-950"
+                value={
+                  selectedContactOption === "appointment"
+                    ? "Afspraak maken"
+                    : "Verzenden"
+                }
+              />
+            </div>
             {isLoading && (
               <span className="loading loading-spinner loading-lg"></span>
             )}
@@ -329,6 +379,9 @@ export default function ContactPage(props: ContactsUsPage) {
         <p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
           Wij gebruiken de opgegeven gegevens alleen om contact met je op te
           nemen voor de afspraak.
+        </p>
+        <p className="w-90% mx-auto max-w-1560 mt-2 text-sm">
+          Nadat u het formulier heeft verzonden nemen wij contact met u op.
         </p>
         <ToastContainer hideProgressBar />
       </section>
