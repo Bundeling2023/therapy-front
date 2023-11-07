@@ -12,41 +12,37 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-        {
-            source: '/contact-opnemen',
-            destination: '/contact',
-        },
-        {
-          source: '/maak-afspraak',
-          destination: '/contact',
-        },
-        {
-          source: '/contact-us',
-          destination: '/contact',
-        },
-        {
-          source: '/locaties',
-          destination: '/locations',
-        },
-        {
-          source: '/locatie',
-          destination: '/locations',
-        },
-        {
-          source: '/team/:first',
-          destination: '/team',
-        },
-        {
-          source: '/locaties/:first',
-          destination: '/locations',
-        },
+      {
+        source: '/contact-opnemen',
+        destination: '/contact',
+      },
+      {
+        source: '/maak-afspraak',
+        destination: '/contact',
+      },
+      {
+        source: '/contact-us',
+        destination: '/contact',
+      },
+      {
+        source: '/locaties',
+        destination: '/locations',
+      },
+      {
+        source: '/locatie',
+        destination: '/locations',
+      },
+      {
+        source: '/locaties/:first',
+        destination: '/locations/:first',
+      },
     ]
   },
   async redirects() {
     return [
       {
         source: '/beheer',
-        destination: process.env.NEXT_PUBLIC_API_URL + '/admin',    
+        destination: process.env.NEXT_PUBLIC_API_URL + '/admin',
         permanent: false,
         basePath: false,
       },
