@@ -74,12 +74,11 @@ export default function PostPage(props: any) {
               )}
             </div>
             <div className="mt-2 text-center">
-              <Link
-                href="/team"
-                className="h-16 px-4 mt-2 text-dark-purple normal-case text-base text-[18px] 2xl:text-[36px]"
+              <p
+                className="h-16 px-4 mt-2 text-dark-purple normal-case text-base text-xl"
               >
-                De bovenstaande therapeuten zijn gespecialiseerd in {pageAttributes?.title}.
-              </Link>
+                De bovenstaande therapeuten zijn gespecialiseerd in {pageAttributes?.title}
+              </p>
             </div>
           </div>
         </section>

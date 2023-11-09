@@ -174,8 +174,7 @@ ol li {
   line-height: 1.6;
 }
 
-.team-desc p + p,
-.simple-page p + p {
+.team-desc p + p{
   margin-top: 20px;
 }
 
