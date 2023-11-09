@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import TeamMember from "@/components/team/TeamMember";
-import { GET_TEAMPAGE_DATA } from "@/graphql/queries";
+import { GET_TEAMPAGE_DATA } from "@/graphql/GET_TEAMPAGE_DATA";
 import { Seo, TeamPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";

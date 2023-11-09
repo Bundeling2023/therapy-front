@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_CONTACTUS_PAGE } from "@/graphql/queries";
+import { GET_CONTACTUS_PAGE } from "@/graphql/GET_CONTACTUS_PAGE";
 import { ContactsUsPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";

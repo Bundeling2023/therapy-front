@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_PAGE_DATA } from "@/graphql/queries";
+import { GET_PAGE_DATA } from "@/graphql/GET_PAGE_DATA";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import HTMLReactParser from "html-react-parser";
 import Head from "next/head";

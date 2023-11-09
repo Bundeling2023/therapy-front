@@ -10,7 +10,7 @@ import { HomePage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
-import { GET_HOMEPAGE_DATA } from "@/graphql/queries";
+import { GET_HOMEPAGE_DATA } from "@/graphql/GET_HOMEPAGE_DATA";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import { ConstructPageTitle, isEnvironment } from "@/types/utils";
 import Script from "next/script";

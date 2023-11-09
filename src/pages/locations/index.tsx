@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
-import { GET_LOCATIONS_DATA, } from "@/graphql/queries";
+import { GET_LOCATIONS_DATA } from "@/graphql/GET_LOCATIONS_DATA";
 import { LocationsPage } from "@/types/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { Icon } from "@iconify/react";
