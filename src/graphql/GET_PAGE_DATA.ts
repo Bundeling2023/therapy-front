@@ -40,6 +40,31 @@ export const GET_PAGE_DATA = gql`
               }
             }
           }
+          specialisations {
+            data {
+              attributes {
+                Name
+                teamMembers {
+                  data {
+                    attributes {
+                      name
+                      email
+                      phone
+                      desc
+                      url
+                      img {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
           seo {
             metaTitle
             metaDescription

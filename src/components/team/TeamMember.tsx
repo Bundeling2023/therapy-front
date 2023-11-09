@@ -7,7 +7,7 @@ import { useState } from "react";
 
 interface Props {
   data: Team;
-  isMain?: boolean;
+  showDetailedInformation?: boolean;
 }
 
 function getInitials(fullName: string) {
@@ -23,7 +23,7 @@ function getInitials(fullName: string) {
   return `${firstNameInitial}${lastNameInitial}`;
 }
 
-const TeamMember = ({ data, isMain = false }: Props) => {
+const TeamMember = ({ data, showDetailedInformation = false }: Props) => {
   const teamMemberImage = (
     <div className="member-wrapper h-auto aspect-square flex items-center justify-center p-2 w-full max-h-[405px] relative max-w-[405px] overflow-hidden mx-auto">
       {data.attributes.img.data?.attributes ? (
@@ -53,13 +53,13 @@ const TeamMember = ({ data, isMain = false }: Props) => {
 
   return (
     <div className="lg:pb-[60px] pb-[45px] team-member">
-      {isMain ? (
+      {showDetailedInformation ? (
         <Link href={`team#${data.attributes.url}`}>{teamMemberImage}</Link>
       ) : (
         <>{teamMemberImage}</>
       )}
       <div className="w-full bg-dark-purple font-semibold ease-linear duration-300 items-center justify-between p-3 mt-6 rounded-full pr-2 pl-8 normal-case h-auto inline-flex gap-5 2xl:text-[30px] text-lg text-white">
-        {isMain ? (
+        {showDetailedInformation ? (
           <Link href={`team#${data.attributes.url}`}>
             {data.attributes.name}
           </Link>
@@ -91,7 +91,7 @@ const TeamMember = ({ data, isMain = false }: Props) => {
           </a>
         </div>
       </div>
-      {!isMain && (
+      {!showDetailedInformation && (
         <>
           <ContactTable
             email={data.attributes.email}

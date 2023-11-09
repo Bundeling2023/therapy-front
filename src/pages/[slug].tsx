@@ -2,15 +2,19 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_PAGE_DATA } from "@/graphql/GET_PAGE_DATA";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import HTMLReactParser from "html-react-parser";
 import Head from "next/head";
 import { GetServerSideProps } from "next/types";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
+import { TeamsSlider } from "@/components/team/TeamsSlider";
+import { NoInfo } from "../components/sub-page/NoInfo";
+import { SimplePageContent } from "../components/sub-page/SimplePageContent";
+import { BlocksPageContent } from "../components/sub-page/BlocksPageContent";
+import Link from "next/link";
+import TeamMember from "@/components/team/TeamMember";
+import { Team } from "@/types/types";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -26,6 +30,7 @@ export default function PostPage(props: any) {
   const { header, footer } = props
   const { seo } = props.pages.data?.[0]?.attributes ?? { seo: { metaTitle: '', metaDescription: '' } };
 
+  const teamData = pageAttributes.specialisations?.data?.flatMap((item: any) => item?.attributes?.teamMembers?.data ?? []);
   return (
     <>
       <Head>
@@ -60,6 +65,25 @@ export default function PostPage(props: any) {
           <BlocksPageContent items={pageAttributes.pageWithBlocks} />
         }
       </section>
+      {teamData?.length > 0 && (
+        <section className="xl:bg-[url('/team_bgr.svg')] bg-[url('/team_bgr_mob.svg')] bg-no-repeat bg-top md:bg-cover bg-contain relative pb-10">
+          <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto -mt-10">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
+              {teamData.map((item: Team) =>
+                <TeamMember key={item.attributes.name} data={item} showDetailedInformation />
+              )}
+            </div>
+            <div className="mt-2 text-center">
+              <Link
+                href="/team"
+                className="h-16 px-4 mt-2 text-dark-purple normal-case text-base text-[18px] 2xl:text-[36px]"
+              >
+                De bovenstaande therapeuten zijn gespecialiseerd in {pageAttributes?.title}.
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
       <Footer
         data={footer}
         locations={props.locations.data}
@@ -71,77 +95,6 @@ export default function PostPage(props: any) {
     </>
   )
 }
-
-const NoInfo = () => {
-  return (
-    <main className="w-full bg-white rounded-xl p-7 simple-page break-words">
-      Deze pagina is momenteel in ontwikkeling. Onze excuses voor het ongemak.
-      We werken eraan om hier binnenkort waardevolle informatie te plaatsen.
-      Kom alstublieft later terug om de volledige inhoud te bekijken.
-      Wilt u toch al meer weten neem dan <Link className="underline text-dark-purple" href="/contact">contact met ons op</Link>.
-    </main>
-  )
-}
-
-const SimplePageContent = (props: any) => {
-  const data = props?.data;
-  if (!data) {
-    return <NoInfo />
-  }
-
-  return (<main className="w-full bg-white rounded-xl p-7 simple-page break-words">
-    {data.img && data.img.data && (
-      <Image
-        className="w-full rounded-xl"
-        src={data.img.data.attributes.url}
-        alt={data.title}
-        width={0}
-        height={0}
-        sizes="100vw" />
-    )}
-    {data.description ? HTMLReactParser(data.description) : ''}
-  </main>)
-};
-
-const BlocksPageContent = (data: any) => {
-  const blocks = data?.items?.blocks;
-  if (!blocks) {
-    return <NoInfo />
-  }
-
-
-  return <main className="flex w-90% max-w-1560 flex-wrap mx-auto justify-between pb-20 gap-5">
-    {blocks.map((item: any) => {
-      const imageUrl = item.img.data?.attributes?.url;
-
-      const ImageComponent = () => <Image
-        className="w-full rounded-xl"
-        src={imageUrl}
-        alt={item.title}
-        width={0}
-        height={0}
-        sizes="100vw" />
-
-      return (<>
-        {item.link.data ? (
-          <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
-            {imageUrl && <ImageComponent />}
-            <h2>{item.title}</h2>
-            <div>{HTMLReactParser(item.description)}</div>
-          </Link>
-        ) : (
-          <div key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out">
-            {imageUrl && <ImageComponent />}
-            <h2>{item.title}</h2>
-            <div>{HTMLReactParser(item.description)}</div>
-          </div>
-        )}
-      </>)
-    }
-    )}
-  </main>
-};
-
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   context.res.setHeader(
