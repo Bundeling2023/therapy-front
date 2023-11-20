@@ -8,11 +8,9 @@ import { useEffect } from "react";
 import SideMenu, { SideMenuItem } from "@/components/SideMenu";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
-import { TeamsSlider } from "@/components/team/TeamsSlider";
 import { NoInfo } from "../components/sub-page/NoInfo";
 import { SimplePageContent } from "../components/sub-page/SimplePageContent";
 import { BlocksPageContent } from "../components/sub-page/BlocksPageContent";
-import Link from "next/link";
 import TeamMember from "@/components/team/TeamMember";
 import { Team } from "@/types/types";
 

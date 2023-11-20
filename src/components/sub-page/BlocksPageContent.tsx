@@ -13,7 +13,7 @@ export const BlocksPageContent = (data: any) => {
             const imageUrl = item.img.data?.attributes?.url;
 
             const ImageComponent = () => <Image
-                className="w-full rounded-xl"
+                className="w-full rounded-xl object-cover h-48"
                 src={imageUrl}
                 alt={item.title}
                 width={0}
@@ -22,13 +22,13 @@ export const BlocksPageContent = (data: any) => {
 
             return (<>
                 {item.link.data ? (
-                    <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
+                    <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
                         {imageUrl && <ImageComponent />}
                         <h2>{item.title}</h2>
                         <div>{HTMLReactParser(item.description)}</div>
                     </Link>
                 ) : (
-                    <div key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] max-w-full simple-page transition duration-500 ease-in-out">
+                    <div key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] w-full simple-page transition duration-500 ease-in-out">
                         {imageUrl && <ImageComponent />}
                         <h2>{item.title}</h2>
                         <div>{HTMLReactParser(item.description)}</div>
