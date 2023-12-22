@@ -40,10 +40,6 @@ const nextConfig = {
         source: "/behandelingen-kinderfysio-2/motorische-problemen/over-ons-wie-zijn-wij",
         destination: "/kinderfysiotherapie",
       },
-      {
-        source: "/voorbeeld-pagina-oude-website",
-        destination: "/voorbeeld-pagina-nieuwe-website",
-      }
     ]
   },
   async redirects() {

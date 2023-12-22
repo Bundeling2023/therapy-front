@@ -40,7 +40,7 @@ const ModalVideo = () => {
             </svg>
             <p className="text-white lg:text-xs lg:mt-[52px] mt-2 text-[8px] z-10 text-center 2xl:max-w-none max-w-[195px]">
               Bron: onafhankolijk ondorzook uitgovoord door Qualizorg B.V
-              periode 10/2020- 10/2021
+              periode: 2023
             </p>
           </div>
         </div>
