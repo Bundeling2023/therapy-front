@@ -213,6 +213,7 @@ export interface AddressMap {
     email: string
     address: string
     displayPriority: number
+    onlyForKids: boolean
     workingHours: {
       monday: string
       tuesday: string

@@ -23,6 +23,7 @@ export const GET_CONTACTUS_PAGE = gql`
           url
           title
           displayPriority
+          onlyForKids
         }
       }
     }

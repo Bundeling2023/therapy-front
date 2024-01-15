@@ -43,6 +43,11 @@ export default function ContactPage(props: ContactsUsPage) {
     }
   }, []);
 
+  function resetForm(e: any) {
+    e.target.reset();
+    setSelectedLocation("");
+  }
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -96,7 +101,7 @@ export default function ContactPage(props: ContactsUsPage) {
             autoClose: 30000,
           }
         );
-        e.target.reset();
+        resetForm(e);
       } catch (e) {
         toast.error(
           "Er is iets misgegaan met het verzenden van het formulier, probeert u het nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
@@ -119,6 +124,13 @@ export default function ContactPage(props: ContactsUsPage) {
     "Manuele therapie",
   ];
 
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOption = event.target.value;
+    setSelectedLocation(selectedOption);
+  };
+
+  const selectedLocationData = locations.find((item) => item.attributes.title === selectedLocation)?.attributes;
   const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
   return (
     <>
@@ -288,17 +300,19 @@ export default function ContactPage(props: ContactsUsPage) {
               <label htmlFor="location" className="label">
                 <span className="label-text">Voorkeur behandellocatie</span>
               </label>
-              <select name="location" className="select select-bordered">
+              <select name="location" className="select select-bordered" onChange={handleLocationChange}>
                 {locations.map((item) => (
                   <option
                     key={`${item.attributes.title}`}
                     value={item.attributes.title}
+                    data-only-for-kids={item.attributes.onlyForKids}
                   >
-                    {item.attributes.title}
+                    {item.attributes.title}{item.attributes.onlyForKids && " (Alleen voor kinderen)"}
                   </option>
                 ))}
                 <option value="Geen voorkeur">Geen voorkeur</option>
               </select>
+              {selectedLocationData?.onlyForKids && <p className="p-2"><em>Let op: Deze locatie biedt alleen behandelingen voor kinderen.</em></p>}
             </div>
             <div className="w-full h-48 form-control">
               <label htmlFor="message" className="label">

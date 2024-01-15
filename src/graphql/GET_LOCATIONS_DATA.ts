@@ -29,6 +29,7 @@ export const GET_LOCATIONS_DATA = gql`
           email
           address
           displayPriority
+          onlyForKids
           workingHours {
            	monday
             tuesday
