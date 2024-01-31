@@ -171,6 +171,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <input
                 onChange={() => setFirstNameError(false)}
                 type="text"
+                id="firstname"
                 name="firstname"
                 placeholder="Voornaam"
                 className="w-full input input-bordered"
@@ -190,6 +191,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <input
                 onChange={() => setLastNameError(false)}
                 type="text"
+                id="lastname"
                 name="lastname"
                 placeholder="Achternaam"
                 className="w-full input input-bordered"
@@ -209,6 +211,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <input
                 onChange={() => setEmailError(false)}
                 type="text"
+                id="email"
                 name="email"
                 placeholder="E-mail adres"
                 className="w-full input input-bordered"
@@ -228,6 +231,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <input
                 onChange={() => setPhoneError(false)}
                 type="text"
+                id="phone"
                 name="phone"
                 placeholder="Telefoon nummer"
                 className="w-full input input-bordered"
@@ -286,7 +290,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <label htmlFor="service" className="label">
                 <span className="label-text">Soort therapie</span>
               </label>
-              <select name="service" className="select select-bordered">
+              <select id="service" name="service" className="select select-bordered">
                 {serviceOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
@@ -301,7 +305,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <label htmlFor="location" className="label">
                 <span className="label-text">Voorkeur behandellocatie</span>
               </label>
-              <select name="location" className="select select-bordered" onChange={handleLocationChange}>
+              <select id="location" name="location" className="select select-bordered" onChange={handleLocationChange}>
                 {locations.map((item) => (
                   <option
                     key={`${item.attributes.title}`}
@@ -320,6 +324,7 @@ export default function ContactPage(props: ContactsUsPage) {
                 <span className="label-text">Bericht</span>
               </label>
               <textarea
+                id="message"
                 name="message"
                 placeholder="Beschrijf hier waarmee we u kunnen helpen."
                 className="w-full h-full input input-bordered pt-2"
@@ -337,6 +342,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   </label>
                   <input
                     type="text"
+                    id="postalCode"
                     name="postalCode"
                     placeholder="1234 AB"
                     className="w-full input input-bordered"
@@ -350,6 +356,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   </label>
                   <input
                     type="text"
+                    id="houseNumber"
                     name="houseNumber"
                     placeholder="10A"
                     className="w-full input input-bordered"
@@ -363,6 +370,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   </label>
                   <input
                     type="text"
+                    id="birthDate"
                     name="birthDate"
                     placeholder="DD-MM-JJJJ"
                     className="w-full input input-bordered"
@@ -376,6 +384,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   </label>
                   <input
                     type="text"
+                    id="doctor"
                     name="doctor"
                     placeholder="Naam huisarts"
                     className="w-full input input-bordered"
