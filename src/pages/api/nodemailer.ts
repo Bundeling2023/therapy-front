@@ -16,6 +16,7 @@ export default async function handler(
     postalCode,
     houseNumber,
     birthDate,
+    doctor,
     message,
     contactMethod,
     captchaToken,
@@ -46,6 +47,7 @@ export default async function handler(
         <li><strong>Postcode:</strong> ${postalCode}</li>
         <li><strong>Huisnummer:</strong> ${houseNumber}</li>
         <li><strong>Geboortedatum:</strong> ${birthDate}</li>
+        <li><strong>Huisarts:</strong> ${doctor}</li>
         `
         : ''}        
     </ul>

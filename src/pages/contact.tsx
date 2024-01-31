@@ -87,6 +87,7 @@ export default function ContactPage(props: ContactsUsPage) {
           postalCode: e.target.postalCode.value,
           houseNumber: e.target.houseNumber.value,
           birthDate: e.target.birthDate.value,
+          doctor: e.target.doctor.value,
           contactMethod: selectedContactOption,
           captchaToken: captchaToken,
         });
@@ -155,7 +156,7 @@ export default function ContactPage(props: ContactsUsPage) {
           {props.contactus.data.attributes.title}
         </h1>
       </div>
-      <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-20">
+      <section className="bg-blue-50 relative xl:px-[200px] 2xl:px-[400px] md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-20">
         <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
           <form
             className="flex flex-wrap justify-between w-90% mx-auto gap-y-5 max-w-1560"
@@ -328,7 +329,7 @@ export default function ContactPage(props: ContactsUsPage) {
               <>
                 <p className="w-full">Indien u onderstaande informatie verstrekt kunnen wij u sneller van dienst zijn:
                 </p>
-                <div className="w-full form-control sm:max-w-[34%]">
+                <div className="w-full form-control sm:max-w-[65%]">
                   <label className="label">
                     <span className="label-text">
                       Postcode
@@ -341,7 +342,7 @@ export default function ContactPage(props: ContactsUsPage) {
                     className="w-full input input-bordered"
                   />
                 </div>
-                <div className="w-full form-control sm:max-w-[15%]">
+                <div className="w-full form-control sm:max-w-[30%]">
                   <label className="label">
                     <span className="label-text">
                       Huisnummer
@@ -354,16 +355,29 @@ export default function ContactPage(props: ContactsUsPage) {
                     className="w-full input input-bordered"
                   />
                 </div>
-                <div className="w-full form-control sm:max-w-[45%]">
+                <div className="w-full form-control sm:max-w-[48%]">
                   <label className="label">
                     <span className="label-text">
-                      Geboortedatum
+                      Geboortedatum (van de persoon waarvoor aanmelding is)
                     </span>
                   </label>
                   <input
                     type="text"
                     name="birthDate"
                     placeholder="DD-MM-JJJJ"
+                    className="w-full input input-bordered"
+                  />
+                </div>
+                <div className="w-full form-control sm:max-w-[48%]">
+                  <label className="label">
+                    <span className="label-text">
+                      Huisarts (van de persoon waarvoor aanmelding is)
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    name="doctor"
+                    placeholder="Naam huisarts"
                     className="w-full input input-bordered"
                   />
                 </div>
