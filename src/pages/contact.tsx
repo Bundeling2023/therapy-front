@@ -163,7 +163,7 @@ export default function ContactPage(props: ContactsUsPage) {
             onSubmit={(e) => handleSubmit(e)}
           >
             <div className="w-full form-control sm:max-w-[49%]">
-              <label className="label">
+              <label className="label" htmlFor="firstname">
                 <span className="label-text">
                   Voornaam <span className="text-red-700">*</span>
                 </span>
@@ -182,7 +182,7 @@ export default function ContactPage(props: ContactsUsPage) {
               )}
             </div>
             <div className="w-full form-control sm:max-w-[49%]">
-              <label className="label">
+              <label className="label" htmlFor="lastname">
                 <span className="label-text">
                   Achternaam <span className="text-red-700">*</span>
                 </span>
@@ -201,7 +201,7 @@ export default function ContactPage(props: ContactsUsPage) {
               )}
             </div>
             <div className="w-full form-control sm:max-w-[49%]">
-              <label className="label">
+              <label className="label" htmlFor="email">
                 <span className="label-text">
                   E-mailadres <span className="text-red-700">*</span>
                 </span>
@@ -330,7 +330,7 @@ export default function ContactPage(props: ContactsUsPage) {
                 <p className="w-full">Indien u onderstaande informatie verstrekt kunnen wij u sneller van dienst zijn:
                 </p>
                 <div className="w-full form-control sm:max-w-[65%]">
-                  <label className="label">
+                  <label className="label" htmlFor="postalCode">
                     <span className="label-text">
                       Postcode
                     </span>
@@ -343,7 +343,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   />
                 </div>
                 <div className="w-full form-control sm:max-w-[30%]">
-                  <label className="label">
+                  <label className="label" htmlFor="houseNumber">
                     <span className="label-text">
                       Huisnummer
                     </span>
@@ -356,7 +356,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   />
                 </div>
                 <div className="w-full form-control sm:max-w-[48%]">
-                  <label className="label">
+                  <label htmlFor="birthDate" className="label">
                     <span className="label-text">
                       Geboortedatum (van de persoon waarvoor aanmelding is)
                     </span>
@@ -369,7 +369,7 @@ export default function ContactPage(props: ContactsUsPage) {
                   />
                 </div>
                 <div className="w-full form-control sm:max-w-[48%]">
-                  <label className="label">
+                  <label htmlFor="doctor" className="label">
                     <span className="label-text">
                       Huisarts (van de persoon waarvoor aanmelding is)
                     </span>
