@@ -117,6 +117,19 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
               <Link className="hover:underline" href={privacyLink}>Privacy policy</Link>
             </div>
             <div className="flex gap-4">
+            <a
+                title="AVG OK"
+                href="https://www.avg-programma.nl/avg-ok-vignet/0ed29e36-61bd-4e59-980d-f105c5ed8cfc"
+                target="_blank"
+                className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center mr-10"
+              >
+                <Image
+                  src="https://res.cloudinary.com/dwjdjipxl/image/upload/f_auto/q_auto/v1707918573/thumbnail_avg_ok_logo_a0c76dd1c2.png"
+                  alt="AVG OK"
+                  width={50}
+                  height={50}
+                />
+              </a>
               <a
                 title="Facebook"
                 href={socialLinks?.facebook}
@@ -135,20 +148,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                     fill="white"
                   />
                 </svg>
-              </a>
-              {/* <a
-                title="YouTube"
-                href={socialLinks?.youtube}
-                target="_blank"
-                className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width='35' viewBox="-35.2 -41.333 305.067 248">
-                  <path
-                    d="M93.333 117.559V47.775l61.334 34.893zm136.43-91.742c-2.699-10.162-10.651-18.165-20.747-20.881C190.716 0 117.333 0 117.333 0S43.951 0 25.651 4.936C15.555 7.652 7.603 15.655 4.904 25.817 0 44.236 0 82.667 0 82.667s0 38.429 4.904 56.849c2.699 10.163 10.65 18.165 20.747 20.883 18.3 4.934 91.682 4.934 91.682 4.934s73.383 0 91.683-4.934c10.096-2.718 18.048-10.72 20.747-20.883 4.904-18.42 4.904-56.85 4.904-56.85s0-38.43-4.904-56.849"
-                    fill="#fff"
-                  />
-                </svg>
-              </a> */}
+              </a>              
               <a
                 title="Instagram"
                 href={socialLinks?.instagram}
