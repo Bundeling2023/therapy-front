@@ -21,7 +21,7 @@ export default function PostPage(props: any) {
   }, [])
 
   const pageAttributes = props.pages?.data?.[0]?.attributes;
-  const isBlocksPage = pageAttributes?.pageWithBlocks?.blocks;
+  const isBlocksPage = pageAttributes?.pageWithBlocks?.blocks?.[0];
   const isNormalPage = !isBlocksPage;
   const hasSimplePageData = pageAttributes?.simplePage;
 
