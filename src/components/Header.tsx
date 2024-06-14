@@ -33,7 +33,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
 
   return (
     <>
-      <section className="relative w-full bg-dark-purple">
+      <section data-nosnippet={''} className="relative w-full bg-dark-purple">
         <div className="hidden w-full py-5 bg-dark-purple xl:block">
           <TopBar info={info} />
         </div>

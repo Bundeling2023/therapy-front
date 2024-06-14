@@ -17,7 +17,7 @@ export interface SideMenuItem {
 }
 
 const SideMenu = ({ items, childItems, parentTitle, currentPageUrl: pageUrl, parentPageUrl, showAppointment }: Props) => {
-    return (<aside className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
+    return (<aside data-nosnippet={''} className="bg-blue-200 lg:ml-8 w-full rounded-xl p-7 mt-6 lg:mt-0 lg:min-w-[400px] lg:max-w-[400px]">
         {parentPageUrl && <Link href={parentPageUrl}><h3 className="mb-6 text-xl font-bold lg:text-2xl link">{parentTitle}</h3></Link>}
         {items.map((item: SideMenuItem) =>
             <Fragment key={item.url}>
