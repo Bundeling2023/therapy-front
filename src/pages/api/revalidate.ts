@@ -12,6 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const xmlUrl = `${protocol}://${req.headers.host}${sitemapPath}`;
 
     try {
+        if(req.query.path) {
+            await res.revalidate(req.query.path.toString());
+            return res.status(200).json({ message: 'Revalidation successful.', paths: req.query.path });
+        }
+
         const response = await fetch(xmlUrl);
         const xmlText = await response.text();
 
