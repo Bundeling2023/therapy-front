@@ -68,15 +68,16 @@ export default async function handler(
       port: 587,
       auth: emailAuth,
       tls: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
       },
     },);
 
   if (req.method === "POST") {
     transporter.sendMail(composedEmail, (err: any, info: any) => {
       if (err) {
+        console.error('Error details:', err); // log the full error
         res.status(404).json({
-          error: `Connection refused at ${err.address}`,
+          error: `Email connection refused at ${err.address}`,
         });
       } else {
         res.status(250).json({

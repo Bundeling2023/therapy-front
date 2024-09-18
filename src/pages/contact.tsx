@@ -16,6 +16,7 @@ import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
+import Link from "next/link";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
@@ -133,6 +134,7 @@ export default function ContactPage(props: ContactsUsPage) {
 
   const selectedLocationData = locations.find((item) => item.attributes.title === selectedLocation)?.attributes;
   const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
+  const isContactWorking = false;
   return (
     <>
       <Head>
@@ -156,7 +158,13 @@ export default function ContactPage(props: ContactsUsPage) {
           {props.contactus.data.attributes.title}
         </h1>
       </div>
+
       <section className="bg-blue-50 relative xl:px-[200px] 2xl:px-[400px] md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-20">
+        <p>
+          Ons contactformulier werkt tijdelijk niet naar behoren. U kunt ons bereiken via e-mail of telefoon. <Link href="/locaties" style={{color: "blue"}}>Contactgegevens vindt u op onze locaties pagina</Link>.
+        </p>
+
+        {isContactWorking && (
         <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
           <form
             className="flex flex-wrap justify-between w-90% mx-auto gap-y-5 max-w-1560"
@@ -411,15 +419,15 @@ export default function ContactPage(props: ContactsUsPage) {
               <span className="loading loading-spinner loading-lg"></span>
             )}
           </form>
-        </GoogleReCaptchaProvider>
+        </GoogleReCaptchaProvider>)}
 
-        <p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
-          Wij gebruiken de opgegeven gegevens alleen om contact met u op te
-          nemen voor de afspraak.
-        </p>
-        <p className="w-90% mx-auto max-w-1560 mt-2 text-sm">
-          Nadat u het formulier heeft verzonden nemen wij contact met u op.
-        </p>
+        {isContactWorking && (
+        <><p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
+            Wij gebruiken de opgegeven gegevens alleen om contact met u op te
+            nemen voor de afspraak.
+          </p><p className="w-90% mx-auto max-w-1560 mt-2 text-sm">
+              Nadat u het formulier heeft verzonden nemen wij contact met u op.
+            </p></>)}
         <ToastContainer hideProgressBar />
       </section>
       <Footer
