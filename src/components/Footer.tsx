@@ -111,10 +111,14 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             </div>
           </div>
           <div className="flex flex-col-reverse items-start justify-between mt-12 md:mt-20 gap-y-8 md:flex-row">
-            <div className="[&>*]: text-white md:text-lg text-sm flex md:gap-[34px] gap-[16px]">
-              <Link className="hover:underline" href={termsAndConditionsPage}>Algemene voorwaarden</Link>
-              <span>|</span>
-              <Link className="hover:underline" href={privacyLink}>Privacy policy</Link>
+            <div className="[&>*]: text-white md:text-lg text-sm">
+              <div className="flex md:gap-[34px] gap-[16px] mb-2">
+                <Link className="hover:underline" href={termsAndConditionsPage}>Algemene voorwaarden</Link>
+                <span>|</span>
+                <Link className="hover:underline" href={privacyLink}>Privacy policy</Link>
+              </div>
+              
+              <Link className="hover:underline text-xs opacity-30 w-full text-center" target="_blank" href="https://novana.nl" >Website gecreëerd door Novana</Link>
             </div>
             <div className="flex gap-4">
             <a
