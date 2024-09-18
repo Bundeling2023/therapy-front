@@ -134,7 +134,7 @@ export default function ContactPage(props: ContactsUsPage) {
 
   const selectedLocationData = locations.find((item) => item.attributes.title === selectedLocation)?.attributes;
   const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
-  const isContactWorking = false;
+  const isContactFormEnabled = process.env.NEXT_PUBLIC_CONTACT_FORM_HAS_ERRORS !== "true";
   return (
     <>
       <Head>
@@ -160,11 +160,13 @@ export default function ContactPage(props: ContactsUsPage) {
       </div>
 
       <section className="bg-blue-50 relative xl:px-[200px] 2xl:px-[400px] md:pt-[85px] pt-[85px] md:mt-[27px] mt-2 pb-20">
+        {!isContactFormEnabled && (
         <p>
           Ons contactformulier werkt tijdelijk niet naar behoren. U kunt ons bereiken via e-mail of telefoon. <Link href="/locaties" style={{color: "blue"}}>Contactgegevens vindt u op onze locaties pagina</Link>.
         </p>
+      )}
 
-        {isContactWorking && (
+        {isContactFormEnabled && (
         <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
           <form
             className="flex flex-wrap justify-between w-90% mx-auto gap-y-5 max-w-1560"
@@ -421,7 +423,7 @@ export default function ContactPage(props: ContactsUsPage) {
           </form>
         </GoogleReCaptchaProvider>)}
 
-        {isContactWorking && (
+        {isContactFormEnabled && (
         <><p className="w-90% mx-auto max-w-1560 mt-12 text-sm">
             Wij gebruiken de opgegeven gegevens alleen om contact met u op te
             nemen voor de afspraak.

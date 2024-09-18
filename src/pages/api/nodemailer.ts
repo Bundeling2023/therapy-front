@@ -65,8 +65,9 @@ export default async function handler(
     })
     : nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: 587,
+      port: process.env.SMTP_PORT || 587,
       auth: emailAuth,
+      secure: true,
       tls: {
         rejectUnauthorized: false,
       },
