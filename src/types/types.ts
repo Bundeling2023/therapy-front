@@ -130,6 +130,7 @@ export interface MenuItemFields {
     attributes: {
       url: string
       title: string
+      publishedAt: string
     }
   }
 }

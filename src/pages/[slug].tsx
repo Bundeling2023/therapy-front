@@ -143,6 +143,7 @@ interface NavigationItem {
     attributes: {
       __typename: string;
       url: string;
+      publishedAt: string;
     };
   };
   items: NavigationItem[];
@@ -176,10 +177,10 @@ function getChildItems(node: NavigationItem | null): SideMenuItem[] {
     return [];
   }
 
-  return node.items.map((x) => {
+  return node.items.filter(y => y.related.attributes.publishedAt).map((x) => {
     return {
       title: x.title,
-      url: x.related?.attributes?.url
+      url: x.related?.attributes?.url,
     }
   });
 }

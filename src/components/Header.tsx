@@ -6,7 +6,7 @@ import LogoDesktop from "../img/logo.svg";
 import {
   AddressMap,
   ContactInfo,
-  Menu,
+  type Menu,
   SocialLinks,
   Team,
 } from "@/types/types";
@@ -221,9 +221,10 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                                   </svg>
                                 </button>
                               )}
-                              {i.items?.length > 0 && (
+                              {i.items?.length > 0 && (                                
                                 <ul className="hidden w-full pl-4">
                                   {i.items.map((itm) => (
+                                    itm.related?.attributes.publishedAt && (
                                     <li
                                       key={
                                         itm.title
@@ -240,7 +241,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                                       >
                                         {itm.title}
                                       </MenuLink>
-                                    </li>
+                                    </li>)
                                   ))}
                                 </ul>
                               )}
@@ -416,6 +417,7 @@ const TopBar = ({ info }: { info: ContactInfo }) => <div className="flex mx-auto
 const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations: AddressMap[] }) => {
   return <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
     {data?.map((item: Menu, index) => (
+      item.related?.attributes.publishedAt && (
       <li
         className="relative flex group"
         key={item.title + index}
@@ -482,6 +484,7 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
         {item?.items.length > 0 && (
           <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
             {item?.items.map((i) => (
+              i.related?.attributes.publishedAt && (
               <li className="relative group/item" key={i.title + index}>
                 <MenuLink
                   className="w-full py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
@@ -505,9 +508,10 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                   )}
                 </MenuLink>
 
-                {i.items?.length > 0 && (
+                {i.items?.length > 0 && (                  
                   <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-2 text-2xl shadow-md group-hover/item:block menu menu-compact bg-base-100 rounded-box">
-                    {i?.items?.map((itm, index) => (
+                    {i?.items?.map((itm, index) => (                      
+                      itm.related?.attributes.publishedAt !== null && (
                       <li
                         key={itm.title
                           ? itm.title + index
@@ -520,15 +524,15 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                         >
                           {itm.title}
                         </MenuLink>
-                      </li>
+                      </li>)
                     ))}
                   </ul>
                 )}
-              </li>
+              </li>)
             ))}
           </ul>
         )}
-      </li>
+      </li>)
     ))}
   </ul>;
 }

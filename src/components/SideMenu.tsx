@@ -13,7 +13,6 @@ interface Props {
 export interface SideMenuItem {
     url: string;
     title: string;
-
 }
 
 const SideMenu = ({ items, childItems, parentTitle, currentPageUrl: pageUrl, parentPageUrl, showAppointment }: Props) => {

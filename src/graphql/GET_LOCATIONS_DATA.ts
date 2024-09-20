@@ -68,12 +68,15 @@ export const GET_LOCATIONS_DATA = gql`
         attributes {
           ... on Page {
             url
+            publishedAt
           }
           ... on Teampage {
             url
+            publishedAt
           }
           ... on Locatie {
             url
+            publishedAt
           }
         }
       }
@@ -84,12 +87,15 @@ export const GET_LOCATIONS_DATA = gql`
         attributes {
           ... on Page {
               url
+              publishedAt
             }
           ... on Teampage {
               url
+              publishedAt
             }
           ... on Locatie {
               url
+              publishedAt
             }
           }
         }
@@ -100,6 +106,7 @@ export const GET_LOCATIONS_DATA = gql`
           attributes {
             ... on Page {
                 url
+               publishedAt
               }
             }
           }
@@ -110,6 +117,7 @@ export const GET_LOCATIONS_DATA = gql`
             attributes {
               ... on Page {
                   url
+                  publishedAt
                 }
               }
             }
@@ -128,12 +136,15 @@ export const GET_LOCATIONS_DATA = gql`
         attributes {
           ... on Page {
             url
+            publishedAt
           }
           ... on Teampage {
             url
+            publishedAt
           }
           ... on Locatie {
             url
+            publishedAt
           }
         }
       }
@@ -144,12 +155,15 @@ export const GET_LOCATIONS_DATA = gql`
         attributes {
           ... on Page {
               url
+              publishedAt
             }
           ... on Teampage {
               url
+              publishedAt
             }
           ... on Locatie {
               url
+              publishedAt
             }
           }
         }

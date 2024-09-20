@@ -49,12 +49,15 @@ export const GET_CONTACTUS_PAGE = gql`
         attributes {
           ... on Page {
             url
+            publishedAt
           }
           ... on Teampage {
             url
+            publishedAt
           }
           ... on Locatie {
             url
+            publishedAt
           }
         }
       }
@@ -65,12 +68,15 @@ export const GET_CONTACTUS_PAGE = gql`
         attributes {
           ... on Page {
               url
+              publishedAt
             }
           ... on Teampage {
               url
+              publishedAt
             }
           ... on Locatie {
               url
+              publishedAt
             }
           }
         }
@@ -81,6 +87,7 @@ export const GET_CONTACTUS_PAGE = gql`
           attributes {
             ... on Page {
                 url
+               publishedAt
               }
             }
           }
@@ -98,12 +105,15 @@ export const GET_CONTACTUS_PAGE = gql`
         attributes {
           ... on Page {
             url
+            publishedAt
           }
           ... on Teampage {
             url
+            publishedAt
           }
           ... on Locatie {
             url
+            publishedAt
           }
         }
       }
@@ -114,12 +124,15 @@ export const GET_CONTACTUS_PAGE = gql`
         attributes {
           ... on Page {
               url
+              publishedAt
             }
           ... on Teampage {
               url
+              publishedAt
             }
           ... on Locatie {
               url
+              publishedAt
             }
           }
         }
