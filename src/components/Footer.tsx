@@ -195,7 +195,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             height="30"
             icon="iconamoon:close-bold"
           />
-          <button onClick={closeCookieBanner} className="block btn btn-sm btn-primary sm:hidden">Accept</button>
+          <button onClick={closeCookieBanner} className="block btn btn-sm btn-primary sm:hidden">Accepteren</button>
         </div>
       )}
     </>
