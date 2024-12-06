@@ -82,6 +82,7 @@ export default function ContactPage(props: ContactsUsPage) {
           phone: e.target.phone.value,
           firstname: e.target.firstname.value,
           lastname: e.target.lastname.value,
+          kidname: e.target.kidname.value,
           location: e.target.location.value,
           service: e.target.service.value,
           message: e.target.message.value,
@@ -172,7 +173,7 @@ export default function ContactPage(props: ContactsUsPage) {
             className="flex flex-wrap justify-between w-90% mx-auto gap-y-5 max-w-1560"
             onSubmit={(e) => handleSubmit(e)}
           >
-            <div className="w-full form-control sm:max-w-[49%]">
+            <div className="w-full form-control sm:max-w-[28%]">
               <label className="label" htmlFor="firstname">
                 <span className="label-text">
                   Voornaam <span className="text-red-700">*</span>
@@ -192,7 +193,7 @@ export default function ContactPage(props: ContactsUsPage) {
                 </span>
               )}
             </div>
-            <div className="w-full form-control sm:max-w-[49%]">
+            <div className="w-full form-control sm:max-w-[32%]">
               <label className="label" htmlFor="lastname">
                 <span className="label-text">
                   Achternaam <span className="text-red-700">*</span>
@@ -211,6 +212,20 @@ export default function ContactPage(props: ContactsUsPage) {
                   Dit veld is vereist.
                 </span>
               )}
+            </div>
+            <div className="w-full form-control sm:max-w-[36%]">
+              <label className="label" htmlFor="kidname">
+                <span className="label-text">
+                  Naam kind <span className="text-gray-500 text-xs pl-2">optioneel</span>
+                </span>
+              </label>
+              <input
+                type="text"
+                id="kidname"
+                name="kidname"
+                placeholder="Naam kind"
+                className="w-full input input-bordered"
+              />
             </div>
             <div className="w-full form-control sm:max-w-[49%]">
               <label className="label" htmlFor="email">

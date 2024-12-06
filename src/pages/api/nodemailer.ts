@@ -11,6 +11,7 @@ export default async function handler(
     phone,
     firstname,
     lastname,
+    kidname,
     location,
     service,
     postalCode,
@@ -39,6 +40,7 @@ export default async function handler(
     <ul>
       <li><strong>Voornaam:</strong> ${firstname}</li>
       <li><strong>Achternaam:</strong> ${lastname}</li>
+      <li><strong>Naam kind:</strong> ${kidname}</li>
       <li><strong>Telefoon:</strong> ${phone}</li>
       <li><strong>Email:</strong> ${email}</li>      
       ${contactMethod === "appointment" ? `
