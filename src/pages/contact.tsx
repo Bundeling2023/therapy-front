@@ -82,14 +82,14 @@ export default function ContactPage(props: ContactsUsPage) {
           phone: e.target.phone.value,
           firstname: e.target.firstname.value,
           lastname: e.target.lastname.value,
-          kidname: e.target.kidname.value,
-          location: e.target.location.value,
-          service: e.target.service.value,
+          kidname: e.target.kidname?.value,
+          location: e.target.location?.value,
+          service: e.target.service?.value,
           message: e.target.message.value,
-          postalCode: e.target.postalCode.value,
-          houseNumber: e.target.houseNumber.value,
-          birthDate: e.target.birthDate.value,
-          doctor: e.target.doctor.value,
+          postalCode: e.target.postalCode?.value,
+          houseNumber: e.target.houseNumber?.value,
+          birthDate: e.target.birthDate?.value,
+          doctor: e.target.doctor?.value,
           contactMethod: selectedContactOption,
           captchaToken: captchaToken,
         });
@@ -106,6 +106,7 @@ export default function ContactPage(props: ContactsUsPage) {
         );
         resetForm(e);
       } catch (e) {
+        console.error(e);
         toast.error(
           "Er is iets misgegaan met het verzenden van het formulier, probeert u het nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
           {
