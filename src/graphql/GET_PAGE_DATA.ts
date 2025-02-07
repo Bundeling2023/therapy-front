@@ -40,11 +40,11 @@ export const GET_PAGE_DATA = gql`
               }
             }
           }
-          specialisations {
+          specialisations (pagination: { limit: 100 }) {
             data {
               attributes {
                 Name
-                teamMembers {
+                teamMembers (pagination: { limit: 100 }) {
                   data {
                     attributes {
                       name
