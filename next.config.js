@@ -13,6 +13,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/bedankt',
+        destination: '/thank-you',
+      },
+      {
         source: '/contact-opnemen',
         destination: '/contact',
       },
