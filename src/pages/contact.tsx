@@ -95,8 +95,6 @@ export default function ContactPage(props: ContactsUsPage) {
         });
         setLastSentTime(currentTime);
         
-        // Prepare query parameters for thank you page (only non-sensitive info)
-        // Put type as the first parameter
         const queryParams = new URLSearchParams({
           type: selectedContactOption,
           firstname: e.target?.firstname?.value,
