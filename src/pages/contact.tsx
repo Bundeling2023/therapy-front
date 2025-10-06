@@ -94,16 +94,22 @@ export default function ContactPage(props: ContactsUsPage) {
           captchaToken: captchaToken,
         });
         setLastSentTime(currentTime);
-        toast.success(
-          (selectedContactOption === "appointment"
-            ? `Bedankt ${e.target.firstname.value}, uw bericht over ${e.target.service.value?.toLowerCase()} is verzonden.`
-            : `Bedankt ${e.target.firstname.value}, uw bericht is verzonden.`)
-          + " We nemen zo snel mogelijk contact met u op.",
-          {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 30000,
-          }
-        );
+        
+        // Prepare query parameters for thank you page (only non-sensitive info)
+        // Put type as the first parameter
+        const queryParams = new URLSearchParams({
+          type: selectedContactOption,
+          firstname: e.target?.firstname?.value,
+        });
+        
+        // Add service parameter if it's an appointment
+        if (selectedContactOption === "appointment" && e.target?.service?.value) {
+          queryParams.append('service', e.target?.service?.value);
+        }
+        
+        // Redirect to thank you page
+        window.location.href = `/bedankt?${queryParams.toString()}`;
+        
         resetForm(e);
       } catch (e) {
         console.error(e);
