@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType, Navigation, Pagination } from "swiper";
+import { Swiper as SwiperType, Navigation, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,12 +17,17 @@ const HeaderSlider = ({ data }: Props) => {
   return (
     <header className="relative bg-dark-purple 2xl:pt-24 2xl:pb-36 bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover">
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
         loop
         pagination={true}
+        speed={900}
+        autoplay={{ 
+          delay: 5000,
+          disableOnInteraction: true,
+        }}
         breakpoints={{
           1025: {
             pagination: true,
