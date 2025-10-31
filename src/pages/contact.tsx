@@ -69,7 +69,7 @@ export default function ContactPage(props: ContactsUsPage) {
         toast.warning(
           "U heeft recent al een bericht verzonden, probeert u het over enkele minuten nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
           {
-            position: toast.POSITION.TOP_CENTER,
+            position: 'top-center',
             autoClose: 30000,
           }
         );
@@ -114,7 +114,7 @@ export default function ContactPage(props: ContactsUsPage) {
         toast.error(
           "Er is iets misgegaan met het verzenden van het formulier, probeert u het nog eens of neem rechtstreeks contact met ons op via e-mail of telefoon.",
           {
-            position: toast.POSITION.TOP_CENTER,
+            position: 'top-center',
             autoClose: 30000,
           }
         );
