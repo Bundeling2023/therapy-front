@@ -132,8 +132,7 @@ export default function ThankYouPage(props: ContactsUsPage) {
                 Reactietijd
               </h3>
               <p className="text-gray-600">
-                Wij streven ernaar om binnen 24 uur te reageren op uw bericht. 
-                Tijdens weekenden en feestdagen kan dit iets langer duren.
+                U staat nu op onze wachtlijst, zo kijken wij welke specialist het beste bij u klachten past. Wij streven er naar u binnen een week van een afspraak te voorzien, in drukke periodes kan dit uiteraard iets langer zijn.
               </p>
             </div>
 
@@ -142,11 +141,10 @@ export default function ThankYouPage(props: ContactsUsPage) {
                 <Icon icon="mdi:phone" className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-lg font-semibold text-dark-purple mb-2">
-                Spoedeisend?
+                Spoed
               </h3>
               <p className="text-gray-600">
-                Voor spoedeisende zaken kunt u ons ook direct bellen. 
-                Kijk op onze locatiepagina voor de telefoonnummers.
+                Is uw vraag of aanmelding dringend, dan kunt u ons ook direct <Link href="/locaties" className="text-blue-600 hover:text-blue-800 underline">bellen</Link> tijdens kantooruren.
               </p>
             </div>
           </div>
