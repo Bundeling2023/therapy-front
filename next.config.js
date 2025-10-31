@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ['@iconify/react', 'swiper'],
+  },
   images: {
+    qualities: [75, 80],
     remotePatterns: [
       {
         protocol: 'https',

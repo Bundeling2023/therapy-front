@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import "node_modules/leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.css";
 import { AddressMap } from "@/types/types";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -10,6 +10,9 @@ interface Props {
 }
 
 const MapSection = ({ data: locations }: Props) => {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  
   const MapBlock = dynamic(() => import("@/components/Map"), {
     ssr: false,
   });
@@ -25,6 +28,26 @@ const MapSection = ({ data: locations }: Props) => {
     tab?.classList.remove('hidden');
   }
 
+  // Cleanup function to prevent map re-initialization
+  useEffect(() => {
+    return () => {
+      if (mapInstanceRef.current) {
+        try {
+          mapInstanceRef.current.remove();
+          mapInstanceRef.current = null;
+        } catch (e) {
+          // Map already cleaned up
+        }
+      }
+    };
+  }, []);
+
+  // Create a stable key for the map to prevent re-initialization
+  const mapKey = React.useMemo(() => 
+    `map-${locations.map(loc => loc.attributes.coordinates).join('-')}`, 
+    [locations]
+  );
+
   return (
     <section className="relative pt-20 pb-16 w-full mx-auto bg-[#EBF3FF]">
       <div className="w-90% max-w-1560 mx-auto flex rounded-[42px] overflow-hidden lg:flex-row flex-col">
@@ -32,7 +55,7 @@ const MapSection = ({ data: locations }: Props) => {
           <div className="z-[999] absolute pb-10 bottom-0 left-0 right-0 mx-auto text-center">
             <span className="bg-gray-400/80 rounded-lg p-2 text-white">Selecteer een locatie om de contactgegevens te bekijken</span>
             </div>
-          <MapBlock handleCLick={changeTab} data={locations} />
+          <MapBlock key={mapKey} handleCLick={changeTab} data={locations} />
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
           {locations.map((item, index) =>

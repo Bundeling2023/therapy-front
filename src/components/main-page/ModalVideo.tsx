@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ModalVideoBlock from "react-modal-video";
-import 'node_modules/react-modal-video/scss/modal-video.scss';
+import 'react-modal-video/scss/modal-video.scss';
 
 interface Props {
   data: {

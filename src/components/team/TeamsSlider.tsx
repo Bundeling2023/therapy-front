@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 import { Team } from "@/types/types";
 import TeamMember from "./TeamMember";
-import { Swiper as SwiperType } from "swiper";
+import type { Swiper as SwiperType } from "swiper";
 
 export const TeamsSlider = ({ data }: any) => {
     const swiperSecondRef = useRef<SwiperType>();
