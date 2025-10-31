@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.0",
+    "@netlify/next": "^1.4.9",
     "@types/leaflet": "^1.9.3",
     "@types/react-modal-video": "^1.2.0",
     "daisyui": "^3.0.3"
