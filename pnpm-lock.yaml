@@ -15,19 +15,19 @@ importers:
         specifier: ^22.19.3
         version: 22.19.3
       '@types/react':
-        specifier: ^18.3.1
+        specifier: ^18.3.27
         version: 18.3.27
       '@types/react-dom':
-        specifier: ^18.3.1
+        specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       '@types/xml2js':
         specifier: ^0.4.14
         version: 0.4.14
       autoprefixer:
-        specifier: ^10.4.20
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       axios:
-        specifier: ^1.7.7
+        specifier: ^1.13.2
         version: 1.13.2
       cookies-next:
         specifier: ^6.1.1
@@ -39,16 +39,16 @@ importers:
         specifier: ^16.1.0
         version: 16.1.0(@typescript-eslint/parser@8.50.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
       graphql:
-        specifier: ^16.9.0
+        specifier: ^16.12.0
         version: 16.12.0
       html-react-parser:
-        specifier: ^5.0.19
+        specifier: ^5.2.11
         version: 5.2.11(@types/react@18.3.27)(react@18.3.1)
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
       next:
-        specifier: ^16.0.1
+        specifier: ^16.1.0
         version: 16.1.0(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.97.1)
       nextjs-progressbar:
         specifier: ^0.0.16
@@ -57,7 +57,7 @@ importers:
         specifier: ^7.0.12
         version: 7.0.12
       postcss:
-        specifier: ^8.4.49
+        specifier: ^8.5.6
         version: 8.5.6
       react:
         specifier: ^18.3.1
@@ -66,7 +66,7 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-google-recaptcha-v3:
-        specifier: ^1.10.1
+        specifier: ^1.11.0
         version: 1.11.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-leaflet:
         specifier: ^4.2.1
@@ -75,22 +75,22 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@18.3.27)(react@18.3.1)
       react-modal-video:
-        specifier: ^2.0.0
+        specifier: ^2.0.2
         version: 2.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-toastify:
         specifier: ^11.0.5
         version: 11.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sass:
-        specifier: ^1.81.0
+        specifier: ^1.97.1
         version: 1.97.1
       swiper:
         specifier: ^12.0.3
         version: 12.0.3
       tailwindcss:
-        specifier: ^3.4.15
+        specifier: ^3.4.19
         version: 3.4.19
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.9.3
         version: 5.9.3
       xml2js:
         specifier: ^0.6.2
