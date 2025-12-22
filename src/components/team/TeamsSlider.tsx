@@ -6,7 +6,7 @@ import TeamMember from "./TeamMember";
 import type { Swiper as SwiperType } from "swiper";
 
 export const TeamsSlider = ({ data }: any) => {
-    const swiperSecondRef = useRef<SwiperType>();
+    const swiperSecondRef = useRef<SwiperType | null>(null);
 
     return (
         <div className="relative">

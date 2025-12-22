@@ -14,7 +14,7 @@ interface Props {
 }
 
 const HeaderSlider = ({ data }: Props) => {
-  const swiperRef = useRef<SwiperType>();
+  const swiperRef = useRef<SwiperType | null>(null);
   return (
     <header className="relative bg-dark-purple 2xl:pt-24 2xl:pb-36 bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover">
       <Swiper
