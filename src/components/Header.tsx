@@ -448,14 +448,14 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
         </MenuLink>
 
         {item.title === "Team" && (
-          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-4 text-2xl shadow-lg group-hover:block min-w-max top-14 bg-white rounded-lg">
             {team.map((i: Team) => (
               <li
                 className="relative group/item"
                 key={i.attributes.name + index}
               >
                 <Link
-                  className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  className="block py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
                   href={`/team#${i.attributes.url}`}
                 >
                   {i.attributes.name}
@@ -465,14 +465,14 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
           </ul>
         )}
         {item.title === "Locaties" && (
-          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-4 text-2xl shadow-lg group-hover:block min-w-max top-14 bg-white rounded-lg">
             {locations.map((i: AddressMap) => (
               <li
                 className="relative group/item"
                 key={i.attributes.title + index}
               >
                 <Link
-                  className="py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  className="block py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
                   href={`/locaties#${i.attributes.url}`}
                 >
                   {i.attributes.title}
@@ -482,19 +482,19 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
           </ul>
         )}
         {item?.items.length > 0 && (
-          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-2 text-2xl shadow-md group-hover:block min-w-max menu menu-compact top-14 bg-base-100 rounded-box">
+          <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-4 text-2xl shadow-lg group-hover:block min-w-max top-14 bg-white rounded-lg">
             {item?.items.map((i) => (
               i.related?.attributes.publishedAt && (
               <li className="relative group/item" key={i.title + index}>
                 <MenuLink
-                  className="w-full py-4 text-base font-medium text-dark-purple active:text-white 2xl:text-2xl"
+                  className="block w-full py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
                   pageUrl={i.related?.attributes.url}
                   path={i.path}
                 >
                   {i.title}
                   {i.items?.length > 0 && (
                     <svg
-                      className="rotate-[270deg]"
+                      className="inline-block rotate-[270deg] ml-2"
                       width="10"
                       height="6"
                       viewBox="0 0 10 6"
@@ -509,7 +509,7 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                 </MenuLink>
 
                 {i.items?.length > 0 && (                  
-                  <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-2 text-2xl shadow-md group-hover/item:block menu menu-compact bg-base-100 rounded-box">
+                  <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-4 text-2xl shadow-lg group-hover/item:block bg-white rounded-lg">
                     {i?.items?.map((itm, index) => (                      
                       itm.related?.attributes.publishedAt !== null && (
                       <li
@@ -518,7 +518,7 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                           : itm.related.attributes.title + index}
                       >
                         <MenuLink
-                          className="block w-full py-4 text-base font-medium whitespace-pre-wrap text-dark-purple active:text-white 2xl:text-2xl"
+                          className="block w-full py-3 px-4 text-base font-medium whitespace-pre-wrap text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
                           pageUrl={itm.related?.attributes.url}
                           path={itm.path}
                         >
