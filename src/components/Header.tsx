@@ -91,8 +91,8 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               <input ref={mobNav} type="checkbox" className="peer" />
               <div className="collapse-title peer-checked:hidden p-5">
                 <svg
-                  width="40"
-                  height="26"
+                  width="32"
+                  height="20"
                   viewBox="0 0 40 26"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +104,8 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
               </div>
               <div className="collapse-title hidden peer-checked:block p-5">
                 <svg
-                  width="40"
-                  height="40"
+                  width="24"
+                  height="24"
                   viewBox="0 0 40 40"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
