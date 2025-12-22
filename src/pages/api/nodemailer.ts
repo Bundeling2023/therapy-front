@@ -25,11 +25,19 @@ export default async function handler(
 
   // Verify the reCAPTCHA token
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
-  const response = await fetch(verifyUrl, { method: "POST" });
-  const data = await response.json();
-  if (!data.success) {
-    return res.status(400).json({ message: "Invalid reCAPTCHA token" });
+  if (secretKey === "BYPASS") {
+    // Allow bypass only for @2xn.nl email recipients
+    const recipientEmail = process.env.EMAIL_TO;
+    if (!recipientEmail || !recipientEmail.endsWith("@2xn.nl")) {
+      return res.status(403).json({ message: "Bypass is only allowed for @2xn.nl recipients" });
+    }
+  } else {
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
+    const response = await fetch(verifyUrl, { method: "POST" });
+    const data = await response.json();
+    if (!data.success) {
+      return res.status(400).json({ message: "Invalid reCAPTCHA token" });
+    }
   }
 
   const composedEmail = {
