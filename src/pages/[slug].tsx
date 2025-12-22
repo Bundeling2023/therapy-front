@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_PAGE_DATA } from "@/graphql/GET_PAGE_DATA";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import Head from "next/head";
 import { GetServerSideProps } from "next/types";
 import { useEffect } from "react";
@@ -100,7 +100,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )
 
   const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    link: new HttpLink({
+      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    }),
     cache: new InMemoryCache(),
   })
 

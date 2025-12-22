@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_CONTACTUS_PAGE } from "@/graphql/GET_CONTACTUS_PAGE";
 import { ContactsUsPage } from "@/types/types";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
 import { useCallback, useState } from "react";
@@ -472,7 +472,9 @@ export default function ContactPage(props: ContactsUsPage) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    link: new HttpLink({
+      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    }),
     cache: new InMemoryCache(),
   });
 

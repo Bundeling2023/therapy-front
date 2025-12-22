@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_LOCATIONS_DATA } from "@/graphql/GET_LOCATIONS_DATA";
 import { LocationsPage } from "@/types/types";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
@@ -134,7 +134,9 @@ export default function Locations(props: LocationsPage) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    link: new HttpLink({
+      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+    }),
     cache: new InMemoryCache(),
   })
 
