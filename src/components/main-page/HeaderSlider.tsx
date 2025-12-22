@@ -16,7 +16,7 @@ interface Props {
 const HeaderSlider = ({ data }: Props) => {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <header className="relative bg-dark-purple 2xl:pt-24 2xl:pb-36 bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover">
+    <header className="relative bg-dark-purple 2xl:pt-10 2xl:pb-36 bg-[url('/main-slider-bgr.svg')] bg-bottom bg-no-repeat bg-cover">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         onBeforeInit={(swiper) => {
@@ -40,10 +40,10 @@ const HeaderSlider = ({ data }: Props) => {
           <SwiperSlide className="h-full" key={item.title}>
             <div className="h-auto md:pt-24 pt-14 pb-32 2xl:pb-0 mx-auto xl:w-80% w-90% max-w-1560 flex flex-col md:flex-row gap-5 justify-between items-start md:items-center">
               <div className="w-full md:w-1/2">
-                <h1 className="2xl:text-[80px] md:text-[40px] text-[36px] font-bold max-w-xl text-dark-purple 2xl:leading-[98px] md:leading-normal leading-tight">
+                <h1 className="2xl:text-[48px] md:text-[40px] text-[36px] font-bold max-w-xl text-dark-purple 2xl:leading-[56px] md:leading-normal leading-tight">
                   {item.title}
                 </h1>
-                <h3 className="2xl:text-[24px] md:text-[18px] text-[15px] font-normal md:font-medium max-w-[534px] text-[#4E4F84] mt-4 2xl:leading-10 leading-normal">
+                <h3 className="2xl:text-[20px] md:text-[18px] text-[15px] font-normal md:font-medium max-w-[534px] text-[#4E4F84] mt-4 2xl:leading-10 leading-normal">
                   {item.description}
                 </h3>
                 <Link href={item.link} className="mt-12 text-white btn btn-primary">
