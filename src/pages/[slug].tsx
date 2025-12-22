@@ -73,7 +73,7 @@ export default function PostPage(props: any) {
             </div>
             <div className="mt-2 text-center">
               <p
-                className="h-16 px-4 mt-2 text-dark-purple normal-case text-base text-xl"
+                className="h-16 px-4 mt-2 text-dark-purple normal-case text-xl"
               >
                 De bovenstaande therapeuten zijn gespecialiseerd in {pageAttributes?.title}
               </p>
@@ -111,14 +111,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     variables: { slugUrl: context!.params!.slug },
   })
 
+  const queryData = data as any;
 
-  if (!(data.pages.data).length) {
+  if (!(queryData.pages.data).length) {
     return {
       notFound: true,
     };
   }
 
-  const menuJSON = data.header;
+  const menuJSON = queryData.header;
 
   const slug = context!.params!.slug as string
   const current = findNodeBySlug(menuJSON[0], slug);
@@ -129,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      ...data,
+      ...queryData,
       childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.attributes?.url ?? null },
       siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.attributes?.url ?? null }
     }
