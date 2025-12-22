@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^6.0.2",
-    "@types/leaflet": "^1.9.14",
+    "@types/leaflet": "^1.9.21",
     "@types/react-modal-video": "^1.2.3",
     "daisyui": "^4.12.24"
   }
