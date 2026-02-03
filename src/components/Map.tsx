@@ -28,7 +28,7 @@ const Map = ({ data, handleCLick }: Props) => {
   const mapRef = useRef<L.Map | null>(null);
 
   const coordinates = data.map((item) =>
-    item.attributes.coordinates.split(",").map(Number)
+    item.coordinates.split(",").map(Number)
   );
 
   function calcMapCenter(array: number[][]) {
@@ -62,7 +62,7 @@ const Map = ({ data, handleCLick }: Props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {data.map((item, index) => {
-          const [lat, lng] = item.attributes.coordinates
+          const [lat, lng] = item.coordinates
             .split(",")
             .map(Number);
           return (

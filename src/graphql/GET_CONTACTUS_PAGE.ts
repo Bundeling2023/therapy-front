@@ -1,39 +1,28 @@
 import { gql } from "@apollo/client";
-import { GeneralInfoFragment } from "./fragments";
+import {
+  GeneralInfoFragment,
+  TeamMemberFragment,
+  LocationFragment,
+} from "./fragments";
 
 export const GET_CONTACTUS_PAGE = gql`
   ${GeneralInfoFragment}
+  ${LocationFragment}
+  ${TeamMemberFragment}
   query GET_CONTACTUS_PAGE {
     contactus {
-      data {
-        attributes {
-          title
-          seo {
-            metaTitle
-            metaDescription
-            canonicalURL
-          }
-        }
+      title
+      seo {
+        metaTitle
+        metaDescription
+        canonicalURL
       }
     }
     locations (sort: "displayPriority") {
-      data {
-        attributes {
-          address
-          url
-          title
-          displayPriority
-          onlyForKids
-        }
-      }
+      ...LocationFragment
     }
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      data {
-        attributes {
-          name
-          url
-        }
-      }
+      ...TeamMemberFragment
     }
     generalinfo {
       ...GeneralInfoFragment
@@ -46,49 +35,43 @@ export const GET_CONTACTUS_PAGE = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
         items {
           title
           path
           related {
-          attributes {
             ... on Page {
-                url
-               publishedAt
-              }
+              url
+              publishedAt
             }
           }
         }
@@ -102,38 +85,34 @@ export const GET_CONTACTUS_PAGE = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
       }

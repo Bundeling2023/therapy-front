@@ -139,9 +139,9 @@ const HeaderSlider = ({ data }: Props) => {
                   width="0"
                   height="0"
                   quality="80"
-                  src={item.img.data.attributes.url}
+                  src={item.img?.url}
                   sizes="100vw"
-                  blurDataURL={item.img.data.attributes.url}
+                  blurDataURL={item.img?.url}
                   className="relative z-10 object-cover w-full mask1 aspect-square"
                   alt="test"
                 />

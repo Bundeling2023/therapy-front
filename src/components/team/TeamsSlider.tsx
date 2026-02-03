@@ -38,7 +38,7 @@ export const TeamsSlider = ({ data }: any) => {
                 }}
                 className="xl:w-80% w-90% max-w-1560 h-auto teams_swiper "
             >
-                {data.map((item: Team) => <SwiperSlide key={item.attributes.name}>
+                {data.map((item: Team) => <SwiperSlide key={item.name}>
                     <TeamMember showDetailedInformation data={item} />
                 </SwiperSlide>
                 )}

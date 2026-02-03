@@ -19,7 +19,7 @@ export default function ThankYouPage(props: ContactsUsPage) {
   const [firstName, setFirstName] = useState<string>("");
   const [contactType, setContactType] = useState<string>("");
   const [service, setService] = useState<string>("");
-  const locations = props.locations.data;
+  const locations = props.locations || [];
 
   useEffect(() => {
     // Get query parameters
@@ -75,7 +75,7 @@ export default function ThankYouPage(props: ContactsUsPage) {
     }
   };
 
-  const steps = getStepsData();
+  const steps = getStepsData() || [];
 
   return (
     <>
@@ -88,11 +88,11 @@ export default function ThankYouPage(props: ContactsUsPage) {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <NavSection
-        locations={props.locations.data}
-        team={props.teams.data}
+        locations={props.locations || []}
+        team={props.teams || []}
         data={header}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
       
       <div className="pt-20 mb-11">
@@ -211,16 +211,10 @@ export default function ThankYouPage(props: ContactsUsPage) {
       <Footer
         data={footer}
         locations={locations}
-        privacyLink={
-          props.generalinfo.data.attributes.privacyPolicyPage.data.attributes
-            .url
-        }
-        termsAndConditionsPage={
-          props.generalinfo.data.attributes.termsAndConditionsPage.data
-            .attributes.url
-        }
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   );
@@ -234,14 +228,34 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   });
 
-  const { data } = await client.query({
-    query: GET_CONTACTUS_PAGE,
-  });
+  try {
+    const result = await client.query({
+      query: GET_CONTACTUS_PAGE,
+    });
 
-  return {
-    props: data as { [key: string]: any },
-    revalidate:
-      Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
-      DEFAULT_REVALIDATE_TIME,
-  };
+    const data = result.data as any;
+
+    // Ensure all expected properties exist with fallbacks
+    const props = {
+      contactus: data?.contactus || {},
+      locations: data?.locations || [],
+      teams: data?.teams || [],
+      generalinfo: data?.generalinfo || {},
+      header: Array.isArray(data?.header) ? data.header : [],
+      footer: Array.isArray(data?.footer) ? data.footer : [],
+    };
+
+    return {
+      props,
+      revalidate:
+        Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
+        DEFAULT_REVALIDATE_TIME,
+    };
+  } catch (error) {
+    console.error('Failed to fetch contact page data:', error);
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
+  }
 };

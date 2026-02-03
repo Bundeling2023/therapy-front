@@ -1,9 +1,5 @@
 export interface PageUrl {
-  data: {
-    attributes: {
-      url: string
-    }
-  }
+  url: string
 }
 
 export interface SocialLinks {
@@ -21,103 +17,55 @@ interface GeneralInfoProperties {
 
 export interface HomePage {
   home: {
-     data: {
-      attributes: {
-        mainBanner: MainBanner[]
-        services: Services[]
-        seo: Seo
-        modalVideo: {
-          providerUid: string
-        }
-      }
+    mainBanner: MainBanner[]
+    services: Services[]
+    seo: Seo
+    modalVideo: {
+      providerUid: string
     }
   }
-  teams: {
-    data: Team[]
-  }
-  generalinfo: {
-    data: {
-      attributes: GeneralInfoProperties
-    }
-  }
-  locations: {
-    data: AddressMap[]
-  }
+  teams: Team[]
+  generalinfo: GeneralInfoProperties
+  locations: AddressMap[]
   header: Menu[]
   footer: Menu[]
 }
 
 export interface TeamPage {
   teampage: {
-     data: {
-      attributes: {
-        title: string
-        desc: string
-        seo: Seo
-      }
-    }
+    title: string
+    desc: string
+    seo: Seo
   }
-  locations: {
-    data: AddressMap[]
-  }
-  generalinfo: {
-    data: {
-      attributes: GeneralInfoProperties
-    }
-  }
-  teams: {
-    data: Team[]
-  }
+  locations: AddressMap[]
+  generalinfo: GeneralInfoProperties
+  teams: Team[]
   header: Menu[]
   footer: Menu[]
 }
 
 export interface LocationsPage {
   locatie: {
-     data: {
-      attributes: {
-        title: string
-        desc: string
-        seo: Seo
-        url: string
-      }
-    }
+    title: string
+    desc: string
+    seo: Seo
+    url: string
   }
-  teams: {
-    data: Team[]
-  }
-  generalinfo: {
-    data: {
-      attributes: GeneralInfoProperties
-    }
-  }
-  locations: {
-    data: AddressMap[]
-  }
+  teams: Team[]
+  generalinfo: GeneralInfoProperties
+  locations: AddressMap[]
   header: Menu[]
   footer: Menu[]
 }
 
 export interface ContactsUsPage {
   contactus: {
-      data: {
-      attributes: {
-        title: string
-        seo: Seo
-      }
-    }
+    title: string
+    seo: Seo
   }
-  teams: {
-    data: Team[]
-  }
-  generalinfo: {
-    data: {
-      attributes: GeneralInfoProperties
-    }
-  }
-  locations: {
-    data: AddressMap[]
-  }
+  teams: Team[]
+  generalinfo: GeneralInfoProperties
+  locations: AddressMap[]
   header: Menu[]
   footer: Menu[]
 }
@@ -127,11 +75,11 @@ export interface MenuItemFields {
   title: string
   path: string
   related: {
-    attributes: {
+
       url: string
       title: string
       publishedAt: string
-    }
+    
   }
 }
 
@@ -161,75 +109,57 @@ export interface MainBanner {
   link: string
   buttonText: string
   img: {
-    data: {
-      attributes: {
+
         url: string
-      }
-    }
+      
+    
   }
 }
 
 export interface Services {
   title: string
   link: {
-    data: {
-      attributes: {
+
         url: string
-      }
-    }
+
   }
   img: {
-    data: {
-      attributes: {
         url: string
-      }
-    }
   }
 }
 
 export interface Team {
-  attributes: {
-    name: string
-    email: string
-    phone: string
-    bigRegistrationNumber: string,
-    desc: string
+  name: string
+  email: string
+  phone: string
+  bigRegistrationNumber: string
+  desc: string
+  url: string
+  displayPriority: number
+  img: {
     url: string
-    img: {
-      data: {
-        attributes: {
-          url: string
-        }
-      }
-    }
   }
 }
 
 export interface AddressMap {
-  attributes: {
-    title: string,
-    coordinates: string
+  title: string
+  coordinates: string
+  url: string
+  phone: string
+  email: string
+  address: string
+  displayPriority: number
+  onlyForKids: boolean
+  workingHours: {
+    monday: string
+    tuesday: string
+    wednesday: string
+    thursday: string
+    friday: string
+    saturday: string
+    sunday: string
+  }
+  img: {
     url: string
-    phone: string
-    email: string
-    address: string
-    displayPriority: number
-    onlyForKids: boolean
-    workingHours: {
-      monday: string
-      tuesday: string
-      wednesday: string
-      thursday: string
-      friday: string
-      saturday: string
-      sunday: string
-    }
-    img: {
-      data: {
-        attributes: {
-          url: string
-        }
-      }
-    }
   }
 }

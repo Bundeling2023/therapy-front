@@ -1,61 +1,31 @@
 import { gql } from "@apollo/client";
-import { GeneralInfoFragment } from "./fragments";
+import {
+  GeneralInfoFragment,
+  TeamMemberFragment,
+  LocationFragment,
+} from "./fragments";
 
 export const GET_LOCATIONS_DATA = gql`
   ${GeneralInfoFragment}
+  ${LocationFragment}
+  ${TeamMemberFragment}
   query GET_LOCATIONS_DATA {
     locatie {
-      data {
-        attributes {
-          title
-          seo {
-            metaTitle
-            metaDescription
-            canonicalURL
-          }
-        }
+      title
+      seo {
+        metaTitle
+        metaDescription
+        canonicalURL
       }
     }
     generalinfo {
       ...GeneralInfoFragment
     }
     locations (sort: "displayPriority") {
-      data {
-        attributes {
-          title
-          coordinates
-          url
-          phone
-          email
-          address
-          displayPriority
-          onlyForKids
-          workingHours {
-           	monday
-            tuesday
-            wednesday
-            thursday
-            friday
-            saturday
-            sunday
-          }
-          img {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...LocationFragment
     }
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      data {
-        attributes {
-          name
-          url
-        }
-      }
+      ...TeamMemberFragment
     }
     header: renderNavigation(
       navigationIdOrSlug: "header"
@@ -65,60 +35,52 @@ export const GET_LOCATIONS_DATA = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
         items {
           title
           path
           related {
-          attributes {
             ... on Page {
-                url
-               publishedAt
-              }
+              url
+              publishedAt
             }
           }
           items {
             title
             path
             related {
-            attributes {
               ... on Page {
-                  url
-                  publishedAt
-                }
+                url
+                publishedAt
               }
             }
           }
@@ -133,38 +95,34 @@ export const GET_LOCATIONS_DATA = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
       }

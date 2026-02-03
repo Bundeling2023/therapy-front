@@ -10,7 +10,7 @@ export const BlocksPageContent = (data: any) => {
     }
     return <main className="flex w-90% max-w-1560 flex-wrap mx-auto justify-between pb-20 gap-5">
         {blocks.map((item: any) => {
-            const imageUrl = item.img.data?.attributes?.url;
+            const imageUrl = item.img?.url;
 
             const ImageComponent = () => <Image
                 className="w-full rounded-xl object-cover h-48"
@@ -22,7 +22,7 @@ export const BlocksPageContent = (data: any) => {
 
             return (<>
                 {item.link.data ? (
-                    <Link href={item.link.data.attributes.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
+                    <Link href={item.link?.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
                         {imageUrl && <ImageComponent />}
                         <h2>{item.title}</h2>
                         <div>{HTMLReactParser(item.description)}</div>

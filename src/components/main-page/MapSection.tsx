@@ -44,7 +44,7 @@ const MapSection = ({ data: locations }: Props) => {
 
   // Create a stable key for the map to prevent re-initialization
   const mapKey = React.useMemo(() => 
-    `map-${locations.map(loc => loc.attributes.coordinates).join('-')}`, 
+    `map-${locations.map(loc => loc.coordinates).join('-')}`, 
     [locations]
   );
 
@@ -59,9 +59,9 @@ const MapSection = ({ data: locations }: Props) => {
         </div>
         <div className="w-full lg:max-w-[541px] max-w-full bg-white lg:p-[60px] p-[14px] ">
           {locations.map((item, index) =>
-            <div tab-index={index} className={index === 0 ? '' : 'hidden'} key={item.attributes.url}>
+            <div tab-index={index} className={index === 0 ? '' : 'hidden'} key={item.url}>
               <h3 className="lg:text-[36px] text-2xl text-dark-purple font-semibold mb-6 leading-normal">
-                {item.attributes.title}
+                {item.title}
               </h3>
               <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
                 <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
@@ -71,7 +71,7 @@ const MapSection = ({ data: locations }: Props) => {
                     width="24"
                     height="24" />
                 </span>
-                <a href={`mailto:${item.attributes.email}`}>{item.attributes.email}</a>
+                <a href={`mailto:${item.email}`}>{item.email}</a>
               </div>
               <div className="flex mt-4 items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
                 <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
@@ -81,10 +81,10 @@ const MapSection = ({ data: locations }: Props) => {
                     width="24"
                     height="24" />
                 </span>
-                <a href={`tel:${item.attributes.phone}`}>{item.attributes.phone}</a>
+                <a href={`tel:${item.phone}`}>{item.phone}</a>
               </div>
               <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 max-w-[350px] leading-normal">
-                {item.attributes.address}
+                {item.address}
               </p>
               <p className="mt-8 text-base font-semibold text-dark-purple lg:mt-10 lg:text-2xl">
                 Openingstijden
@@ -92,31 +92,31 @@ const MapSection = ({ data: locations }: Props) => {
               <div className="[&>*]:text-[#696AA5] [&>*]:lg:text-[26px] [&>*]:text-sm lg:pb-0 pb-2">
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>maandag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px] ">{item.attributes.workingHours.monday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px] ">{item.workingHours.monday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>dinsdag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.tuesday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.tuesday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>woensdag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.wednesday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.wednesday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>donderdag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.thursday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.thursday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>vrijdag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.friday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.friday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>zaterdag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.saturday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.saturday}</p>
                 </div>
                 <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                   <p>zondag</p>
-                  <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.sunday}</p>
+                  <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.sunday}</p>
                 </div>
               </div>
             </div>

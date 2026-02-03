@@ -3,30 +3,17 @@ import {
   GeneralInfoFragment,
   TeamMemberFragment,
   LocationFragment,
+  PageFragment,
+  SeoFragment,
+  NavigationItemFragment,
 } from "./fragments";
 
-export const GET_TEAMPAGE_DATA = gql`
-  ${GeneralInfoFragment}
-  ${TeamMemberFragment}
-  ${LocationFragment}
-  query GET_TEAMPAGE_DATA {
-    teampage {
-      title
-      seo {
-        metaTitle
-        metaDescription
-        canonicalURL
-      }
-    }
-    generalinfo {
-      ...GeneralInfoFragment
-    }
-    teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...TeamMemberFragment
-    }
-    locations (sort: "displayPriority") {
-      ...LocationFragment
-    }
+/**
+ * Shared navigation query fragment for header and footer
+ * Used across all pages
+ */
+export const NAVIGATION_QUERY = gql`
+  fragment NavigationQuery on Query {
     header: renderNavigation(
       navigationIdOrSlug: "header"
       type: TREE
@@ -73,12 +60,28 @@ export const GET_TEAMPAGE_DATA = gql`
               url
               publishedAt
             }
+            ... on Teampage {
+              url
+              publishedAt
+            }
+            ... on Locatie {
+              url
+              publishedAt
+            }
           }
           items {
             title
             path
             related {
               ... on Page {
+                url
+                publishedAt
+              }
+              ... on Teampage {
+                url
+                publishedAt
+              }
+              ... on Locatie {
                 url
                 publishedAt
               }
@@ -125,6 +128,29 @@ export const GET_TEAMPAGE_DATA = gql`
             publishedAt
           }
         }
+      }
+    }
+  }
+`;
+
+/**
+ * Shared basic data query for all pages
+ * Includes navigation, general info, teams, and locations
+ */
+export const SHARED_PAGE_DATA = gql`
+  ${GeneralInfoFragment}
+  fragment SharedPageData on Query {
+    generalinfo {
+      ...GeneralInfoFragment
+    }
+    teams (sort: "displayPriority", pagination: { limit: 100 }) {
+      data {
+        ...TeamMemberFragment
+      }
+    }
+    locations (sort: "displayPriority") {
+      data {
+        ...LocationFragment
       }
     }
   }

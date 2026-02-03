@@ -17,13 +17,13 @@ const ServicesBlock = ({ data }: Props) => {
       <div className="flex justify-between 2xl:gap-x-[176px] md:gap-x-0 gap-[unset] gap-y-10 items-start mx-auto w-90% max-w-1560 xl:flex-nowrap flex-wrap">
         {data.map((item) =>
           <Link
-            href={item.link.data.attributes.url}
+            href={item.link?.url}
             key={item.title}
             className="xl:max-w-[310px] xl:w-auto md:w-1/2 w-[45%] text-center group"
           >
             <Image
               className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-              src={item.img.data.attributes.url}
+              src={item.img?.url}
               alt="test"
               width={0}
               height={0}

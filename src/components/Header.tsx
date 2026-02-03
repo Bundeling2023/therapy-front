@@ -126,7 +126,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                       <MenuLink
                         onClick={hideMenu}
                         className="text-[22px] sm:max-w-none max-w-[240px]"
-                        pageUrl={item.related?.attributes.url}
+                        pageUrl={item.related?.url}
                         path={item.path}
                       >
                         {item.title}
@@ -156,15 +156,15 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                         <ul className="hidden w-full pl-4 ">
                           {team.map((i: Team) => (
                             <li
-                              key={i.attributes.name + index}
+                              key={i.name + index}
                               className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]"
                             >
                               <Link
                                 onClick={hideMenu}
                                 className="text-[20px] sm:max-w-none max-w-[240px]"
-                                href={`/team#${i.attributes.url}`}
+                                href={`/team#${i.url}`}
                               >
-                                {i.attributes.name}
+                                {i.name}
                               </Link>
                             </li>
                           ))}
@@ -174,15 +174,15 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                         <ul className="hidden w-full pl-4 ">
                           {locations.map((i: AddressMap) => (
                             <li
-                              key={i.attributes.title + index}
+                              key={i.title + index}
                               className="flex justify-between p-4 pr-0 flex-wrap items-center min-h-[56px]"
                             >
                               <Link
                                 onClick={hideMenu}
                                 className="text-[20px] sm:max-w-none max-w-[240px]"
-                                href={`/locaties#${i.attributes.url}`}
+                                href={`/locaties#${i.url}`}
                               >
-                                {i.attributes.title}
+                                {i.title}
                               </Link>
                             </li>
                           ))}
@@ -198,7 +198,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                               <MenuLink
                                 onClick={hideMenu}
                                 className="text-[20px] sm:max-w-none max-w-[240px]"
-                                pageUrl={i.related?.attributes.url}
+                                pageUrl={i.related?.url}
                                 path={i.path}
                               >
                                 {i.title}
@@ -226,19 +226,19 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                               {i.items?.length > 0 && (                                
                                 <ul className="hidden w-full pl-4">
                                   {i.items.map((itm) => (
-                                    itm.related?.attributes.publishedAt && (
+                                    itm.related?.publishedAt && (
                                     <li
                                       key={
                                         itm.title
                                           ? itm.title + index
-                                          : itm.related.attributes.title + index
+                                          : itm.related.title + index
                                       }
                                       className="flex justify-between p-4 last:pb-0"
                                     >
                                       <MenuLink
                                         onClick={hideMenu}
                                         className="text-[20px]"
-                                        pageUrl={itm.related?.attributes.url}
+                                        pageUrl={itm.related?.url}
                                         path={itm.path}
                                       >
                                         {itm.title}
@@ -419,14 +419,14 @@ const TopBar = ({ info }: { info: ContactInfo }) => <div className="flex mx-auto
 const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations: AddressMap[] }) => {
   return <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
     {data?.map((item: Menu, index) => (
-      item.related?.attributes.publishedAt && (
+      item.related?.publishedAt && (
       <li
         className="relative flex group"
         key={item.title + index}
         tabIndex={0}
       >
         <MenuLink
-          pageUrl={item.related?.attributes.url}
+          pageUrl={item.related?.url}
           path={item.path}
           className="flex items-center gap-2 text-base font-medium text-white 2xl:text-2xl pb-11 hover:text-blue-gray"
         >
@@ -454,13 +454,13 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
             {team.map((i: Team) => (
               <li
                 className="relative group/item"
-                key={i.attributes.name + index}
+                key={i.name + index}
               >
                 <Link
                   className="block py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
-                  href={`/team#${i.attributes.url}`}
+                  href={`/team#${i.url}`}
                 >
-                  {i.attributes.name}
+                  {i.name}
                 </Link>
               </li>
             ))}
@@ -471,13 +471,13 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
             {locations.map((i: AddressMap) => (
               <li
                 className="relative group/item"
-                key={i.attributes.title + index}
+                key={i.title + index}
               >
                 <Link
                   className="block py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
-                  href={`/locaties#${i.attributes.url}`}
+                  href={`/locaties#${i.url}`}
                 >
-                  {i.attributes.title}
+                  {i.title}
                 </Link>
               </li>
             ))}
@@ -486,11 +486,11 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
         {item?.items.length > 0 && (
           <ul className="absolute left-0 z-10 hidden w-auto max-w-sm p-4 text-2xl shadow-lg group-hover:block min-w-max top-14 bg-white rounded-lg">
             {item?.items.map((i) => (
-              i.related?.attributes.publishedAt && (
+              i.related?.publishedAt && (
               <li className="relative group/item" key={i.title + index}>
                 <MenuLink
                   className="block w-full py-3 px-4 text-base font-medium text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
-                  pageUrl={i.related?.attributes.url}
+                  pageUrl={i.related?.url}
                   path={i.path}
                 >
                   {i.title}
@@ -513,15 +513,15 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                 {i.items?.length > 0 && (                  
                   <ul className="absolute top-0 left-full ml-0 z-10 hidden w-auto max-w-[350px] min-w-[auto] p-4 text-2xl shadow-lg group-hover/item:block bg-white rounded-lg">
                     {i?.items?.map((itm, index) => (                      
-                      itm.related?.attributes.publishedAt !== null && (
+                      itm.related?.publishedAt !== null && (
                       <li
                         key={itm.title
                           ? itm.title + index
-                          : itm.related.attributes.title + index}
+                          : itm.related.title + index}
                       >
                         <MenuLink
                           className="block w-full py-3 px-4 text-base font-medium whitespace-pre-wrap text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
-                          pageUrl={itm.related?.attributes.url}
+                          pageUrl={itm.related?.url}
                           path={itm.path}
                         >
                           {itm.title}

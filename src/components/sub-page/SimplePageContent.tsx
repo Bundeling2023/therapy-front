@@ -12,7 +12,7 @@ export const SimplePageContent = (props: any) => {
         {data.img && data.img.data && (
             <Image
                 className="w-full rounded-xl"
-                src={data.img.data.attributes.url}
+                src={data.img?.url}
                 alt={data.title}
                 width={0}
                 height={0}

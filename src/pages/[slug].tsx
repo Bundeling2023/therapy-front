@@ -20,15 +20,15 @@ export default function PostPage(props: any) {
     tables && tables.forEach((item) => item.classList.add('table'));
   }, [])
 
-  const pageAttributes = props.pages?.data?.[0]?.attributes;
+  const pageAttributes = props.pages?.[0];
   const isBlocksPage = pageAttributes?.pageWithBlocks?.blocks?.[0];
   const isNormalPage = !isBlocksPage;
   const hasSimplePageData = pageAttributes?.simplePage;
 
   const { header, footer } = props
-  const { seo } = props.pages.data?.[0]?.attributes ?? { seo: { metaTitle: '', metaDescription: '' } };
+  const { seo } = props.pages?.[0] ?? { seo: { metaTitle: '', metaDescription: '' } };
 
-  const teamData = pageAttributes.specialisations?.data?.flatMap((item: any) => item?.attributes?.teamMembers?.data ?? []);
+  const teamData = pageAttributes?.specialisations?.flatMap((item: any) => item?.teamMembers ?? []);
   return (
     <>
       <Head>
@@ -36,7 +36,7 @@ export default function PostPage(props: any) {
         <meta name='description' content={seo.metaDescription ? seo.metaDescription : (pageAttributes?.simplePage?.data?.description ?? pageAttributes.pageWithBlocks?.blocks?.[0]?.description)} />
         {seo.canonicalURL && <link rel="canonical" href={seo.canonicalURL} />}
       </Head>
-      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
+      <NavSection locations={props.locations || []} team={props.teams || []} data={header} info={props.generalinfo.contactsInfo} socialLinks={props.generalinfo.socialLinks} />
       <div className="bg-blue-100 pt-20 pb-10">
         <BackButton className="absolute pl-4 -mt-6 sm:-mt-4">Home</BackButton>
         <h1 className="mb-0 text-3xl font-semibold text-center w-90% max-w-1560 mx-auto text-dark-purple md:text-4xl md:mt-2">
@@ -68,7 +68,7 @@ export default function PostPage(props: any) {
           <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto -mt-10">
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {teamData.map((item: Team) =>
-                <TeamMember key={item.attributes.name} data={item} showDetailedInformation />
+                <TeamMember key={item.name} data={item} showDetailedInformation />
               )}
             </div>
             <div className="mt-2 text-center">
@@ -83,11 +83,11 @@ export default function PostPage(props: any) {
       )}
       <Footer
         data={footer}
-        locations={props.locations.data}
-        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
-        termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        locations={props.locations || []}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   )
@@ -106,34 +106,50 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     cache: new InMemoryCache(),
   })
 
-  const { data } = await client.query({
-    query: GET_PAGE_DATA,
-    variables: { slugUrl: context!.params!.slug },
-  })
+  try {
+    const result = await client.query({
+      query: GET_PAGE_DATA,
+      variables: { slugUrl: context!.params!.slug },
+    })
 
-  const queryData = data as any;
+    const data = result.data;
 
-  if (!(queryData.pages.data).length) {
+    const queryData = data as any;
+
+    if (!queryData?.pages?.length) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const menuJSON = queryData.header || [];
+
+    const slug = context!.params!.slug as string
+    const current = findNodeBySlug(menuJSON[0], slug);
+    const parent = findParentNode(current, menuJSON[0]);
+
+    const childItems = getChildItems(current);
+    const parentChildItems = parent ? getChildItems(parent) : [];
+
+    const props = {
+      pages: queryData?.pages || [],
+      locations: queryData?.locations || [],
+      teams: queryData?.teams || [],
+      generalinfo: queryData?.generalinfo || {},
+      header: queryData?.header || [],
+      footer: queryData?.footer || [],
+      childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.url ?? null },
+      siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.url ?? null }
+    };
+
+    return {
+      props,
+    }
+  } catch (error) {
+    console.error('Failed to fetch page data:', error);
     return {
       notFound: true,
     };
-  }
-
-  const menuJSON = queryData.header;
-
-  const slug = context!.params!.slug as string
-  const current = findNodeBySlug(menuJSON[0], slug);
-  const parent = findParentNode(current, menuJSON[0]);
-
-  const childItems = getChildItems(current);
-  const parentChildItems = parent ? getChildItems(parent) : [];
-
-  return {
-    props: {
-      ...queryData,
-      childsSideMenu: { items: childItems, title: current?.title ?? null, url: current?.related?.attributes?.url ?? null },
-      siblingsSideMenu: { items: parentChildItems, title: parent?.title ?? null, url: parent?.related?.attributes?.url ?? null }
-    }
   }
 }
 
@@ -143,11 +159,8 @@ interface NavigationItem {
   path: string;
   related: {
     __typename: string;
-    attributes: {
-      __typename: string;
-      url: string;
-      publishedAt: string;
-    };
+    url: string;
+    publishedAt: string;    
   };
   items: NavigationItem[];
 }
@@ -157,7 +170,7 @@ function findNodeBySlug(node: NavigationItem | null, slug: string): NavigationIt
     return null;
   }
 
-  if (node.related?.attributes?.url === slug) {
+  if (node.related?.url === slug) {
     return node;
   }
 
@@ -180,10 +193,10 @@ function getChildItems(node: NavigationItem | null): SideMenuItem[] {
     return [];
   }
 
-  return node.items.filter(y => y.related.attributes.publishedAt).map((x) => {
+  return node.items.filter(y => y.related?.publishedAt).map((x) => {
     return {
       title: x.title,
-      url: x.related?.attributes?.url,
+      url: x.related?.url,
     }
   });
 }

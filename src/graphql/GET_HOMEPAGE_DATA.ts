@@ -1,90 +1,46 @@
 import { gql } from "@apollo/client";
-import { GeneralInfoFragment } from "./fragments";
+import {
+  GeneralInfoFragment,
+  TeamMemberFragment,
+  LocationFragment,
+} from "./fragments";
 
 export const GET_HOMEPAGE_DATA = gql`
   ${GeneralInfoFragment}
+  ${TeamMemberFragment}
+  ${LocationFragment}
   query GET_HOMEPAGE_DATA {
     home {
-      data {
-        attributes {
-          mainBanner {
-            title
-            description
-            link
-            buttonText
-            img {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-          services {
-            title
-            link {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-            img {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-          modalVideo
-          seo {
-            metaTitle
-            metaDescription
-            canonicalURL
-          }
+      mainBanner {
+        title
+        description
+        link
+        buttonText
+        img {
+          url
         }
+      }
+      services {
+        title
+        link {
+          url
+        }
+        img {
+          url
+        }
+      }
+      modalVideo
+      seo {
+        metaTitle
+        metaDescription
+        canonicalURL
       }
     }
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      data {
-        attributes {
-          name
-          email
-          phone
-          desc
-          url
-          img {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
+      ...TeamMemberFragment
     }
     locations (sort: "displayPriority") {
-      data {
-        attributes {
-          coordinates
-          url
-          title
-          phone
-          email
-          address
-          displayPriority
-          workingHours {
-           	monday
-            tuesday
-            wednesday
-            thursday
-            friday
-            saturday
-            sunday
-          }
-        }
-      }
+      ...LocationFragment
     }
     generalinfo {
       ...GeneralInfoFragment
@@ -97,76 +53,68 @@ export const GET_HOMEPAGE_DATA = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
         items {
           title
           path
           related {
-          attributes {
             ... on Page {
-                url
-               publishedAt
-              }
+              url
+              publishedAt
+            }
             ... on Teampage {
-                url
-               publishedAt
-              }
+              url
+              publishedAt
+            }
             ... on Locatie {
-                url
-               publishedAt
-              }
+              url
+              publishedAt
             }
           }
           items {
             title
             path
             related {
-            attributes {
               ... on Page {
-                  url
-                  publishedAt
-                }
+                url
+                publishedAt
+              }
               ... on Teampage {
-                  url
-                  publishedAt
-                }
+                url
+                publishedAt
+              }
               ... on Locatie {
-                  url
-                  publishedAt
-                }
+                url
+                publishedAt
               }
             }
           }
@@ -181,41 +129,38 @@ export const GET_HOMEPAGE_DATA = gql`
       title
       path
       related {
-        attributes {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
+        ... on Page {
+          url
+          publishedAt
+        }
+        ... on Teampage {
+          url
+          publishedAt
+        }
+        ... on Locatie {
+          url
+          publishedAt
         }
       }
       items {
         title
         path
         related {
-        attributes {
           ... on Page {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Teampage {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
+          }
           ... on Locatie {
-              url
-              publishedAt
-            }
+            url
+            publishedAt
           }
         }
       }
     }
   }
 `;
+

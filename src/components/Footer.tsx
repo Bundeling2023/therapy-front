@@ -84,11 +84,11 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
             <div className="flex 2xl:gap-[50px] gap-6 md:flex-row flex-col md:w-auto w-full">
               {data.map((item: Menu) =>
                 <div key={item.title} className="flex 2xl:pr-[50px] flex-col items-start justify-start gap-[18px] relative after:content-[''] md:after:block after:hidden after:w-[1px] after:h-full after:absolute after:bg-white/50 after:right-0 last:after:hidden last:pr-0 md:pr-6 pr-0">
-                  <MenuLink key={item.title} pageUrl={item.related?.attributes.url} path={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text-first:font-medium">{item.title}</MenuLink>
+                  <MenuLink key={item.title} pageUrl={item.related?.url} path={item.path} className="text-sm text-white opacity-50 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base text-first:font-medium">{item.title}</MenuLink>
                   {item.items.length > 0 && item.items.map((i) =>
                     <Fragment key={i.path}>
-                      {i.related?.attributes.url ?
-                        <Link key={i.title + i.path} href={i.related.attributes.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
+                      {i.related?.url ?
+                        <Link key={i.title + i.path} href={i.related?.url} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
                         :
                         (
                           i?.path.includes('local.bundeling') ?
@@ -102,7 +102,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                   {item.title === 'Locaties' && (
                     <Fragment key={item.title + item.path}>
                       {locations.map((i: AddressMap) =>
-                        <Link key={i.attributes.title} href={`/locaties#${i.attributes.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.attributes.title}</Link>
+                        <Link key={i.title} href={`/locaties#${i.url}`} className="text-sm text-white opacity-50 hover:opacity-100 2xl:text-lg first:opacity-100 hover:underline 2xl:first:text-xl first:text-base first:font-medium">{i.title}</Link>
                       )}
                     </Fragment>
                   )}

@@ -12,7 +12,7 @@ import { ConstructPageTitle } from "@/types/utils";
 
 export default function Team(props: TeamPage) {
   const { header, footer } = props
-  const { seo } = props.teampage.data.attributes;
+  const { seo } = props.teampage;
 
   return (
     <>
@@ -21,29 +21,29 @@ export default function Team(props: TeamPage) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={props.locations.data} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
+      <NavSection locations={props.locations || []} team={props.teams || []} data={header} info={props.generalinfo.contactsInfo} socialLinks={props.generalinfo.socialLinks} />
       <div className="pt-20 pb-16 bg-blue-100 mb-11">
         <BackButton className="absolute pl-4 -mt-4">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
-          {props.teampage.data.attributes.title}
+          {props.teampage.title}
         </h1>
       </div>
       <section className="xl:bg-[url('/team_bgr.svg')] bg-[url('/team_bgr_mob.svg')] bg-no-repeat bg-top md:bg-cover bg-contain relative md:pt-[85px] pt-[67px] md:mt-[27px] mt-2 pb-10">
         <div className="relative xl:w-80% w-90% max-w-1560 h-auto mx-auto">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-            {props.teams.data.map((item) =>
-              <TeamMember key={item.attributes.name} data={item} />
+            {(props.teams || []).map((item) =>
+              <TeamMember key={item.name} data={item} />
             )}
           </div>
         </div>
       </section>
       <Footer
         data={footer}
-        locations={props.locations.data}
-        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
-        termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        locations={props.locations || []}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   );
@@ -57,13 +57,32 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   })
 
-  const { data } = await client.query({
-    query: GET_TEAMPAGE_DATA,
-  })
+  try {
+    const result = await client.query({
+      query: GET_TEAMPAGE_DATA,
+    })
 
-  return {
-    props: data as { [key: string]: any },
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    const data = result.data as any;
+
+    const props = {
+      teampage: data?.teampage || {},
+      locations: data?.locations || [],
+      teams: data?.teams || [],
+      generalinfo: data?.generalinfo || {},
+      header: Array.isArray(data?.header) ? data.header : [],
+      footer: Array.isArray(data?.footer) ? data.footer : [],
+    };
+
+    return {
+      props,
+      revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    }
+  } catch (error) {
+    console.error('Failed to fetch team page data:', error);
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
   }
 }
 

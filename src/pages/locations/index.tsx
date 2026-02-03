@@ -13,9 +13,9 @@ import { ConstructPageTitle } from "@/types/utils";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
-  const { seo } = props.locatie.data.attributes;
+  const { seo } = props.locatie;
 
-  const locationsData = props.locations.data;
+  const locationsData = props.locations || [];
   return (
     <>
       <Head>
@@ -23,11 +23,11 @@ export default function Locations(props: LocationsPage) {
         <meta name='description' content={seo.metaDescription && seo.metaDescription} />
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
-      <NavSection locations={locationsData} team={props.teams.data} data={header} info={props.generalinfo.data.attributes.contactsInfo} socialLinks={props.generalinfo.data.attributes.socialLinks} />
+      <NavSection locations={locationsData} team={props.teams || []} data={header} info={props.generalinfo.contactsInfo} socialLinks={props.generalinfo.socialLinks} />
       <div className="pt-20 pb-16 bg-blue-100">
         <BackButton className="absolute pl-4 -mt-4">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
-          {props.locatie.data.attributes.title}
+          {props.locatie.title}
         </h1>
       </div>
       <section className="bg-blue-50 relative md:pt-[85px] pt-[85px] pb-10">
@@ -35,10 +35,10 @@ export default function Locations(props: LocationsPage) {
           <div className="flex flex-wrap justify-between gap-y-10">
             {locationsData.map((item) =>
               <div
-                id={item.attributes.url.slice(item.attributes.url.indexOf('#') + 1)}
-                className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.attributes.url}
+                id={item.url.slice(item.url.indexOf('#') + 1)}
+                className="bg-white rounded-[42px] p-8 sm:w-[48%] w-full" key={item.url}
               >
-                <h3 className="mb-8 text-2xl font-medium">{item.attributes.title}</h3>
+                <h3 className="mb-8 text-2xl font-medium">{item.title}</h3>
                 <div className="flex justify-between gap-6 flex-row max-[1600px]:flex-col-reverse">
                   <div>
                     <div className="flex items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
@@ -50,7 +50,7 @@ export default function Locations(props: LocationsPage) {
                           height="24"
                         />
                       </span>
-                      <a href={`mailto:${item.attributes.email}`}>{item.attributes.email}</a>
+                      <a href={`mailto:${item.email}`}>{item.email}</a>
                     </div>
                     <div className="flex mt-4 items-center gap-3 lg:text-2xl text-base text-[#696AA5] font-normal">
                       <span className="block p-2 rounded-full bg-dark-purple lg:p-3">
@@ -61,22 +61,22 @@ export default function Locations(props: LocationsPage) {
                           height="24"
                         />
                       </span>
-                      <a href={`tel:${item.attributes.phone}`}>{item.attributes.phone}</a>
+                      <a href={`tel:${item.phone}`}>{item.phone}</a>
                     </div>
                     <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 leading-normal">
-                      {item.attributes.address}
+                      {item.address}
                     </p>
                   </div>
-                  {item.attributes.img.data && (
+                  {item.img?.url && (
                     <div className="max-w-[50%] max-[1600px]:max-w-full">
                       <Image
                         width="0"
                         height="0"
                         quality="80"
-                        alt={item.attributes.address}
-                        src={item.attributes.img.data && item.attributes.img.data.attributes.url}
+                        alt={item.address}
+                        src={item.img.url}
                         sizes="100vw"
-                        blurDataURL={item.attributes.img.data && item.attributes.img.data.attributes.url}
+                        blurDataURL={item.img.url}
                         className="relative z-0 aspect-video object-cover w-full h-full rounded-[42px]"
                       />
                     </div>
@@ -88,31 +88,31 @@ export default function Locations(props: LocationsPage) {
                 <div className="[&>*]:text-[#696AA5] [&>*]:lg:text-[26px] [&>*]:text-sm lg:pb-0 pb-2">
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>maandag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.monday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.monday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>dinsdag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.tuesday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.tuesday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>woensdag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.wednesday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.wednesday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>donderdag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.thursday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.thursday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>vrijdag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.friday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.friday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>zaterdag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.saturday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.saturday}</p>
                   </div>
                   <div className="flex justify-between lg:mt-[18px] mt-[8px]">
                     <p>zondag</p>
-                    <p className="lg:min-w-[170px] min-w-[100px]">{item.attributes.workingHours.sunday}</p>
+                    <p className="lg:min-w-[170px] min-w-[100px]">{item.workingHours.sunday}</p>
                   </div>
                 </div>
               </div>
@@ -122,11 +122,11 @@ export default function Locations(props: LocationsPage) {
       </section>
       <Footer
         data={footer}
-        locations={props.locations.data}
-        privacyLink={props.generalinfo.data.attributes.privacyPolicyPage.data.attributes.url}
-        termsAndConditionsPage={props.generalinfo.data.attributes.termsAndConditionsPage.data.attributes.url}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        locations={props.locations}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   );
@@ -140,12 +140,31 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   })
 
-  const { data } = await client.query({
-    query: GET_LOCATIONS_DATA
-  })
+  try {
+    const result = await client.query({
+      query: GET_LOCATIONS_DATA
+    })
 
-  return {
-    props: data as { [key: string]: any },
-    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    const data = result.data as any;
+
+    const props = {
+      locatie: data?.locatie || {},
+      locations: data?.locations || [],
+      teams: data?.teams || [],
+      generalinfo: data?.generalinfo || {},
+      header: Array.isArray(data?.header) ? data.header : [],
+      footer: Array.isArray(data?.footer) ? data.footer : [],
+    };
+
+    return {
+      props,
+      revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) || DEFAULT_REVALIDATE_TIME,
+    }
+  } catch (error) {
+    console.error('Failed to fetch locations page data:', error);
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
   }
 }

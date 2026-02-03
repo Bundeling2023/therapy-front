@@ -20,13 +20,13 @@ import Link from "next/link";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
-  const { seo } = props.contactus.data.attributes;
+  const { seo } = props.contactus;
   const [emailError, setEmailError] = useState<boolean>(false);
   const [phoneError, setPhoneError] = useState<boolean>(false);
   const [firstnameError, setFirstNameError] = useState<boolean>(false);
   const [lastnameError, setLastNameError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const locations = props.locations.data;
+  const locations = props.locations || [];
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
   const [lastSentTime, setLastSentTime] = useState<number>(0);
@@ -138,7 +138,7 @@ export default function ContactPage(props: ContactsUsPage) {
     setSelectedLocation(selectedOption);
   };
 
-  const selectedLocationData = locations.find((item) => item.attributes.title === selectedLocation)?.attributes;
+  const selectedLocationData = locations.find((item) => item.title === selectedLocation);
   const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
   const isContactFormEnabled = process.env.NEXT_PUBLIC_CONTACT_FORM_HAS_ERRORS !== "true";
   return (
@@ -152,16 +152,16 @@ export default function ContactPage(props: ContactsUsPage) {
         <link rel="canonical" href={seo.canonicalURL && seo.canonicalURL} />
       </Head>
       <NavSection
-        locations={props.locations.data}
-        team={props.teams.data}
+        locations={props.locations || []}
+        team={props.teams}
         data={header}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
       <div className="pt-20 mb-11">
         <BackButton className="absolute pl-4 -mt-6 md:-mt-4">Terug</BackButton>
         <h1 className="mb-0 text-2xl font-semibold text-center text-dark-purple md:text-5xl">
-          {props.contactus.data.attributes.title}
+          {props.contactus.title}
         </h1>
       </div>
 
@@ -338,11 +338,11 @@ export default function ContactPage(props: ContactsUsPage) {
               <select id="location" name="location" className="select select-bordered" onChange={handleLocationChange}>
                 {locations.map((item) => (
                   <option
-                    key={`${item.attributes.title}`}
-                    value={item.attributes.title}
-                    data-only-for-kids={item.attributes.onlyForKids}
+                    key={`${item.title}`}
+                    value={item.title}
+                    data-only-for-kids={item.onlyForKids}
                   >
-                    {item.attributes.title}{item.attributes.onlyForKids && " (Alleen voor kinderen)"}
+                    {item.title}{item.onlyForKids && " (Alleen voor kinderen)"}
                   </option>
                 ))}
                 <option value="Geen voorkeur">Geen voorkeur</option>
@@ -455,16 +455,10 @@ export default function ContactPage(props: ContactsUsPage) {
       <Footer
         data={footer}
         locations={locations}
-        privacyLink={
-          props.generalinfo.data.attributes.privacyPolicyPage.data.attributes
-            .url
-        }
-        termsAndConditionsPage={
-          props.generalinfo.data.attributes.termsAndConditionsPage.data
-            .attributes.url
-        }
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   );
@@ -478,14 +472,33 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   });
 
-  const { data } = await client.query({
-    query: GET_CONTACTUS_PAGE,
-  });
+  try {
+    const result = await client.query({
+      query: GET_CONTACTUS_PAGE,
+    });
 
-  return {
-    props: data as { [key: string]: any },
-    revalidate:
-      Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
-      DEFAULT_REVALIDATE_TIME,
-  };
+    const data = result.data as any;
+
+    const props = {
+      contactus: data?.contactus || {},
+      locations: data?.locations || [],
+      teams: data?.teams || [],
+      generalinfo: data?.generalinfo || {},
+      header: Array.isArray(data?.header) ? data.header : [],
+      footer: Array.isArray(data?.footer) ? data.footer : [],
+    };
+
+    return {
+      props,
+      revalidate:
+        Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
+        DEFAULT_REVALIDATE_TIME,
+    };
+  } catch (error) {
+    console.error('Failed to fetch contact page data:', error);
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
+  }
 };

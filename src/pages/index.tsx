@@ -17,7 +17,7 @@ import Script from "next/script";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props;
-  const { mainBanner, services, seo, modalVideo } = props.home.data.attributes;
+  const { mainBanner, services, seo, modalVideo } = props.home;
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
   const isProduction = isEnvironment("production");
@@ -57,31 +57,25 @@ export default function Home(props: HomePage) {
         </>
       )}
       <NavSection
-        locations={locations.data}
-        team={props.teams.data}
+        locations={locations}
+        team={props.teams}
         data={header}
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
-      <TeamsBlock data={props.teams.data} />
+      <TeamsBlock data={props.teams} />
       <ModalVideo data={modalVideo} />
-      <MapSection data={locations.data} />
+      <MapSection data={locations} />
       <ReviewsBlock />
       <Footer
         data={footer}
-        locations={locations.data}
-        privacyLink={
-          props.generalinfo.data.attributes.privacyPolicyPage.data.attributes
-            .url
-        }
-        termsAndConditionsPage={
-          props.generalinfo.data.attributes.termsAndConditionsPage.data
-            .attributes.url
-        }
-        info={props.generalinfo.data.attributes.contactsInfo}
-        socialLinks={props.generalinfo.data.attributes.socialLinks}
+        locations={locations}
+        privacyLink={props.generalinfo.privacyPolicyPage.url}
+        termsAndConditionsPage={props.generalinfo.termsAndConditionsPage.url}
+        info={props.generalinfo.contactsInfo}
+        socialLinks={props.generalinfo.socialLinks}
       />
     </>
   );
@@ -95,14 +89,41 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   });
 
-  const { data } = await client.query({
-    query: GET_HOMEPAGE_DATA,
-  });
+  try {
+    console.log('Fetching home page data from:', `${process.env.NEXT_PUBLIC_API_URL}/graphql`);
+    const result = await client.query({
+      query: GET_HOMEPAGE_DATA,
+    });
 
-  return {
-    props: data as { [key: string]: any },
-    revalidate:
-      Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
-      DEFAULT_REVALIDATE_TIME,
-  };
+    const data = result.data as any;
+    console.log('Home data keys:', Object.keys(data));
+    console.log('Home object:', data?.home);
+
+    const props = {
+      home: data?.home || {
+        mainBanner: [],
+        services: [],
+        seo: { metaTitle: '', metaDescription: '' },
+        modalVideo: { providerUid: '' }
+      },
+      locations: data?.locations || [],
+      teams: data?.teams || [],
+      generalinfo: data?.generalinfo || {},
+      header: Array.isArray(data?.header) ? data.header : [],
+      footer: Array.isArray(data?.footer) ? data.footer : [],
+    };
+
+    return {
+      props,
+      revalidate:
+        Number(process.env.NEXT_PUBLIC_REVALIDATE_TIME) ||
+        DEFAULT_REVALIDATE_TIME,
+    };
+  } catch (error) {
+    console.error('Failed to fetch home page data:', error);
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
+  }
 };
