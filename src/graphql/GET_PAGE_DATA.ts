@@ -4,12 +4,14 @@ import {
   TeamMemberFragment,
   LocationFragment,
   PageFragment,
+  NavigationQueryFragment,
 } from "./fragments";
 
 export const GET_PAGE_DATA = gql`
   ${GeneralInfoFragment}
   ${LocationFragment}
   ${TeamMemberFragment}
+  ${NavigationQueryFragment}
   query GET_PAGE_DATA ($slugUrl: String!) {
     pages(filters: { url: { eq: $slugUrl }}) {
       url
@@ -60,189 +62,6 @@ export const GET_PAGE_DATA = gql`
     locations(sort: "displayPriority") {
       ...LocationFragment
     }
-    header: renderNavigation(
-      navigationIdOrSlug: "header"
-      type: TREE
-      menuOnly: false
-    ) {
-      title
-      path
-      related {
-        ... on Page {
-          url
-          publishedAt
-        }
-        ... on Teampage {
-          url
-          publishedAt
-        }
-        ... on Locatie {
-          url
-          publishedAt
-        }
-        ... on Location {
-          url
-          publishedAt
-        }
-      }
-      items {
-        title
-        path
-        related {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
-          ... on Location {
-            url
-            publishedAt
-          }
-        }
-        items {
-          title
-          path
-          related {
-            ... on Page {
-              url
-              publishedAt
-            }
-            ... on Teampage {
-              url
-              publishedAt
-            }
-            ... on Locatie {
-              url
-              publishedAt
-            }
-            ... on Location {
-              url
-              publishedAt
-            }
-          }
-          items {
-            title
-            path
-            related {
-              ... on Page {
-                url
-                publishedAt
-              }
-              ... on Teampage {
-                url
-                publishedAt
-              }
-              ... on Locatie {
-                url
-                publishedAt
-              }
-              ... on Location {
-                url
-                publishedAt
-              }
-            }
-          }
-        }
-      }
-    }
-    footer: renderNavigation(
-      navigationIdOrSlug: "footer"
-      type: TREE
-      menuOnly: false
-    ) {
-      title
-      path
-      related {
-        ... on Page {
-          url
-          publishedAt
-        }
-        ... on Teampage {
-          url
-          publishedAt
-        }
-        ... on Locatie {
-          url
-          publishedAt
-        }
-        ... on Location {
-          url
-          publishedAt
-        }
-      }
-      items {
-        title
-        path
-        related {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
-          ... on Location {
-            url
-            publishedAt
-          }
-        }
-        items {
-          title
-          path
-          related {
-            ... on Page {
-              url
-              publishedAt
-            }
-            ... on Teampage {
-              url
-              publishedAt
-            }
-            ... on Locatie {
-              url
-              publishedAt
-            }
-            ... on Location {
-              url
-              publishedAt
-            }
-          }
-          items {
-            title
-            path
-            related {
-              ... on Page {
-                url
-                publishedAt
-              }
-              ... on Teampage {
-                url
-                publishedAt
-              }
-              ... on Locatie {
-                url
-                publishedAt
-              }
-              ... on Location {
-                url
-                publishedAt
-              }
-            }
-          }
-        }
-      }
-    }
+    ...NavigationQueryFragment
   }
 `;

@@ -87,23 +87,46 @@ export const SeoFragment = gql`
   }
 `;
 
-// Navigation structure
-export const NavigationItemFragment = gql`
+export const NavigationQueryFragment = gql`
   fragment NavigationItemFragment on NavigationItem {
+    id
     title
     path
+    externalPath
     related {
+      __typename
+      ... on Locatie {
+        urlAlias: url
+        publishedAt
+      }
+      ... on Teampage {
+        urlAlias: url
+        publishedAt
+      }
       ... on Page {
         url
         publishedAt
       }
-      ... on Teampage {
-        url
-        publishedAt
+    }
+  }
+
+  fragment NavigationQueryFragment on Query {
+    header: renderNavigation(navigationIdOrSlug: "header", type: TREE, menuOnly: false) {
+      ...NavigationItemFragment
+      items {
+        ...NavigationItemFragment
+        items {
+          ...NavigationItemFragment
+          items {
+            ...NavigationItemFragment
+          }
+        }
       }
-      ... on Locatie {
-        url
-        publishedAt
+    }
+    footer: renderNavigation(navigationIdOrSlug: "footer", type: TREE, menuOnly: false) {
+      ...NavigationItemFragment
+      items {
+        ...NavigationItemFragment
       }
     }
   }

@@ -75,11 +75,9 @@ export interface MenuItemFields {
   title: string
   path: string
   related: {
-
-      url: string
-      title: string
-      publishedAt: string
-    
+    url: string
+    title: string
+    publishedAt: string    
   }
 }
 

@@ -90,14 +90,11 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   try {
-    console.log('Fetching home page data from:', `${process.env.NEXT_PUBLIC_API_URL}/graphql`);
     const result = await client.query({
       query: GET_HOMEPAGE_DATA,
     });
 
     const data = result.data as any;
-    console.log('Home data keys:', Object.keys(data));
-    console.log('Home object:', data?.home);
 
     const props = {
       home: data?.home || {

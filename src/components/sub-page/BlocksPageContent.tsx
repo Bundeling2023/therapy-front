@@ -21,7 +21,7 @@ export const BlocksPageContent = (data: any) => {
                 sizes="100vw" />;
 
             return (<>
-                {item.link.data ? (
+                {item.link ? (
                     <Link href={item.link?.url} key={item.title} className="bg-white rounded-xl p-7 xl:max-w-[49%] sm:max-w-[48%] w-full simple-page transition duration-500 ease-in-out hover:shadow-lg hover:-translate-y-2">
                         {imageUrl && <ImageComponent />}
                         <h2>{item.title}</h2>

@@ -3,12 +3,14 @@ import {
   GeneralInfoFragment,
   TeamMemberFragment,
   LocationFragment,
+  NavigationQueryFragment,
 } from "./fragments";
 
 export const GET_CONTACTUS_PAGE = gql`
   ${GeneralInfoFragment}
   ${LocationFragment}
   ${TeamMemberFragment}
+  ${NavigationQueryFragment}
   query GET_CONTACTUS_PAGE {
     contactus {
       title
@@ -27,95 +29,6 @@ export const GET_CONTACTUS_PAGE = gql`
     generalinfo {
       ...GeneralInfoFragment
     }
-    header: renderNavigation(
-      navigationIdOrSlug: "header"
-      type: TREE
-      menuOnly: false
-    ) {
-      title
-      path
-      related {
-        ... on Page {
-          url
-          publishedAt
-        }
-        ... on Teampage {
-          url
-          publishedAt
-        }
-        ... on Locatie {
-          url
-          publishedAt
-        }
-      }
-      items {
-        title
-        path
-        related {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
-        }
-        items {
-          title
-          path
-          related {
-            ... on Page {
-              url
-              publishedAt
-            }
-          }
-        }
-      }
-    }
-    footer: renderNavigation(
-      navigationIdOrSlug: "footer"
-      type: TREE
-      menuOnly: false
-    ) {
-      title
-      path
-      related {
-        ... on Page {
-          url
-          publishedAt
-        }
-        ... on Teampage {
-          url
-          publishedAt
-        }
-        ... on Locatie {
-          url
-          publishedAt
-        }
-      }
-      items {
-        title
-        path
-        related {
-          ... on Page {
-            url
-            publishedAt
-          }
-          ... on Teampage {
-            url
-            publishedAt
-          }
-          ... on Locatie {
-            url
-            publishedAt
-          }
-        }
-      }
-    }
+    ...NavigationQueryFragment
   }
 `;
