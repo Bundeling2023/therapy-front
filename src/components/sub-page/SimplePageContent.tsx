@@ -1,6 +1,7 @@
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import { NoInfo } from "./NoInfo";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_MOBILE_FIRST, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 export const SimplePageContent = (props: any) => {
     const data = props?.data;
@@ -12,11 +13,14 @@ export const SimplePageContent = (props: any) => {
         {data.img && data.img.data && (
             <Image
                 className="w-full rounded-xl"
-                src={data.img.data.attributes.url}
-                alt={data.title}
+                src={optimizeCloudinaryUrl(data.img.data.attributes.url, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'auto' })}
+                alt={data.title || "Content"}
                 width={0}
                 height={0}
-                sizes="100vw" />
+                sizes={RESPONSIVE_SIZES_MOBILE_FIRST}
+                placeholder="blur"
+                blurDataURL={getBlurPlaceholder(data.img.data.attributes.url)}
+            />
         )}
         {data.description ? HTMLReactParser(data.description) : ''}
     </main>);

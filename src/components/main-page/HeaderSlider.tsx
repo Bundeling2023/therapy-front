@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import { MainBanner } from "@/types/types";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_HERO, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: MainBanner[]
@@ -138,12 +139,14 @@ const HeaderSlider = ({ data }: Props) => {
                 <Image
                   width="0"
                   height="0"
-                  quality="80"
-                  src={item.img.data.attributes.url}
-                  sizes="100vw"
-                  blurDataURL={item.img.data.attributes.url}
+                  quality="85"
+                  src={optimizeCloudinaryUrl(item.img.data.attributes.url, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'fill' })}
+                  sizes={RESPONSIVE_SIZES_HERO}
+                  placeholder="blur"
+                  blurDataURL={getBlurPlaceholder(item.img.data.attributes.url)}
+                  priority
                   className="relative z-10 object-cover w-full mask1 aspect-square"
-                  alt="test"
+                  alt={item.description || "Bundeling"}
                 />
               </div>
             </div>

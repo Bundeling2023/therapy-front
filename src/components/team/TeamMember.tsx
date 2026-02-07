@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Team } from "@/types/types";
 import HTMLReactParser from "html-react-parser";
 import { useState } from "react";
+import { optimizeProfileImage, getProfileBlurPlaceholder, RESPONSIVE_SIZES_AVATAR } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: Team;
@@ -31,12 +32,13 @@ const TeamMember = ({ data, showDetailedInformation = false }: Props) => {
           id={generateTeamId(data.attributes.url)}
           width="0"
           height="0"
-          src={data.attributes.img.data?.attributes.url}
+          src={optimizeProfileImage(data.attributes.img.data?.attributes.url, 405)}
           alt={data.attributes.name}
-          sizes="404px"
+          sizes={RESPONSIVE_SIZES_AVATAR}
           priority
+          placeholder="blur"
+          blurDataURL={getProfileBlurPlaceholder(data.attributes.img.data?.attributes.url)}
           className="object-cover w-full h-full rounded-full"
-          blurDataURL={data.attributes.img.data?.attributes.url}
         />
       ) : (
         <div

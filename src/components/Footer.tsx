@@ -7,6 +7,7 @@ import { hasCookie, setCookie } from 'cookies-next';
 import { Fragment, useEffect, useState } from "react";
 import { getPathFromUrl } from "@/types/utils";
 import MenuLink from "./MenuLink";
+import { optimizeCloudinaryUrl } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: Menu[],
@@ -128,7 +129,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center mr-10"
               >
                 <Image
-                  src="https://res.cloudinary.com/dwjdjipxl/image/upload/f_auto/q_auto/v1707918573/thumbnail_avg_ok_logo_a0c76dd1c2.png"
+                  src={optimizeCloudinaryUrl("https://res.cloudinary.com/dwjdjipxl/image/upload/f_auto/q_auto/v1707918573/thumbnail_avg_ok_logo_a0c76dd1c2.png", { width: 50, height: 50, quality: 'auto', dpr: 'auto', crop: 'fill' })}
                   alt="AVG OK"
                   width={50}
                   height={50}

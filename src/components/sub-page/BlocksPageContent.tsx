@@ -2,6 +2,7 @@ import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 import { NoInfo } from "./NoInfo";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 export const BlocksPageContent = (data: any) => {
     const blocks = data?.items?.blocks;
@@ -14,11 +15,14 @@ export const BlocksPageContent = (data: any) => {
 
             const ImageComponent = () => <Image
                 className="w-full rounded-xl object-cover h-48"
-                src={imageUrl}
-                alt={item.title}
+                src={optimizeCloudinaryUrl(imageUrl, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'auto' })}
+                alt={item.title || "Block"}
                 width={0}
                 height={0}
-                sizes="100vw" />;
+                sizes={RESPONSIVE_SIZES_CARD}
+                placeholder="blur"
+                blurDataURL={getBlurPlaceholder(imageUrl)}
+            />;
 
             return (<>
                 {item.link.data ? (

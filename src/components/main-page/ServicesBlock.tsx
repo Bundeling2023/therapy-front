@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ImageTest from "@/img/test_img2.png";
 import { Services } from "@/types/types";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: Services[]
@@ -23,11 +24,13 @@ const ServicesBlock = ({ data }: Props) => {
           >
             <Image
               className="mx-auto w-full md:max-w-[228px] max-w-[140px] ease-linear duration-300 group-hover:translate-y-[-8px]"
-              src={item.img.data.attributes.url}
-              alt="test"
+              src={optimizeCloudinaryUrl(item.img.data.attributes.url, { width: 300, quality: 'auto', dpr: 'auto', gravity: 'auto' })}
+              alt={item.title || "Service"}
               width={0}
               height={0}
-              sizes="100vw"
+              sizes="(max-width: 768px) 140px, 228px"
+              placeholder="blur"
+              blurDataURL={getBlurPlaceholder(item.img.data.attributes.url)}
             />
             <p className="text-white inline-block mx-auto after:block after:ease-linear after:duration-300 after:h-[2px] after:w-0 after:bg-white after:absolute relative md:mt-8 mt-4 2xl:text-[30px] md:text-xl text-sm ease-linear duration-300 leading-normal font-semibold group-hover:after:w-full">
               {item.title}

@@ -10,6 +10,7 @@ import Head from 'next/head'
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
@@ -74,9 +75,10 @@ export default function Locations(props: LocationsPage) {
                         height="0"
                         quality="80"
                         alt={item.attributes.address}
-                        src={item.attributes.img.data && item.attributes.img.data.attributes.url}
-                        sizes="100vw"
-                        blurDataURL={item.attributes.img.data && item.attributes.img.data.attributes.url}
+                        src={optimizeCloudinaryUrl(item.attributes.img.data.attributes.url, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'auto' })}
+                        sizes={RESPONSIVE_SIZES_CARD}
+                        placeholder="blur"
+                        blurDataURL={getBlurPlaceholder(item.attributes.img.data.attributes.url)}
                         className="relative z-0 aspect-video object-cover w-full h-full rounded-[42px]"
                       />
                     </div>
