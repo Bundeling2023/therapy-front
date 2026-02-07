@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 import Head from 'next/head'
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
@@ -74,9 +75,10 @@ export default function Locations(props: LocationsPage) {
                         height="0"
                         quality="80"
                         alt={item.address}
-                        src={item.img.url}
-                        sizes="100vw"
-                        blurDataURL={item.img.url}
+                        src={optimizeCloudinaryUrl(item.img.url, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'auto' })}
+                        sizes={RESPONSIVE_SIZES_CARD}
+                        placeholder="blur"
+                        blurDataURL={getBlurPlaceholder(item.img.url)}
                         className="relative z-0 aspect-video object-cover w-full h-full rounded-[42px]"
                       />
                     </div>
