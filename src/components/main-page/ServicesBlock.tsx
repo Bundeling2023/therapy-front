@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, optimizeForMobile, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 import ImageTest from "@/img/test_img2.png";
 import { Services } from "@/types/types";
+import { optimizeCloudinaryUrl, RESPONSIVE_SIZES_CARD, getBlurPlaceholder } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: Services[]

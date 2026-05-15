@@ -8,6 +8,7 @@ import { Fragment, useEffect, useState } from "react";
 import { getPathFromUrl } from "@/types/utils";
 import { optimizeCloudinaryUrl } from "@/types/cloudinaryOptimization";
 import MenuLink from "./MenuLink";
+import { optimizeCloudinaryUrl } from "@/types/cloudinaryOptimization";
 
 interface Props {
   data: Menu[],

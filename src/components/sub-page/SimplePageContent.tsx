@@ -10,7 +10,7 @@ export const SimplePageContent = (props: any) => {
     }
 
     return (<main className="w-full bg-white rounded-xl p-7 simple-page break-words">
-        {data.img && data.img.data && (
+        {data.img?.url && (
             <Image
                 className="w-full rounded-xl"
                 src={optimizeCloudinaryUrl(data.img?.url, { quality: 'auto', dpr: 'auto', gravity: 'auto', crop: 'auto' })}
