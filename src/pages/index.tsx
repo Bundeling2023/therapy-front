@@ -119,7 +119,9 @@ export const getStaticProps: GetStaticProps = async () => {
   } catch (error) {
     console.error('Failed to fetch home page data:', error);
     return {
-      notFound: true,
+      props: {
+        __maintenance: true,
+      },
       revalidate: 10,
     };
   }

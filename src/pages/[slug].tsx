@@ -148,7 +148,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } catch (error) {
     console.error('Failed to fetch page data:', error);
     return {
-      notFound: true,
+      props: {
+        __maintenance: true,
+      },
     };
   }
 }
