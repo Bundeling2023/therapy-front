@@ -6,7 +6,6 @@ export interface SocialLinks {
   facebook: string
   youtube: string
   instagram: string
-  tiktok: string
 }
 
 interface GeneralInfoProperties {
