@@ -17,7 +17,7 @@ export const GET_PAGE_DATA = gql`
       url
       title
       pageWithBlocks {
-        blocks {
+        blocks(pagination: { limit: 100 }) {
           title
           description
           link {
@@ -59,7 +59,7 @@ export const GET_PAGE_DATA = gql`
     teams(sort: "displayPriority", pagination: { limit: 100 }) {
       ...TeamMemberFragment
     }
-    locations(sort: "displayPriority") {
+    locations(sort: "displayPriority", pagination: { limit: 100 }) {
       ...LocationFragment
     }
     ...NavigationQueryFragment

@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import HeaderSlider from "@/components/main-page/HeaderSlider";
-import ModalVideo from "@/components/main-page/ModalVideo";
 import ReviewsBlock from "@/components/main-page/ReviewsBlock";
 import ServicesBlock from "@/components/main-page/ServicesBlock";
 import TeamsBlock from "@/components/main-page/TeamsBlock";
@@ -17,7 +16,7 @@ import Script from "next/script";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props;
-  const { mainBanner, services, seo, modalVideo } = props.home;
+  const { mainBanner, services, seo } = props.home;
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
   const isProduction = isEnvironment("production");
@@ -66,7 +65,6 @@ export default function Home(props: HomePage) {
       <HeaderSlider data={mainBanner} />
       <ServicesBlock data={services} />
       <TeamsBlock data={props.teams} />
-      <ModalVideo data={modalVideo} />
       <MapSection data={locations} />
       <ReviewsBlock />
       <Footer

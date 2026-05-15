@@ -126,6 +126,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 title="AVG OK"
                 href="https://www.avg-programma.nl/avg-ok-vignet/0ed29e36-61bd-4e59-980d-f105c5ed8cfc"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center mr-10"
               >
                 <Image
@@ -139,6 +140,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 title="Facebook"
                 href={socialLinks?.facebook}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
                 <svg
@@ -158,6 +160,7 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                 title="Instagram"
                 href={socialLinks?.instagram}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
               >
                 <svg
@@ -180,6 +183,15 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                     fill="white"
                   />
                 </svg>
+              </a>
+              <a
+                title="TikTok"
+                href={socialLinks?.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
+              >
+                <Icon icon="akar-icons:tiktok-fill" color="white" width="24" height="24" />
               </a>
             </div>
           </div>

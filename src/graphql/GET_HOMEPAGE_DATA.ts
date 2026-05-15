@@ -41,7 +41,7 @@ export const GET_HOMEPAGE_DATA = gql`
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
       ...TeamMemberFragment
     }
-    locations (sort: "displayPriority") {
+    locations (sort: "displayPriority", pagination: { limit: 100 }) {
       ...LocationFragment
     }
     generalinfo {

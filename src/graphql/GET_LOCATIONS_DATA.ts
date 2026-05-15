@@ -23,7 +23,7 @@ export const GET_LOCATIONS_DATA = gql`
     generalinfo {
       ...GeneralInfoFragment
     }
-    locations (sort: "displayPriority") {
+    locations (sort: "displayPriority", pagination: { limit: 100 }) {
       ...LocationFragment
     }
     teams (sort: "displayPriority", pagination: { limit: 100 }) {

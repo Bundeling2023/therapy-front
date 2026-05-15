@@ -12,6 +12,7 @@ export const GeneralInfoFragment = gql`
       facebook
       youtube
       instagram
+      tiktok
     }
     privacyPolicyPage {
       url

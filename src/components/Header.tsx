@@ -11,7 +11,6 @@ import {
   Team,
 } from "@/types/types";
 import MenuLink from "./MenuLink";
-import { json } from "stream/consumers";
 
 interface Props {
   data: Menu[];
@@ -298,6 +297,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                     title="Facebook"
                     href={socialLinks?.facebook}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
                   >
                     <svg
@@ -336,6 +336,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                     title="Instagram"
                     href={socialLinks?.instagram}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
                   >
                     <svg
@@ -358,6 +359,15 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                         fill="white"
                       />
                     </svg>
+                  </a>
+                  <a
+                    title="TikTok"
+                    href={socialLinks?.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-[60px] h-[60px] rounded-full bg-white/10 flex items-center justify-center"
+                  >
+                    <Icon icon="akar-icons:tiktok-fill" color="white" width="24" height="24" />
                   </a>
                 </div>
                 <div className="mt-10 [&>*]:text-white flex gap-2 items-center">

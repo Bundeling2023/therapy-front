@@ -26,7 +26,7 @@ export const GET_TEAMPAGE_DATA = gql`
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
       ...TeamMemberFragment
     }
-    locations (sort: "displayPriority") {
+    locations (sort: "displayPriority", pagination: { limit: 100 }) {
       ...LocationFragment
     }
     ...NavigationQueryFragment

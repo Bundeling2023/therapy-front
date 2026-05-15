@@ -20,7 +20,7 @@ export const GET_CONTACTUS_PAGE = gql`
         canonicalURL
       }
     }
-    locations (sort: "displayPriority") {
+    locations (sort: "displayPriority", pagination: { limit: 100 }) {
       ...LocationFragment
     }
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
