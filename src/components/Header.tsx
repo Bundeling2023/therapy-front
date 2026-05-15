@@ -418,8 +418,6 @@ const TopBar = ({ info }: { info: ContactInfo }) => <div className="flex mx-auto
 </div>;
 
 const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations: AddressMap[] }) => {
-  console.log(JSON.stringify(data, null, 2));
-  
   return <ul className="flex gap-5 px-0 pt-11 2xl:gap-11 z-30">
     {data?.map((item: Menu, index) => (
       item.related?.publishedAt && (
