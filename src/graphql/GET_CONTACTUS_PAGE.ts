@@ -1,16 +1,8 @@
 import { gql } from "@apollo/client";
-import {
-  GeneralInfoFragment,
-  TeamMemberFragment,
-  LocationFragment,
-  NavigationQueryFragment,
-} from "./fragments";
+import { GeneralInfoFragment } from "./fragments";
 
 export const GET_CONTACTUS_PAGE = gql`
   ${GeneralInfoFragment}
-  ${LocationFragment}
-  ${TeamMemberFragment}
-  ${NavigationQueryFragment}
   query GET_CONTACTUS_PAGE {
     contactus {
       title
@@ -20,15 +12,17 @@ export const GET_CONTACTUS_PAGE = gql`
         canonicalURL
       }
     }
-    locations (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...LocationFragment
+    locations(sort: "displayPriority", pagination: { limit: 100 }) {
+      title
+      url
+      onlyForKids
     }
-    teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...TeamMemberFragment
+    teams(sort: "displayPriority", pagination: { limit: 100 }) {
+      name
+      url
     }
     generalinfo {
       ...GeneralInfoFragment
     }
-    ...NavigationQueryFragment
   }
 `;

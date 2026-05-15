@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_CONTACTUS_PAGE } from "@/graphql/GET_CONTACTUS_PAGE";
+import { GET_NAVIGATION_DATA } from "@/graphql/GET_NAVIGATION_DATA";
 import { ContactsUsPage } from "@/types/types";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
@@ -224,11 +225,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const client = createServerApolloClient();
 
   try {
-    const result = await client.query({
-      query: GET_CONTACTUS_PAGE,
-    });
+    const [result, navigationResult] = await Promise.all([
+      client.query({
+        query: GET_CONTACTUS_PAGE,
+      }),
+      client.query({
+        query: GET_NAVIGATION_DATA,
+      }),
+    ]);
 
     const data = result.data as any;
+    const navigationData = navigationResult.data as any;
 
     // Ensure all expected properties exist with fallbacks
     const props = {
@@ -236,8 +243,8 @@ export const getStaticProps: GetStaticProps = async () => {
       locations: data?.locations || [],
       teams: data?.teams || [],
       generalinfo: data?.generalinfo || {},
-      header: Array.isArray(data?.header) ? data.header : [],
-      footer: Array.isArray(data?.footer) ? data.footer : [],
+      header: Array.isArray(navigationData?.header) ? navigationData.header : [],
+      footer: Array.isArray(navigationData?.footer) ? navigationData.footer : [],
     };
 
     return {

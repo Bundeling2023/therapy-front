@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_LOCATIONS_DATA } from "@/graphql/GET_LOCATIONS_DATA";
+import { GET_NAVIGATION_DATA } from "@/graphql/GET_NAVIGATION_DATA";
 import { LocationsPage } from "@/types/types";
 import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
@@ -141,19 +142,25 @@ export const getStaticProps: GetStaticProps = async () => {
   const client = createServerApolloClient()
 
   try {
-    const result = await client.query({
-      query: GET_LOCATIONS_DATA
-    })
+    const [result, navigationResult] = await Promise.all([
+      client.query({
+        query: GET_LOCATIONS_DATA
+      }),
+      client.query({
+        query: GET_NAVIGATION_DATA,
+      }),
+    ])
 
     const data = result.data as any;
+    const navigationData = navigationResult.data as any;
 
     const props = {
       locatie: data?.locatie || {},
       locations: data?.locations || [],
       teams: data?.teams || [],
       generalinfo: data?.generalinfo || {},
-      header: Array.isArray(data?.header) ? data.header : [],
-      footer: Array.isArray(data?.footer) ? data.footer : [],
+      header: Array.isArray(navigationData?.header) ? navigationData.header : [],
+      footer: Array.isArray(navigationData?.footer) ? navigationData.footer : [],
     };
 
     return {

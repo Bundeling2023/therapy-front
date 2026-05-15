@@ -9,6 +9,7 @@ import { HomePage } from "@/types/types";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
 import { GET_HOMEPAGE_DATA } from "@/graphql/GET_HOMEPAGE_DATA";
+import { GET_NAVIGATION_DATA } from "@/graphql/GET_NAVIGATION_DATA";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import { ConstructPageTitle, isEnvironment } from "@/types/utils";
 import Script from "next/script";
@@ -83,11 +84,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const client = createServerApolloClient();
 
   try {
-    const result = await client.query({
-      query: GET_HOMEPAGE_DATA,
-    });
+    const [result, navigationResult] = await Promise.all([
+      client.query({
+        query: GET_HOMEPAGE_DATA,
+      }),
+      client.query({
+        query: GET_NAVIGATION_DATA,
+      }),
+    ]);
 
     const data = result.data as any;
+    const navigationData = navigationResult.data as any;
 
     const props = {
       home: data?.home || {
@@ -99,8 +106,8 @@ export const getStaticProps: GetStaticProps = async () => {
       locations: data?.locations || [],
       teams: data?.teams || [],
       generalinfo: data?.generalinfo || {},
-      header: Array.isArray(data?.header) ? data.header : [],
-      footer: Array.isArray(data?.footer) ? data.footer : [],
+      header: Array.isArray(navigationData?.header) ? navigationData.header : [],
+      footer: Array.isArray(navigationData?.footer) ? navigationData.footer : [],
     };
 
     return {

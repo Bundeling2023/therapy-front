@@ -1,17 +1,6 @@
 import { gql } from "@apollo/client";
-import {
-  GeneralInfoFragment,
-  TeamMemberFragment,
-  LocationFragment,
-  PageFragment,
-  NavigationQueryFragment,
-} from "./fragments";
 
 export const GET_PAGE_DATA = gql`
-  ${GeneralInfoFragment}
-  ${LocationFragment}
-  ${TeamMemberFragment}
-  ${NavigationQueryFragment}
   query GET_PAGE_DATA ($slugUrl: String!) {
     pages(filters: { url: { eq: $slugUrl }}) {
       url
@@ -53,15 +42,5 @@ export const GET_PAGE_DATA = gql`
         canonicalURL
       }
     }
-    generalinfo {
-      ...GeneralInfoFragment
-    }
-    teams(sort: "displayPriority", pagination: { limit: 100 }) {
-      ...TeamMemberFragment
-    }
-    locations(sort: "displayPriority", pagination: { limit: 100 }) {
-      ...LocationFragment
-    }
-    ...NavigationQueryFragment
   }
 `;

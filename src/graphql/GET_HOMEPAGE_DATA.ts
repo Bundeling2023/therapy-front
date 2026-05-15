@@ -1,16 +1,6 @@
 import { gql } from "@apollo/client";
-import {
-  GeneralInfoFragment,
-  TeamMemberFragment,
-  LocationFragment,
-  NavigationQueryFragment,
-} from "./fragments";
 
 export const GET_HOMEPAGE_DATA = gql`
-  ${GeneralInfoFragment}
-  ${TeamMemberFragment}
-  ${LocationFragment}
-  ${NavigationQueryFragment}
   query GET_HOMEPAGE_DATA {
     home {
       mainBanner {
@@ -38,16 +28,52 @@ export const GET_HOMEPAGE_DATA = gql`
         canonicalURL
       }
     }
-    teams (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...TeamMemberFragment
+    teams(sort: "displayPriority", pagination: { limit: 100 }) {
+      name
+      email
+      phone
+      url
+      img {
+        url
+      }
     }
-    locations (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...LocationFragment
+    locations(sort: "displayPriority", pagination: { limit: 100 }) {
+      title
+      coordinates
+      url
+      phone
+      email
+      address
+      onlyForKids
+      workingHours {
+        monday
+        tuesday
+        wednesday
+        thursday
+        friday
+        saturday
+        sunday
+      }
     }
     generalinfo {
-      ...GeneralInfoFragment
+      contactsInfo {
+        email
+        phone
+        mainAddress
+      }
+      socialLinks {
+        facebook
+        youtube
+        instagram
+        tiktok
+      }
+      privacyPolicyPage {
+        url
+      }
+      termsAndConditionsPage {
+        url
+      }
     }
-    ...NavigationQueryFragment
   }
 `;
 

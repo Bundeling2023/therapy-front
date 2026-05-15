@@ -2,15 +2,11 @@ import { gql } from "@apollo/client";
 import {
   GeneralInfoFragment,
   TeamMemberFragment,
-  LocationFragment,
-  NavigationQueryFragment,
 } from "./fragments";
 
 export const GET_TEAMPAGE_DATA = gql`
   ${GeneralInfoFragment}
   ${TeamMemberFragment}
-  ${LocationFragment}
-  ${NavigationQueryFragment}
   query GET_TEAMPAGE_DATA {
     teampage {
       title
@@ -26,9 +22,9 @@ export const GET_TEAMPAGE_DATA = gql`
     teams (sort: "displayPriority", pagination: { limit: 100 }) {
       ...TeamMemberFragment
     }
-    locations (sort: "displayPriority", pagination: { limit: 100 }) {
-      ...LocationFragment
+    locations(sort: "displayPriority", pagination: { limit: 100 }) {
+      title
+      url
     }
-    ...NavigationQueryFragment
   }
 `;
