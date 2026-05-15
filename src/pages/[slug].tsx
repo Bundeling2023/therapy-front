@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_PAGE_DATA } from "@/graphql/GET_PAGE_DATA";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import Head from "next/head";
 import { GetServerSideProps } from "next/types";
 import { useEffect } from "react";
@@ -13,6 +12,7 @@ import { SimplePageContent } from "../components/sub-page/SimplePageContent";
 import { BlocksPageContent } from "../components/sub-page/BlocksPageContent";
 import TeamMember from "@/components/team/TeamMember";
 import { Team } from "@/types/types";
+import { createServerApolloClient } from "@/graphql/apolloClient";
 
 export default function PostPage(props: any) {
   useEffect(() => {
@@ -99,12 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'public, s-maxage=29, stale-while-revalidate=179'
   )
 
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    }),
-    cache: new InMemoryCache(),
-  })
+  const client = createServerApolloClient()
 
   try {
     const result = await client.query({

@@ -6,13 +6,13 @@ import ServicesBlock from "@/components/main-page/ServicesBlock";
 import TeamsBlock from "@/components/main-page/TeamsBlock";
 import MapSection from "@/components/main-page/MapSection";
 import { HomePage } from "@/types/types";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
 import { GET_HOMEPAGE_DATA } from "@/graphql/GET_HOMEPAGE_DATA";
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import { ConstructPageTitle, isEnvironment } from "@/types/utils";
 import Script from "next/script";
+import { createServerApolloClient } from "@/graphql/apolloClient";
 
 export default function Home(props: HomePage) {
   const { header, footer, locations } = props;
@@ -80,12 +80,7 @@ export default function Home(props: HomePage) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    }),
-    cache: new InMemoryCache(),
-  });
+  const client = createServerApolloClient();
 
   try {
     const result = await client.query({

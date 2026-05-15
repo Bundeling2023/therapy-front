@@ -3,12 +3,12 @@ import NavSection from "@/components/Header";
 import TeamMember from "@/components/team/TeamMember";
 import { GET_TEAMPAGE_DATA } from "@/graphql/GET_TEAMPAGE_DATA";
 import { Seo, TeamPage } from "@/types/types";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from 'next/head'
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
+import { createServerApolloClient } from "@/graphql/apolloClient";
 
 export default function Team(props: TeamPage) {
   const { header, footer } = props
@@ -50,12 +50,7 @@ export default function Team(props: TeamPage) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    }),
-    cache: new InMemoryCache(),
-  })
+  const client = createServerApolloClient()
 
   try {
     const result = await client.query({

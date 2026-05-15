@@ -93,9 +93,7 @@ export const NavigationQueryFragment = gql`
     id
     title
     path
-    externalPath
     related {
-      __typename
       ... on Locatie {
         urlAlias: url
         publishedAt

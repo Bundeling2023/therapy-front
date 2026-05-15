@@ -2,7 +2,6 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_LOCATIONS_DATA } from "@/graphql/GET_LOCATIONS_DATA";
 import { LocationsPage } from "@/types/types";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { Icon } from "@iconify/react";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
@@ -11,6 +10,7 @@ import Head from 'next/head'
 import { DEFAULT_REVALIDATE_TIME } from "@/types/constants";
 import BackButton from "@/components/BackButton";
 import { ConstructPageTitle } from "@/types/utils";
+import { createServerApolloClient } from "@/graphql/apolloClient";
 
 export default function Locations(props: LocationsPage) {
   const { header, footer } = props
@@ -138,12 +138,7 @@ export default function Locations(props: LocationsPage) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    }),
-    cache: new InMemoryCache(),
-  })
+  const client = createServerApolloClient()
 
   try {
     const result = await client.query({

@@ -75,10 +75,9 @@ export interface ContactsUsPage {
 export interface MenuItemFields {
   title: string
   path: string
-  related: {
-    url: string
-    title: string
-    publishedAt: string    
+  related?: {
+    url?: string
+    publishedAt?: string | null
   }
 }
 

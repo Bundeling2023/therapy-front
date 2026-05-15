@@ -2,7 +2,6 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import { GET_CONTACTUS_PAGE } from "@/graphql/GET_CONTACTUS_PAGE";
 import { ContactsUsPage } from "@/types/types";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { GetStaticProps } from "next/types";
 import Head from "next/head";
 import { useCallback, useState } from "react";
@@ -17,6 +16,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 import Link from "next/link";
+import { createServerApolloClient } from "@/graphql/apolloClient";
 
 export default function ContactPage(props: ContactsUsPage) {
   const { header, footer } = props;
@@ -465,12 +465,7 @@ export default function ContactPage(props: ContactsUsPage) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-    }),
-    cache: new InMemoryCache(),
-  });
+  const client = createServerApolloClient();
 
   try {
     const result = await client.query({

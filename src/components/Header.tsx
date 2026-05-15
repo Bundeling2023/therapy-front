@@ -228,11 +228,7 @@ const NavSection = ({ data, info, team, locations, socialLinks }: Props) => {
                                   {i.items.map((itm) => (
                                     itm.related?.publishedAt && (
                                     <li
-                                      key={
-                                        itm.title
-                                          ? itm.title + index
-                                          : itm.related.title + index
-                                      }
+                                      key={(itm.title || itm.path || "menu-item") + index}
                                       className="flex justify-between p-4 last:pb-0"
                                     >
                                       <MenuLink
@@ -526,9 +522,7 @@ const Menu = ({ data, team, locations }: { data: Menu[], team: Team[], locations
                     {i?.items?.map((itm, index) => (                      
                       itm.related?.publishedAt !== null && (
                       <li
-                        key={itm.title
-                          ? itm.title + index
-                          : itm.related.title + index}
+                        key={(itm.title || itm.path || "menu-item") + index}
                       >
                         <MenuLink
                           className="block w-full py-3 px-4 text-base font-medium whitespace-pre-wrap text-dark-purple hover:bg-light-purple hover:bg-opacity-10 rounded-lg 2xl:text-2xl"
