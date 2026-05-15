@@ -52,7 +52,7 @@ const Map = ({ data, handleCLick }: Props) => {
       <MapContainer
         center={center}
         zoom={12}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         doubleClickZoom={true}
         className="w-full h-full"
         ref={mapRef}
