@@ -184,6 +184,15 @@ const Footer = ({ data, info, privacyLink = '#', termsAndConditionsPage = '#', l
                   />
                 </svg>
               </a>
+              <a
+                title="TikTok"
+                href={socialLinks?.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[60px] h-[60px] rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center"
+              >
+                <Icon icon="akar-icons:tiktok-fill" color="white" width="24" height="24" />
+              </a>
             </div>
           </div>
         </div>
