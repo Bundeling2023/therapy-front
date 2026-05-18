@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import NavSection from "@/components/Header";
 import HeaderSlider from "@/components/main-page/HeaderSlider";
 import ReviewsBlock from "@/components/main-page/ReviewsBlock";
+import SocialMediaStrip from "@/components/main-page/SocialMediaStrip";
 import ServicesBlock from "@/components/main-page/ServicesBlock";
 import TeamsBlock from "@/components/main-page/TeamsBlock";
 import MapSection from "@/components/main-page/MapSection";
@@ -64,6 +65,7 @@ export default function Home(props: HomePage) {
         socialLinks={props.generalinfo.socialLinks}
       />
       <HeaderSlider data={mainBanner} />
+      <SocialMediaStrip socialLinks={props.generalinfo.socialLinks} />
       <ServicesBlock data={services} />
       <TeamsBlock data={props.teams} />
       <MapSection data={locations} />

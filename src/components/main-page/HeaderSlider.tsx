@@ -35,7 +35,7 @@ const HeaderSlider = ({ data }: Props) => {
             pagination: true,
           },
         }}
-        className="relative h-full"
+        className="hero-swiper relative h-full"
       >
         {data.map((item) =>
           <SwiperSlide className="h-full" key={item.title}>

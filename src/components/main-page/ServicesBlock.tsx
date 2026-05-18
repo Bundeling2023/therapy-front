@@ -11,7 +11,7 @@ interface Props {
 
 const ServicesBlock = ({ data }: Props) => {
   return (
-    <section className="bg-[url('/services-bgr.svg')] bg-no-repeat bg-bottom bg-cover relative md:pt-[152px] pt-20 pb-48">
+    <section className="bg-[url('/services-bgr.svg')] bg-no-repeat bg-bottom bg-cover relative md:pt-[72px] pt-12 pb-48">
       <h3 className="mb-8 text-3xl font-semibold text-center text-white md:text-5xl md:mb-16">
         Wat we doen
       </h3>
