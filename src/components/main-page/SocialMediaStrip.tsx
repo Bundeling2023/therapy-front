@@ -38,9 +38,9 @@ const SocialMediaStrip = ({ socialLinks }: Props) => {
   }
 
   return (
-    <section className="relative z-20 bg-dark-purple pt-5 md:pt-6 pb-6 md:pb-2">
+    <section className="relative z-20 bg-dark-purple -mt-px -mb-px md:mt-0 md:mb-0 pt-5 md:pt-6 pb-6 md:pb-2">
       <div className="w-90% max-w-1560 mx-auto">
-        <div className="mx-auto w-full lg:max-w-[980px] rounded-[28px] border border-[#C9CDF6] bg-[#DDE1FF] px-5 py-5 md:px-7 md:py-6 shadow-[0_12px_30px_rgba(44,46,128,0.2)]">
+        <div className="mx-auto w-full lg:max-w-[980px] rounded-[28px] border border-transparent md:border-[#C9CDF6] bg-[#DDE1FF] px-5 py-5 md:px-7 md:py-6 shadow-[0_12px_30px_rgba(44,46,128,0.2)]">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 md:gap-5">
             <div className="text-center lg:text-left lg:max-w-[320px]">
               <p className="text-xs md:text-sm uppercase tracking-[0.18em] text-[#5E63A8]">Blijf verbonden</p>
