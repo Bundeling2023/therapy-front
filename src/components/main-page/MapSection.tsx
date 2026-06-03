@@ -83,8 +83,8 @@ const MapSection = ({ data: locations }: Props) => {
                 </span>
                 <a href={`tel:${item.phone}`}>{item.phone}</a>
               </div>
-              <p className="mt-2 text-sm text-[#696AA5] lg:text-lg">
-                Telefonisch bereikbaar op werkdagen van 9:00 tot 17:00 uur.
+              <p className="mt-2 text-sm font-semibold text-[#696AA5] lg:text-lg ">
+                Telefonisch bereikbaar op werkdagen van <span className="text-xl text-dark-purple">9:00</span> tot <span className="text-xl text-dark-purple">17:00</span> uur.
               </p>
               <p className="text-[#696AA5] lg:text-[26px] text-base mt-6 max-w-[350px] leading-normal">
                 {item.address}
